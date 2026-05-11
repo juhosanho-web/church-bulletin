@@ -1,1 +1,311 @@
-file:///Users/yoon-yobpark/Downloads/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>FPCK Bulletin · May 17, 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 297mm;
+      height: 210mm;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .sheet {
+      width: 297mm;
+      height: 210mm;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #fff;
+      font-family: 'EB Garamond', Georgia, serif;
+      color: #111;
+    }
+
+    .half {
+      width: 148.5mm;
+      height: 210mm;
+      padding: 9mm 12mm;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .half-left  { border-right: 0.8pt solid #444; }
+    .half-right { background: #fafafa; }
+
+    .cross-emblem { text-align: center; margin-bottom: 2mm; }
+    .cross-emblem svg { width: 11mm; height: 11mm; }
+
+    .church-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 17pt;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-align: center;
+      color: #111;
+      margin-bottom: 1.5mm;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+    .motto {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 10pt;
+      text-align: center;
+      color: #333;
+      margin-bottom: 1mm;
+    }
+    .contact { font-size: 8.5pt; text-align: center; color: #555; margin-bottom: 2mm; }
+    .badge-wrap { text-align: center; margin-bottom: 2mm; }
+    .label-2026 {
+      display: inline-block;
+      background: #111; color: #fff;
+      font-size: 7pt; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 1.5px 9px; border-radius: 2px;
+    }
+    .thick-rule { border: none; border-top: 1.2pt solid #111; margin: 1.8mm 0; }
+    .thin-rule  { border: none; border-top: 0.4pt solid #aaa; margin: 1.8mm 0; }
+    .divider-ornament { text-align: center; font-size: 10pt; margin: 0.8mm 0; letter-spacing: 0.2em; color: #555; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19pt; font-weight: 600;
+      text-align: center; color: #111; margin: 1mm 0;
+    }
+    .service-date-row {
+      display: flex; justify-content: space-between;
+      font-size: 8.5pt; color: #444;
+      margin: 1mm 0 2.5mm;
+      border-bottom: 0.4pt solid #aaa; padding-bottom: 1.5mm;
+    }
+
+    .order-table { width: 100%; border-collapse: collapse; }
+    .order-table tr { border-bottom: 0.4pt solid #ddd; }
+    .order-table tr:last-child { border-bottom: none; }
+    .order-table td { padding: 1.6mm 1mm; vertical-align: middle; }
+    .item-name   { font-size: 11pt; font-weight: 600; color: #111; width: 36%; }
+    .item-detail { font-size: 10pt; color: #333; font-style: italic; width: 44%; }
+    .item-who    { font-size: 9pt; color: #666; text-align: right; width: 20%; }
+    .dots        { color: #ccc; font-size: 10pt; }
+
+    .footer-note {
+      margin-top: auto; padding-top: 2mm;
+      border-top: 0.4pt solid #aaa;
+      font-size: 8pt; color: #777;
+      text-align: center; font-style: italic;
+    }
+
+    .r-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 10.5pt; font-weight: 600;
+      color: #111; margin: 0 0 2mm;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      border-bottom: 0.8pt solid #333; padding-bottom: 1mm;
+    }
+    .notice-block { margin-bottom: 3.5mm; }
+
+    .offering-box {
+      border: 0.4pt solid #aaa; border-radius: 2px;
+      padding: 2mm 3mm; margin-bottom: 3.5mm;
+      background: #f3f3f3;
+    }
+    .offering-head {
+      font-size: 9pt; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.09em;
+      color: #111; margin-bottom: 1.5mm;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .o-row {
+      display: flex; justify-content: space-between;
+      font-size: 10pt; padding: 1.2mm 0;
+      border-bottom: 0.4pt solid #ddd;
+    }
+    .o-row:last-child { border-bottom: none; }
+    .o-label { color: #666; font-size: 9.5pt; }
+    .o-val   { font-weight: 600; color: #111; }
+
+    .sermon-box {
+      border-left: 2.5pt solid #444;
+      padding: 2mm 3mm; margin-bottom: 3.5mm;
+      background: #efefef; border-radius: 0 2px 2px 0;
+    }
+    .s-label { font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.13em; color: #666; margin-bottom: 1mm; }
+    .s-title { font-family: 'Playfair Display', serif; font-size: 10.5pt; font-weight: 600; color: #111; margin-bottom: 1.5mm; }
+    .s-body  { font-size: 9.5pt; line-height: 1.65; color: #333; font-style: italic; }
+
+    .hymn-box {
+      border-left: 2.5pt solid #444;
+      padding: 2mm 3mm; margin-bottom: 3.5mm;
+      background: #efefef; border-radius: 0 2px 2px 0;
+    }
+    .hymn-text { font-size: 10.5pt; line-height: 1.78; color: #222; }
+    .hymn-text p { margin-bottom: 1.8mm; }
+
+    @media print {
+      html, body { width: 297mm; height: 210mm; }
+      .sheet { width: 297mm; height: 210mm; }
+      @page { size: A4 landscape; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ═══════ 1면: 예배순서 ═══════ -->
+  <div class="half half-left">
+    <div class="cross-emblem">
+      <svg viewBox="0 0 36 36" fill="none">
+        <rect x="15" y="4" width="6" height="28" fill="#111" rx="1"/>
+        <rect x="6" y="13" width="24" height="6" fill="#111" rx="1"/>
+      </svg>
+    </div>
+
+    <div class="church-name">First Presbyterian<br>Church of Korea</div>
+    <div class="motto">"You follow me!" — John 21:22</div>
+    <div class="contact">juhosanho@gmail.com</div>
+    <div class="badge-wrap"><span class="label-2026">2026 Vision</span></div>
+
+    <hr class="thick-rule"/>
+    <div class="divider-ornament">✦ ✦ ✦</div>
+    <hr class="thin-rule"/>
+
+    <div class="section-title">Lord's Day Worship</div>
+    <div class="service-date-row">
+      <span>Sunday Service · 11:00 AM</span>
+      <span>May 17, 2026</span>
+    </div>
+
+    <table class="order-table">
+      <tr>
+        <td class="item-name">Ten Commandments</td>
+        <td class="item-detail dots">· · · · · · · · ·</td>
+        <td class="item-who">Pastor</td>
+      </tr>
+      <tr>
+        <td class="item-name">Hymn</td>
+        <td class="item-detail"><em>God Will Take Care of You</em><br>
+          <span style="font-size:8.5pt;color:#777;">Hymn #382</span></td>
+        <td class="item-who">Congregation</td>
+      </tr>
+      <tr>
+        <td class="item-name">Apostles' Creed</td>
+        <td class="item-detail dots">· · · · · · · · ·</td>
+        <td class="item-who">Congregation</td>
+      </tr>
+      <tr>
+        <td class="item-name">Prayer</td>
+        <td class="item-detail dots">· · · · · · · · ·</td>
+        <td class="item-who">Leader</td>
+      </tr>
+      <tr>
+        <td class="item-name">Sermon</td>
+        <td class="item-detail"><em>Psalm 127</em><br>
+          <span style="font-size:8.5pt;color:#777;">Exposition of Psalms</span></td>
+        <td class="item-who">Pastor</td>
+      </tr>
+      <tr>
+        <td class="item-name">Offering</td>
+        <td class="item-detail dots">· · · · · · · · ·</td>
+        <td class="item-who">Congregation</td>
+      </tr>
+      <tr>
+        <td class="item-name">Hymn</td>
+        <td class="item-detail"><em>What a Friend We Have in Jesus</em><br>
+          <span style="font-size:8.5pt;color:#777;">Hymn #369</span></td>
+        <td class="item-who">Congregation</td>
+      </tr>
+      <tr>
+        <td class="item-name">Lord's Prayer</td>
+        <td class="item-detail dots">· · · · · · · · ·</td>
+        <td class="item-who">Together</td>
+      </tr>
+      <tr>
+        <td class="item-name">Benediction</td>
+        <td class="item-detail dots">· · · · · · · · ·</td>
+        <td class="item-who">Pastor</td>
+      </tr>
+    </table>
+
+    <div class="footer-note">"God is our refuge and strength." — Psalm 46:1</div>
+  </div>
+
+  <!-- ═══════ 2면: 찬송·헌금·설교·찬송 ═══════ -->
+  <div class="half half-right">
+
+    <!-- 첫번째 찬송 #382 -->
+    <div class="notice-block">
+      <div class="r-title">Hymn — God Will Take Care of You (#382)</div>
+      <div class="hymn-box">
+        <div class="hymn-text">
+          <p>Be not dismayed whate'er betide,<br>
+          God will take care of you;<br>
+          Beneath His wings of love abide,<br>
+          God will take care of you.</p>
+          <p style="font-style:italic; color:#555; font-size:10pt;">
+            God will take care of you,<br>
+            Through every day, o'er all the way;<br>
+            He will take care of you,<br>
+            God will take care of you.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 헌금 -->
+    <div class="notice-block">
+      <div class="r-title">Online Offering</div>
+      <div class="offering-box">
+        <div class="offering-head">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+               stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="2"/>
+            <line x1="2" y1="10" x2="22" y2="10"/>
+          </svg>
+          Bank Transfer
+        </div>
+        <div class="o-row"><span class="o-label">Bank</span><span class="o-val">Woori Bank</span></div>
+        <div class="o-row"><span class="o-label">Account No.</span><span class="o-val">474-08-007733</span></div>
+        <div class="o-row"><span class="o-label">Account Name</span><span class="o-val">Yoon Yob Park</span></div>
+      </div>
+    </div>
+
+    <!-- 설교요약 -->
+    <div class="notice-block">
+      <div class="r-title">Sermon Summary</div>
+      <div class="sermon-box">
+        <div class="s-label">Today's Text</div>
+        <div class="s-title">Psalm 127 — Unless the Lord Builds the House</div>
+        <div class="s-body">
+          "Unless the Lord builds the house, the builders labor in vain." — Ps. 127:1<br><br>
+          All our striving is empty without God. He is the foundation of our homes, our work, and our rest. Let us place every effort in His hands and trust His sovereign care.
+        </div>
+      </div>
+    </div>
+
+    <!-- 두번째 찬송 #369 -->
+    <div class="notice-block">
+      <div class="r-title">Hymn — What a Friend We Have in Jesus (#369)</div>
+      <div class="hymn-text">
+        <p>What a friend we have in Jesus,<br>
+        All our sins and griefs to bear!<br>
+        What a privilege to carry<br>
+        Everything to God in prayer!</p>
+        <p style="font-style:italic; color:#555; font-size:10pt;">
+          Oh, what peace we often forfeit,<br>
+          Oh, what needless pain we bear,<br>
+          All because we do not carry<br>
+          Everything to God in prayer!
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-note">May the grace of our Lord Jesus Christ be with you all.</div>
+  </div>
+
+</div>
+</body>
+</html>
