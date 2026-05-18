@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proverbs 17 — Bible English Study (ESV)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Serif+KR:wght@300;400;500&family=Source+Serif+4:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D08A;
+    --gold-dim: #8B6914;
+    --parchment: #F9F4E8;
+    --parchment-dark: #EDE4CC;
+    --ink: #1A1206;
+    --ink-soft: #3D2E0D;
+    --ink-muted: #7A6040;
+    --ink-faint: #B8A07A;
+    --burgundy: #6B1E2A;
+    --teal-deep: #1A4A4A;
+    --cream: #FDFAF3;
+    --shadow: rgba(26,18,6,0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'Source Serif 4', 'Noto Serif KR', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 0%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 90% 100%, rgba(107,30,42,0.06) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+  .app {
+    position: relative; z-index: 1;
+    max-width: 760px; margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* Header */
+  header {
+    text-align: center; margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--gold-dim);
+    position: relative;
+  }
+  header::after {
+    content: '✦';
+    position: absolute; bottom: -0.65rem; left: 50%;
+    transform: translateX(-50%);
+    background: var(--parchment); padding: 0 0.6rem;
+    color: var(--gold); font-size: 14px;
+  }
+  .header-label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--gold-dim);
+    margin-bottom: 0.6rem;
+  }
+  .esv-badge {
+    display: inline-block;
+    background: var(--gold-dim); color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 12px; letter-spacing: 0.15em;
+    padding: 0.2rem 0.9rem; border-radius: 20px;
+    margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 700; color: var(--ink);
+    line-height: 1.2; margin-bottom: 0.5rem;
+  }
+  h1 em { font-style: normal; color: var(--gold-dim); }
+  .header-sub {
+    font-size: 14px; color: var(--ink-muted);
+    font-family: 'Noto Serif KR', serif; font-weight: 300;
+  }
+
+  /* Tab Nav */
+  .tab-nav {
+    display: flex; gap: 4px;
+    background: var(--parchment-dark); padding: 4px;
+    border-radius: 14px; margin-bottom: 2rem;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+  .tab-btn {
+    flex: 1; padding: 0.6rem 0.5rem; border: none;
+    background: transparent; border-radius: 10px;
+    font-family: 'Noto Serif KR', serif; font-size: 13px;
+    color: var(--ink-muted); cursor: pointer;
+    transition: all 0.25s ease; font-weight: 400;
+  }
+  .tab-btn.active {
+    background: var(--cream); color: var(--ink);
+    box-shadow: 0 2px 8px var(--shadow); font-weight: 500;
+  }
+  .tab-btn:hover:not(.active) { color: var(--ink-soft); background: rgba(255,255,255,0.4); }
+
+  /* Panels */
+  .panel { display: none; animation: fadeIn 0.35s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* Verse Card */
+  .verse-card {
+    background: var(--cream);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 20px; padding: 2rem 2rem 1.75rem;
+    position: relative; margin-bottom: 1.5rem;
+    box-shadow: 0 4px 24px var(--shadow);
+  }
+  .verse-card::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif; font-size: 80px;
+    color: var(--gold-light); position: absolute;
+    top: -10px; left: 18px; line-height: 1; opacity: 0.6;
+  }
+  .verse-ref {
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold-dim);
+    margin-bottom: 1rem; font-family: 'Source Serif 4', serif;
+  }
+  .verse-en {
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px; line-height: 2;
+    color: var(--ink-soft); margin-bottom: 1.25rem;
+    font-weight: 400;
+  }
+  .verse-en strong { color: var(--burgundy); font-weight: 700; }
+  .verse-num {
+    font-size: 11px; font-weight: 700;
+    color: var(--gold-dim); vertical-align: super;
+    margin-right: 2px; font-family: 'Source Serif 4', serif;
+  }
+  .verse-ko {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 13.5px; line-height: 2; color: var(--ink-muted);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding-top: 1rem; font-weight: 300;
+  }
+  .memo-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(107,30,42,0.08); color: var(--burgundy);
+    font-size: 12px; padding: 0.35rem 0.85rem;
+    border-radius: 20px; margin-top: 1rem;
+    font-family: 'Noto Serif KR', serif;
+    border: 1px solid rgba(107,30,42,0.12);
+  }
+
+  /* TTS Bar */
+  .tts-bar {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 1.25rem; padding-top: 1rem;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    flex-wrap: wrap;
+  }
+  .tts-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0.45rem 1rem; border-radius: 20px;
+    border: 1px solid rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.08); color: var(--gold-dim);
+    font-family: 'Noto Serif KR', serif; font-size: 12.5px;
+    cursor: pointer; transition: all 0.2s ease; font-weight: 400;
+  }
+  .tts-btn:hover { background: rgba(201,168,76,0.18); border-color: var(--gold); color: var(--ink-soft); }
+  #btnStop { border-color: rgba(107,30,42,0.22); background: rgba(107,30,42,0.04); color: var(--ink-faint); }
+  #btnStop:hover { background: rgba(107,30,42,0.1); border-color: var(--burgundy); color: var(--burgundy); }
+  .tts-btn.playing { background: rgba(107,30,42,0.12); border-color: var(--burgundy); color: var(--burgundy); font-weight: 500; }
+  #btnLoop.loop-on { background: rgba(26,74,74,0.12); border-color: var(--teal-deep); color: var(--teal-deep); font-weight: 500; }
+  .loop-count-wrap {
+    display: none; align-items: center; gap: 4px;
+    font-family: 'Noto Serif KR', serif; font-size: 12px;
+  }
+  .loop-label { color: var(--ink-faint); }
+  .loop-counter {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--teal-deep); min-width: 20px; text-align: center;
+  }
+
+  /* Section Heading */
+  .section-heading { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .section-heading h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); }
+  .section-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+  .hint-text { font-size: 12px; color: var(--ink-faint); font-family: 'Noto Serif KR', serif; margin-bottom: 1rem; font-weight: 300; }
+
+  /* Word Cards */
+  .words-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+  .word-card {
+    background: var(--cream); border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 16px; padding: 1.1rem 1.25rem;
+    cursor: pointer; transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(26,18,6,0.06);
+    position: relative; overflow: hidden;
+  }
+  .word-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .word-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,18,6,0.1); }
+  .word-card:hover::after, .word-card.open::after { opacity: 1; }
+  .word-card.open { border-color: rgba(201,168,76,0.5); background: #FFFDF5; }
+  .word-num { font-size: 10px; color: var(--gold-dim); font-family: 'Source Serif 4', serif; letter-spacing: 0.1em; margin-bottom: 2px; opacity: 0.6; }
+  .word-en { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .word-pos { font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 6px; font-family: 'Source Serif 4', serif; }
+  .word-ko { font-family: 'Noto Serif KR', serif; font-size: 13px; color: var(--ink-soft); font-weight: 400; margin-bottom: 4px; }
+  .word-expand { font-size: 11px; color: var(--ink-faint); font-family: 'Noto Serif KR', serif; }
+  .word-example {
+    display: none; margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    font-family: 'Source Serif 4', serif; font-size: 12.5px;
+    color: var(--ink-muted); line-height: 1.7; font-weight: 400;
+  }
+  .word-example-ko { font-family: 'Noto Serif KR', serif; font-size: 12px; color: var(--ink-faint); margin-top: 4px; font-weight: 300; }
+  .word-card.open .word-example { display: block; }
+  .word-card.open .word-expand { display: none; }
+  .word-speak-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 8px; padding: 0.3rem 0.7rem;
+    border-radius: 12px; border: 1px solid rgba(201,168,76,0.35);
+    background: transparent; color: var(--gold-dim);
+    font-size: 11.5px; cursor: pointer; transition: all 0.2s;
+    font-family: 'Noto Serif KR', serif;
+  }
+  .word-speak-btn:hover { background: rgba(201,168,76,0.12); color: var(--ink-soft); }
+  .word-speak-btn.playing { color: var(--burgundy); border-color: var(--burgundy); background: rgba(107,30,42,0.07); }
+
+  /* Phrasal Cards */
+  .phrasal-list { display: flex; flex-direction: column; gap: 14px; }
+  .phrasal-card {
+    background: var(--cream); border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 16px; padding: 1.25rem 1.5rem;
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 0 1.25rem; align-items: start;
+    box-shadow: 0 2px 8px rgba(26,18,6,0.06); transition: all 0.2s ease;
+  }
+  .phrasal-card:hover { border-color: rgba(26,74,74,0.35); box-shadow: 0 6px 20px rgba(26,18,6,0.1); }
+  .phrasal-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold-light); font-weight: 700; line-height: 1; padding-top: 2px; min-width: 30px; }
+  .phrasal-verb { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--teal-deep); margin-bottom: 3px; }
+  .phrasal-meaning { font-size: 12px; letter-spacing: 0.1em; color: var(--gold-dim); text-transform: uppercase; font-family: 'Source Serif 4', serif; margin-bottom: 10px; }
+  .phrasal-example { font-family: 'Source Serif 4', serif; font-size: 14px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 5px; font-weight: 400; }
+  .phrasal-example em { font-style: normal; font-weight: 700; color: var(--teal-deep); border-bottom: 1.5px solid rgba(26,74,74,0.3); }
+  .phrasal-ko { font-family: 'Noto Serif KR', serif; font-size: 12.5px; color: var(--ink-faint); line-height: 1.6; font-weight: 300; }
+  .phrasal-speak-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 8px; padding: 0.3rem 0.75rem;
+    border-radius: 12px; border: 1px solid rgba(26,74,74,0.25);
+    background: transparent; color: var(--teal-deep);
+    font-size: 11.5px; cursor: pointer; transition: all 0.2s;
+    font-family: 'Noto Serif KR', serif; opacity: 0.75;
+  }
+  .phrasal-speak-btn:hover { opacity: 1; background: rgba(26,74,74,0.07); }
+  .phrasal-speak-btn.playing { opacity: 1; background: rgba(26,74,74,0.12); }
+
+  /* Learning Point */
+  .learn-box {
+    background: var(--cream); border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 16px; padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(26,18,6,0.06);
+    font-family: 'Noto Serif KR', serif; font-size: 14px;
+    color: var(--ink-soft); line-height: 2.1; font-weight: 300;
+  }
+  .learn-box strong { color: var(--ink); font-weight: 500; }
+  .learn-box span.hl { color: var(--burgundy); font-weight: 400; }
+
+  /* Footer */
+  footer { text-align: center; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(201,168,76,0.2); }
+  .footer-ornament { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold-light); letter-spacing: 0.3em; margin-bottom: 0.5rem; }
+  .footer-text { font-size: 12px; color: var(--ink-faint); font-family: 'Noto Serif KR', serif; font-weight: 300; }
+
+  /* Responsive */
+  @media (max-width: 520px) {
+    .app { padding: 1.5rem 1rem 3rem; }
+    .verse-card { padding: 1.5rem 1.25rem; }
+    h1 { font-size: 1.7rem; }
+    .words-grid { grid-template-columns: 1fr 1fr; }
+    .phrasal-card { grid-template-columns: 1fr; }
+    .phrasal-num { font-size: 20px; }
+  }
+
+  /* Sunday School Accordion */
+  .sunday-accordion { display: flex; flex-direction: column; gap: 10px; }
+  .acc-item {
+    background: var(--cream);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(26,18,6,0.06);
+    transition: all 0.2s ease;
+  }
+  .acc-item.open { border-color: rgba(201,168,76,0.5); }
+  .acc-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 1rem 1.25rem; cursor: pointer;
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .acc-header:hover { background: rgba(201,168,76,0.06); }
+  .acc-icon { font-size: 16px; flex-shrink: 0; }
+  .acc-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--ink); flex: 1; }
+  .acc-ref { font-size: 11px; color: var(--gold-dim); font-family: 'Source Serif 4', serif; letter-spacing: 0.1em; flex-shrink: 0; }
+  .acc-arrow { font-size: 12px; color: var(--gold-dim); flex-shrink: 0; transition: transform 0.25s; }
+  .acc-item.open .acc-arrow { transform: rotate(90deg); }
+  .acc-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 13.5px; line-height: 2; color: var(--ink-soft);
+    font-weight: 300;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding-top: 1rem;
+  }
+  .acc-item.open .acc-body { display: block; animation: fadeIn 0.3s ease; }
+  .acc-theme {
+    background: rgba(201,168,76,0.08); border-radius: 10px;
+    padding: 0.6rem 1rem; font-size: 13px; color: var(--ink-soft);
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  /* Quiz */
+  .quiz-list { display: flex; flex-direction: column; gap: 12px; }
+  .quiz-q { font-size: 13px; color: var(--ink-soft); line-height: 1.8; }
+  .quiz-opts { font-size: 12px; color: var(--ink-faint); display: block; margin-top: 2px; padding-left: 10px; }
+  /* Activity */
+  .activity-box { background: rgba(107,30,42,0.04); border: 1px solid rgba(107,30,42,0.12); border-radius: 12px; padding: 1rem; }
+  .activity-materials { font-size: 13px; color: var(--ink-soft); }
+  /* Discuss */
+  .discuss-item { background: rgba(26,74,74,0.06); border-radius: 12px; padding: 0.85rem 1rem; border: 1px solid rgba(26,74,74,0.15); }
+  .discuss-ref { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--teal-deep); font-family: 'Source Serif 4', serif; margin-bottom: 4px; }
+  .discuss-q { font-size: 13.5px; color: var(--ink-soft); line-height: 1.8; }
+    font-family: 'Source Serif 4', serif;
+    font-size: 12.5px; color: var(--ink-muted);
+    line-height: 1.7; font-weight: 400;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="header-label">Weekly Bible English Study · This Week's Verse</div>
+    <div class="esv-badge">ESV</div>
+    <h1>Proverbs <em>17</em></h1>
+    <p class="header-sub">Memorization · Vocabulary · Phrasal Verbs · Sunday School</p>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('verse',this)">📖 Memory Verse</button>
+    <button class="tab-btn" onclick="switchTab('words',this)">📚 Key Words</button>
+    <button class="tab-btn" onclick="switchTab('phrasal',this)">🔗 Phrasal Verbs</button>
+    <button class="tab-btn" onclick="switchTab('sunday',this)">⛪ Sunday School</button>
+  </nav>
+
+  <!-- Panel 1: Verse -->
+  <div id="panel-verse" class="panel active">
+    <div class="verse-card">
+      <div class="verse-ref">Proverbs 17:11–13 (ESV) — This Week's Memory Verse</div>
+      <div class="verse-en">
+        <span class="verse-num">11</span>An <strong>evil</strong> man seeks only <strong>rebellion</strong>,<br>
+        and a <strong>cruel</strong> messenger will be sent against him.<br>
+        <span class="verse-num">12</span>Let a man meet a she-bear robbed of her cubs<br>
+        rather than a fool in his <strong>folly</strong>.<br>
+        <span class="verse-num">13</span>If anyone <strong>returns</strong> evil for good,<br>
+        evil will not <strong>depart</strong> from his house.
+      </div>
+      <div class="verse-ko">
+        <strong style="color:var(--gold-dim);font-size:11px;">11</strong> 악인은 반역만 추구하나니 그에게는 잔인한 사자가 보냄을 받으리라<br>
+        <strong style="color:var(--gold-dim);font-size:11px;">12</strong> 차라리 새끼 빼앗긴 암곰을 만날지언정 미련한 자가 미련한 일을 행하는 것을 만나지 말 것이니라<br>
+        <strong style="color:var(--gold-dim);font-size:11px;">13</strong> 누구든지 악으로 선을 갚으면 악이 그 집을 떠나지 아니하리라
+      </div>
+      <div class="tts-bar">
+        <button class="tts-btn" id="btnPlayFull" onclick="speakVerse(1.0)">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M8 5v14l11-7z"/></svg>Play All
+        </button>
+        <button class="tts-btn" id="btnPlaySlow" onclick="speakVerse(0.72)">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M8 5v14l11-7z"/></svg>Play Slowly
+        </button>
+        <button class="tts-btn" id="btnStop" onclick="stopSpeak()">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M6 6h12v12H6z"/></svg>Stop
+        </button>
+        <button class="tts-btn" id="btnLoop" onclick="toggleLoop()">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>Repeat OFF
+        </button>
+        <div class="loop-count-wrap" id="loopCountWrap">
+          <span class="loop-label">Repeat</span>
+          <span class="loop-counter" id="loopCounter">0</span>
+          <span class="loop-label">times</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <span class="memo-badge">✦ Highlighted words = Top Key Vocabulary this week</span>
+    </div>
+    <div style="margin-top:2rem;">
+      <div class="section-heading">
+        <div class="section-icon">💡</div>
+        <h2>Study Notes</h2>
+      </div>
+      <div class="learn-box">
+        <strong>Proverbs 17:11–13</strong> gives us three vivid pictures of what happens when we choose evil over good.<br>
+        <strong>v.11</strong> — A rebel invites disaster: "a cruel messenger" (judgment) will come against an evil man.<br>
+        <strong>v.12</strong> — Foolishness is more dangerous than a wild bear! A fool acting in folly causes unpredictable harm.<br>
+        <strong>v.13</strong> — The solemn warning: <span class="hl">returning evil for good</span> brings lasting consequences — "evil will not depart from his house."<br>
+        Key theme: <strong>our choices have real consequences</strong> — in family, in community, and before God.
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 2: Words -->
+  <div id="panel-words" class="panel">
+    <div class="section-heading">
+      <div class="section-icon">📚</div>
+      <h2>Proverbs 17 — Top <span style="color:var(--gold-dim);">10</span> Key Words</h2>
+    </div>
+    <p class="hint-text">Tap each card to expand examples · Click 🔊 to hear pronunciation ✦</p>
+    <div class="words-grid" id="wordsGrid"></div>
+  </div>
+
+  <!-- Panel 3: Phrasal Verbs -->
+  <div id="panel-phrasal" class="panel">
+    <div class="section-heading">
+      <div class="section-icon">🔗</div>
+      <h2>Top 5 Phrasal Verbs</h2>
+    </div>
+    <p class="hint-text">Phrasal verbs connected to Psalm 58 — use them in everyday life</p>
+    <div class="phrasal-list" id="phrasalList"></div>
+  </div>
+
+  <!-- Panel 4: Sunday School -->
+  <div id="panel-sunday" class="panel">
+    <div class="section-heading">
+      <div class="section-icon">⛪</div>
+      <h2>Sunday School — Missionary Bible Study</h2>
+    </div>
+    <p class="hint-text">Week 2: Adam and Eve · Tap each section to expand ✦</p>
+
+    <div class="sunday-accordion" id="sundayAccordion">
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">📖</span>
+          <span class="acc-title">Week 2: Adam and Eve</span>
+          <span class="acc-ref">Genesis 2–3</span>
+          <span class="acc-arrow">▸</span>
+        </div>
+        <div class="acc-body">
+          <div class="acc-theme">
+            <strong>Theme:</strong> Sin makes a mess of everything
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">📚</span>
+          <span class="acc-title">The Story</span>
+          <span class="acc-ref">Genesis 2–3</span>
+          <span class="acc-arrow">▸</span>
+        </div>
+        <div class="acc-body">
+          <p>God created the first man, <strong>Adam</strong>, and the first woman, <strong>Eve</strong>, on the sixth day. They lived with God in the beautiful Garden of Eden. God told them they could eat the fruit of every tree in the garden — except one: <em>the tree of the knowledge of good and evil</em>.</p>
+          <p style="margin-top:10px;">One day, a <strong>serpent</strong> came to Eve and asked, "Did God really say you must not eat from that tree?" The serpent made Eve doubt God. Eve and Adam both ate the fruit. This was the <strong>first sin</strong> — and it was why God sent Adam and Eve out of the Garden of Eden.</p>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">💬</span>
+          <span class="acc-title">God's Message</span>
+          <span class="acc-arrow">▸</span>
+        </div>
+        <div class="acc-body">
+          <p>Sin broke Adam and Eve's <strong>perfect relationship with God</strong>. Since then, we have all sinned and we are all separated from God. But there is good news! God loves us so much that He sent His only Son, <strong>Jesus</strong>.</p>
+          <p style="margin-top:10px;">Sin still makes a mess of the world. But God found a way to fix what is broken — through Jesus.</p>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">❓</span>
+          <span class="acc-title">Quiz — Circle the Correct Answer</span>
+          <span class="acc-arrow">▸</span>
+        </div>
+        <div class="acc-body">
+          <div class="quiz-list">
+            <div class="quiz-q">1. Which creature tricked Eve?<br><span class="quiz-opts">A. Serpent &nbsp;·&nbsp; B. Spider &nbsp;·&nbsp; C. Lizard</span></div>
+            <div class="quiz-q">2. What was the name of the forbidden tree?<br><span class="quiz-opts">A. Tree of Life &nbsp;·&nbsp; B. Tree of the Knowledge of Good and Evil &nbsp;·&nbsp; C. Tree of Help and Friendship</span></div>
+            <div class="quiz-q">3. What part of Adam did God use to make Eve?<br><span class="quiz-opts">A. Toothpaste &nbsp;·&nbsp; B. A rib &nbsp;·&nbsp; C. Hair</span></div>
+            <div class="quiz-q">4. What was the name of the garden?<br><span class="quiz-opts">A. Gethsemane &nbsp;·&nbsp; B. Botanical Garden &nbsp;·&nbsp; C. Eden</span></div>
+            <div class="quiz-q">5. What did God do when He found Adam and Eve's sin?<br><span class="quiz-opts">A. Gave them clothes and sent them out &nbsp;·&nbsp; B. Sat under a tree and thought about it &nbsp;·&nbsp; C. Made them do chores in the garden</span></div>
+            <div class="quiz-q">6. Who did God give to save us from sin?<br><span class="quiz-opts">A. Jesus &nbsp;·&nbsp; B. Moses &nbsp;·&nbsp; C. Abraham</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">🎨</span>
+          <span class="acc-title">Activity — Sin Makes a Mess!</span>
+          <span class="acc-arrow">▸</span>
+        </div>
+        <div class="acc-body">
+          <div class="activity-box">
+            <div class="activity-materials">🧴 <strong>Materials:</strong> Toothpaste, paper plate</div>
+            <p style="margin-top:10px;">Squeeze about one inch of toothpaste onto the plate. Now try to put it back in the tube and clean it all up.</p>
+            <p style="margin-top:8px;color:var(--burgundy);font-weight:500;">You can't! — Just like sin.</p>
+            <p style="margin-top:8px;">Adam and Eve's disobedience shows us that <strong>sin's effects cannot be reversed</strong> — just like toothpaste cannot go back in the tube. It affects our lives and the lives of others around us.</p>
+            <p style="margin-top:8px;color:var(--teal-deep);">Good news: We have a Savior — Jesus — who can make right what sin has broken. ✦</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <span class="acc-icon">🗣️</span>
+          <span class="acc-title">Let's Discuss</span>
+          <span class="acc-arrow">▸</span>
+        </div>
+        <div class="acc-body">
+          <div class="discuss-item">
+            <div class="discuss-ref">Read Romans 3:23</div>
+            <div class="discuss-q">After Adam and Eve sinned first — who has sinned since then?</div>
+          </div>
+          <div class="discuss-item" style="margin-top:14px;">
+            <div class="discuss-ref">Read John 3:16</div>
+            <div class="discuss-q">What is God's plan to fix what sin has broken in the world?</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+    <div class="footer-ornament">✦ ✦ ✦</div>
+    <p class="footer-text">Proverbs 17 Bible English Study Card (ESV) · Growing in God's Word and English every week</p>
+  </footer>
+</div>
+
+<script>
+const VERSE_TEXT = "An evil man seeks only rebellion, and a cruel messenger will be sent against him. Let a man meet a she-bear robbed of her cubs rather than a fool in his folly. If anyone returns evil for good, evil will not depart from his house.";
+
+// ── TTS Engine ──
+let isLooping = false, loopCount = 0, isSpeaking = false, currentRate = 1.0;
+
+function getVoice() {
+  const voices = speechSynthesis.getVoices();
+  const en = voices.filter(v => v.lang.startsWith('en') && !v.lang.startsWith('ko'));
+  return en.find(v => v.lang === 'en-US' && v.name.toLowerCase().includes('samantha'))
+    || en.find(v => v.lang === 'en-US' && v.name.toLowerCase().includes('karen'))
+    || en.find(v => v.lang === 'en-US' && v.name.toLowerCase().includes('google'))
+    || en.find(v => v.lang === 'en-US')
+    || en.find(v => v.lang === 'en-GB')
+    || en[0] || null;
+}
+
+function speakVerse(rate) {
+  speechSynthesis.cancel();
+  currentRate = rate; isSpeaking = true;
+  const u = new SpeechSynthesisUtterance(VERSE_TEXT);
+  u.lang = 'en-US'; u.rate = rate; u.pitch = 1.05;
+  const v = getVoice(); if (v) u.voice = v;
+  document.getElementById('btnStop').classList.add('playing');
+  document.getElementById('btnPlayFull').classList.toggle('playing', rate >= 1.0);
+  document.getElementById('btnPlaySlow').classList.toggle('playing', rate < 1.0);
+  u.onend = () => {
+    isSpeaking = false;
+    if (isLooping) {
+      loopCount++;
+      document.getElementById('loopCounter').textContent = loopCount;
+      setTimeout(() => { if (isLooping) speakVerse(currentRate); }, 800);
+    } else {
+      document.getElementById('btnStop').classList.remove('playing');
+      document.getElementById('btnPlayFull').classList.remove('playing');
+      document.getElementById('btnPlaySlow').classList.remove('playing');
+    }
+  };
+  speechSynthesis.speak(u);
+}
+
+function toggleLoop() {
+  isLooping = !isLooping;
+  const btn = document.getElementById('btnLoop');
+  const wrap = document.getElementById('loopCountWrap');
+  const icon = `<svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>`;
+  if (isLooping) {
+    btn.classList.add('loop-on');
+    btn.innerHTML = icon + '반복 ON';
+    wrap.style.display = 'inline-flex';
+    if (!isSpeaking) speakVerse(currentRate);
+  } else {
+    btn.classList.remove('loop-on');
+    btn.innerHTML = icon + '반복 OFF';
+    wrap.style.display = 'none';
+    loopCount = 0;
+    document.getElementById('loopCounter').textContent = '0';
+  }
+}
+
+function stopSpeak() {
+  isLooping = false; isSpeaking = false; loopCount = 0;
+  speechSynthesis.cancel();
+  ['btnStop','btnPlayFull','btnPlaySlow'].forEach(id => document.getElementById(id).classList.remove('playing'));
+  document.querySelectorAll('.word-speak-btn,.phrasal-speak-btn').forEach(b => b.classList.remove('playing'));
+  const btn = document.getElementById('btnLoop');
+  btn.classList.remove('loop-on');
+  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>Repeat OFF`;
+  document.getElementById('loopCountWrap').style.display = 'none';
+  document.getElementById('loopCounter').textContent = '0';
+}
+
+function speakText(text, btn, rate) {
+  isLooping = false; isSpeaking = false; speechSynthesis.cancel();
+  document.querySelectorAll('.word-speak-btn,.phrasal-speak-btn').forEach(b => b.classList.remove('playing'));
+  ['btnPlayFull','btnPlaySlow','btnStop'].forEach(id => document.getElementById(id).classList.remove('playing'));
+  document.getElementById('btnLoop').classList.remove('loop-on');
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = rate || 0.88; u.pitch = 1.05;
+  const v = getVoice(); if (v) u.voice = v;
+  btn.classList.add('playing');
+  u.onend = () => btn.classList.remove('playing');
+  speechSynthesis.speak(u);
+}
+
+speechSynthesis.getVoices();
+window.speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+
+
+
+const wordData = [
+  {en:"rebellion",pos:"noun",ko:"반역 · 반항 · 저항",ex1en:"An evil man seeks only rebellion against God and authority.",ex1ko:"악인은 하나님과 권위에 대한 반역만을 추구한다. (잠 17:11)",ex2en:"Rebellion against wise counsel leads to a life full of trouble.",ex2ko:"지혜로운 충고에 대한 반항은 문제가 가득한 삶으로 이어진다."},
+  {en:"cruel",pos:"adjective",ko:"잔인한 · 무자비한",ex1en:"A cruel messenger will be sent against the rebellious man.",ex1ko:"반역하는 자에게는 잔인한 사자가 보내질 것이다. (잠 17:11)",ex2en:"A cruel heart brings pain to others and destruction to itself.",ex2ko:"잔인한 마음은 다른 이들에게 고통을 주고 자신을 파괴한다."},
+  {en:"messenger",pos:"noun",ko:"사자 · 전령 · 메신저",ex1en:"The messenger carried the king's urgent decree to every city.",ex1ko:"전령이 왕의 긴급한 명령을 모든 도시에 전달했다.",ex2en:"A cruel messenger is sent against those who seek only rebellion.",ex2ko:"반역만을 추구하는 자에게 잔인한 사자가 보내진다."},
+  {en:"fool",pos:"noun",ko:"미련한 자 · 어리석은 사람",ex1en:"It is better to meet a bear than a fool acting in his folly.",ex1ko:"미련한 자가 미련한 짓을 하는 것보다 곰을 만나는 게 낫다. (잠 17:12)",ex2en:"A fool speaks without thinking and hurts the people around him.",ex2ko:"미련한 자는 생각 없이 말하여 주변 사람들에게 상처를 준다."},
+  {en:"folly",pos:"noun",ko:"어리석음 · 미련함",ex1en:"Let a man meet a bear rather than a fool in his folly.",ex1ko:"미련한 자가 미련한 일을 행하는 것보다 곰을 만날지언정. (잠 17:12)",ex2en:"Folly leads to destruction, but wisdom leads to life and peace.",ex2ko:"어리석음은 파멸로 이어지지만 지혜는 생명과 평화로 이어진다."},
+  {en:"returns",pos:"verb",ko:"갚다 · 되돌려 주다",ex1en:"If anyone returns evil for good, evil will not depart from his house.",ex1ko:"악으로 선을 갚으면 악이 그 집을 떠나지 아니하리라. (잠 17:13)",ex2en:"We should return kindness for kindness and grace for grace.",ex2ko:"우리는 친절에는 친절로, 은혜에는 은혜로 갚아야 한다."},
+  {en:"depart",pos:"verb",ko:"떠나다 · 사라지다",ex1en:"Evil will not depart from the house of one who returns evil for good.",ex1ko:"선으로 악을 갚는 자의 집에서 악이 떠나지 않을 것이다. (잠 17:13)",ex2en:"When we repent and turn to God, sin's power begins to depart.",ex2ko:"우리가 회개하고 하나님께 돌아설 때 죄의 권세가 떠나기 시작한다."},
+  {en:"evil",pos:"noun / adjective",ko:"악 · 악한",ex1en:"An evil man seeks only rebellion against what is right and good.",ex1ko:"악한 사람은 옳고 선한 것에 대한 반역만을 추구한다.",ex2en:"Do not repay evil for evil, but repay evil with good.",ex2ko:"악으로 악을 갚지 말고 악을 선으로 갚으라."},
+  {en:"seek",pos:"verb",ko:"추구하다 · 찾다",ex1en:"An evil man seeks only rebellion and trouble wherever he goes.",ex1ko:"악인은 어디를 가든 반역과 문제만을 추구한다.",ex2en:"Seek wisdom above riches, for wisdom brings true life.",ex2ko:"부보다 지혜를 추구하라, 지혜가 참된 생명을 가져오기 때문이다."},
+  {en:"robbed",pos:"verb (past participle)",ko:"빼앗긴 · 약탈당한",ex1en:"A mother bear robbed of her cubs is fiercely dangerous.",ex1ko:"새끼를 빼앗긴 어미 곰은 맹렬하게 위험하다. (잠 17:12 배경)",ex2en:"He felt robbed of joy when the friendship was destroyed by betrayal.",ex2ko:"배신으로 우정이 파괴되었을 때 그는 기쁨을 빼앗긴 느낌이었다."},
+];
+
+const phrasalData = [
+  {verb:"give back",meaning:"돌려주다 · 갚다",ex1en:"Always <em>give back</em> good for good — never repay kindness with cruelty.",ex1ko:"항상 선으로 선을 갚으세요 — 친절을 잔인함으로 갚지 마세요.",ex2en:"She <em>gave back</em> love to those who had hurt her, and found peace.",ex2ko:"그녀는 자신을 상처 입힌 이들에게 사랑을 돌려주고 평화를 찾았습니다."},
+  {verb:"watch out",meaning:"조심하다 · 주의하다",ex1en:"<em>Watch out</em> for a fool in his folly — he is more dangerous than a bear!",ex1ko:"미련한 짓을 하는 자를 조심하세요 — 그는 곰보다 더 위험합니다!",ex2en:"<em>Watch out</em> for words spoken in anger; they cause lasting damage.",ex2ko:"분노 속에 한 말을 조심하세요; 그것은 오래 지속되는 피해를 줍니다."},
+  {verb:"go after",meaning:"추구하다 · 쫓아가다",ex1en:"An evil man <em>goes after</em> rebellion instead of peace and wisdom.",ex1ko:"악인은 평화와 지혜 대신 반역을 추구합니다.",ex2en:"<em>Go after</em> wisdom every day — it is more valuable than gold.",ex2ko:"매일 지혜를 추구하세요 — 그것은 금보다 더 귀합니다."},
+  {verb:"bring about",meaning:"일으키다 · 초래하다",ex1en:"Foolish choices <em>bring about</em> consequences that affect the whole family.",ex1ko:"어리석은 선택은 온 가족에게 영향을 미치는 결과를 초래합니다.",ex2en:"Seeking God's wisdom <em>brings about</em> peace and blessing in every area of life.",ex2ko:"하나님의 지혜를 구하는 것은 삶의 모든 영역에 평화와 축복을 가져옵니다."},
+  {verb:"stay away from",meaning:"멀리하다 · 피하다",ex1en:"<em>Stay away from</em> rebellion and evil — it brings only destruction.",ex1ko:"반역과 악을 멀리하세요 — 그것은 파멸만을 가져옵니다.",ex2en:"<em>Stay away from</em> those who repay goodness with cruelty and betrayal.",ex2ko:"선함을 잔인함과 배신으로 갚는 사람들을 멀리하세요."},
+];
+
+
+const SPEAKER_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>`;
+const STOP_SVG = `<svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px"><path d="M6 6h12v12H6z"/></svg>`;
+
+const grid = document.getElementById('wordsGrid');
+wordData.forEach((w, idx) => {
+  const card = document.createElement('div');
+  card.className = 'word-card';
+  card.innerHTML = `
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+      <div style="flex:1;">
+        <div class="word-num">${String(idx+1).padStart(2,'0')}</div>
+        <div class="word-en">${w.en}</div>
+        <div class="word-pos">${w.pos}</div>
+        <div class="word-ko">${w.ko}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0;padding-top:4px;">
+        <button class="word-speak-btn" onclick="event.stopPropagation();speakText(wordData[${idx}].en,this,0.78)">${SPEAKER_SVG} Pronounce</button>
+        <button class="word-speak-btn" onclick="event.stopPropagation();stopSpeak()" style="opacity:0.6;">${STOP_SVG} Stop</button>
+      </div>
+    </div>
+    <div class="word-expand">Tap to see examples ↓</div>
+    <div class="word-example">
+      <div class="ex-block">
+        <div class="ex-en">${w.ex1en}</div>
+        <div class="word-example-ko">${w.ex1ko}</div>
+        <button class="word-speak-btn" style="margin-top:6px;" onclick="event.stopPropagation();speakText(wordData[${idx}].ex1en,this,0.84)">${SPEAKER_SVG} Example 1</button>
+      </div>
+      <div class="ex-block" style="margin-top:10px;padding-top:10px;border-top:1px dashed rgba(0,0,0,0.1);">
+        <div class="ex-en">${w.ex2en}</div>
+        <div class="word-example-ko">${w.ex2ko}</div>
+        <button class="word-speak-btn" style="margin-top:6px;" onclick="event.stopPropagation();speakText(wordData[${idx}].ex2en,this,0.84)">${SPEAKER_SVG} Example 2</button>
+      </div>
+    </div>`;
+  card.addEventListener('click', () => card.classList.toggle('open'));
+  grid.appendChild(card);
+});
+
+const list = document.getElementById('phrasalList');
+phrasalData.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'phrasal-card';
+  card.innerHTML = `
+    <div class="phrasal-num">0${i+1}</div>
+    <div class="phrasal-body">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+        <div class="phrasal-verb">${p.verb}</div>
+        <button class="phrasal-speak-btn" onclick="speakText(phrasalData[${i}].verb,this,0.78)">${SPEAKER_SVG} Listen</button>
+        <button class="phrasal-speak-btn" onclick="stopSpeak()" style="opacity:0.6;">${STOP_SVG} Stop</button>
+      </div>
+      <div class="phrasal-meaning">${p.meaning}</div>
+      <div class="ex-block" style="margin-bottom:6px;">
+        <div class="phrasal-example">${p.ex1en}</div>
+        <div class="phrasal-ko">${p.ex1ko}</div>
+        <button class="phrasal-speak-btn" style="margin-top:6px;" onclick="speakText(phrasalData[${i}].ex1en.replace(/<[^>]+>/g,''),this,0.85)">${SPEAKER_SVG} Example 1</button>
+      </div>
+      <div class="ex-block" style="padding-top:8px;border-top:1px dashed rgba(0,0,0,0.1);">
+        <div class="phrasal-example">${p.ex2en}</div>
+        <div class="phrasal-ko">${p.ex2ko}</div>
+        <button class="phrasal-speak-btn" style="margin-top:6px;" onclick="speakText(phrasalData[${i}].ex2en.replace(/<[^>]+>/g,''),this,0.85)">${SPEAKER_SVG} Example 2</button>
+      </div>
+    </div>`;
+  list.appendChild(card);
+});
+
+function toggleAcc(header) {
+  const item = header.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+function switchTab(name,btn) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
