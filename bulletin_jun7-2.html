@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FPCK Bulletin · June 7, 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── GLOBAL: Gothic / Sans-Serif, NO Italics, Larger Sizes ── */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-style:normal !important}
+    body{background:#EDE8DF;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:2rem 1rem;color:#2C2416;font-size:16px;line-height:1.6}
+
+    em,i{font-style:normal !important;font-weight:600}
+
+    .bulletin-wrap{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:880px;border:2px solid #8B7355;background:#FDFAF5;box-shadow:0 6px 32px rgba(100,80,50,.18)}
+    .page{padding:2rem 1.7rem}
+    .page-left{border-right:1.5px solid #C4A97A;background:linear-gradient(to bottom,#FDFAF5,#FAF5EC)}
+    .page-right{background:#FDFAF5}
+
+    .cross-emblem{text-align:center;margin-bottom:.6rem}
+    .cross-emblem svg{width:42px;height:42px;opacity:.7}
+    .church-name{font-size:18px;font-weight:800;letter-spacing:.04em;text-align:center;color:#5C3D1E;margin-bottom:.35rem}
+    .motto{font-size:14px;text-align:center;color:#8B6E45;margin-bottom:.5rem;font-weight:600}
+    .date-line{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#5C3D1E;text-align:center;margin-bottom:1rem;font-weight:700}
+    .divider{border:none;border-top:1px solid #C4A97A;margin:.7rem 0}
+    .order-title{font-size:17px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.8rem;letter-spacing:.04em;padding-bottom:.4rem;border-bottom:1.5px solid #C4A97A}
+
+    /* Order of worship rows — bigger and clearer */
+    .row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .lbl{color:#2C2416;font-weight:500;white-space:nowrap;flex:1}
+    .rgt{color:#5C3D1E;font-weight:700;text-align:right;white-space:nowrap}
+
+    .row3{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:.4rem .6rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .row3 .lbl{flex:initial}
+    .row3 .ctr{color:#5C3D1E;font-weight:700;text-align:left}
+    .row3 .rgt{text-align:right}
+    .dots{flex:1;border-bottom:1px dotted #B8A07A;height:.8em}
+
+    /* Right side */
+    .sec-header{font-size:16px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;display:flex;align-items:center;gap:.5rem}
+    .sec-header .ico{font-size:18px}
+    .bank-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.7rem .9rem;margin:.4rem 0;font-size:14px;line-height:1.85;color:#3C2810;border-radius:4px;font-weight:500}
+    .bank-name{font-weight:800;color:#5C3D1E;font-size:15.5px}
+    .sermon-box{font-size:14px;line-height:1.7;color:#3C2810;margin:.3rem 0;min-height:1.5rem}
+
+    /* Announcements — larger, clearer */
+    .announce-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.8rem 1rem;margin:.4rem 0 .7rem;font-size:14px;line-height:1.65;color:#2C2416;border-radius:4px}
+    .announce-item{padding:.5rem 0;border-bottom:1px dotted #C4A97A;display:flex;gap:.6rem;align-items:flex-start}
+    .announce-item:last-child{border-bottom:none}
+    .announce-icon{font-size:18px;flex-shrink:0;margin-top:.1rem}
+    .announce-content{flex:1}
+    .announce-title{font-weight:800;color:#5C3D1E;font-size:15px;margin-bottom:.2rem}
+    .announce-desc{font-size:13.5px;color:#2C2416;line-height:1.6;font-weight:400}
+
+    /* Memo */
+    .memo-label{font-size:15px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+    .memo-pad{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:4px;padding:.7rem .8rem;min-height:7.5rem;background-image:repeating-linear-gradient(to bottom,transparent,transparent 26px,#E8DCC0 26px,#E8DCC0 26.5px);background-position:0 .9rem}
+
+    .footer-note{margin-top:1.2rem;padding-top:.6rem;border-top:1px solid #C4A97A;font-size:12.5px;color:#5C3D1E;text-align:center;font-weight:500}
+
+    /* ══════════ MEMORIZATION CARD ══════════ */
+    .memo-wrap{width:100%;max-width:880px;margin-top:1.5rem;background:#FDFAF5;border:2px solid #8B7355;box-shadow:0 6px 32px rgba(100,80,50,.18);padding:2rem 2rem}
+    .memo-title{font-size:28px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.2rem;letter-spacing:.02em}
+    .memo-title .book-ico{font-size:26px;margin-right:.5rem}
+    .memo-study-tag{font-size:13.5px;font-weight:700;text-align:center;color:#8B6E45;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem}
+    .memo-sub{font-size:14px;text-align:center;color:#8B6E45;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;font-weight:700}
+    .memo-this-week{font-size:13px;text-align:center;color:#5C3D1E;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.2rem;font-weight:700}
+
+    .verse-korean{background:#FAF5EC;border:1.5px solid #C4A97A;border-radius:5px;padding:1rem 1.2rem;margin:.7rem 0 1.4rem;font-size:17px;line-height:1.85;color:#2C2416;text-align:center;font-weight:600}
+    .verse-korean .ref{display:block;font-weight:700;color:#5C3D1E;font-size:13.5px;letter-spacing:.05em;margin-top:.4rem}
+
+    /* NIV/ESV Toggle — larger buttons */
+    .version-tabs{display:flex;gap:.7rem;justify-content:center;margin-bottom:1.5rem}
+    .vtab{background:#FDFAF5;color:#8B6E45;border:2px solid #C4A97A;padding:.7rem 1.7rem;font-family:inherit;font-size:16px;font-weight:700;letter-spacing:.12em;cursor:pointer;border-radius:5px;transition:all .2s;min-width:120px;display:flex;align-items:center;justify-content:center;gap:.4rem}
+    .vtab:hover{background:#FAF5EC}
+    .vtab.active{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+    .vtab .icn{font-size:18px}
+
+    .version-panel{display:none;animation:fadeIn .3s ease}
+    .version-panel.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Section blocks with icon badges */
+    .section-block{margin-bottom:1.5rem}
+    .section-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem;padding-bottom:.5rem;border-bottom:1.5px solid #C4A97A}
+    .section-ico-circle{width:40px;height:40px;border-radius:50%;background:#FAF5EC;border:1.5px solid #C4A97A;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+    .section-name{font-size:18px;font-weight:800;color:#5C3D1E;letter-spacing:.03em}
+
+    .verse-block-eng{background:#FAF5EC;border-left:4px solid #8B6E45;padding:1.1rem 1.3rem;margin-bottom:.7rem;font-size:18px;line-height:1.95;color:#2C2416;border-radius:0 5px 5px 0;font-weight:500}
+    .verse-block-eng .vnum{font-weight:800;color:#8B6E45;margin-right:.35rem;font-size:14px;vertical-align:super}
+
+    .vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+    .vocab-card{background:#FAF5EC;border:1.5px solid #C4A97A;border-radius:4px;padding:.9rem .5rem;text-align:center}
+    .vocab-word{font-size:18px;font-weight:800;color:#5C3D1E;margin-bottom:.3rem}
+    .vocab-pos{font-size:11.5px;color:#8B6E45;margin-bottom:.4rem;letter-spacing:.04em;font-weight:600}
+    .vocab-def{font-size:14px;color:#2C2416;line-height:1.5;font-weight:500}
+
+    .phrasal-empty{background:#FDFAF5;border:1.5px dashed #C4A97A;border-radius:4px;padding:1.2rem;text-align:center;font-size:14px;color:#8B6E45;font-weight:500;min-height:4rem;display:flex;align-items:center;justify-content:center}
+
+    /* Audio Section — prominent */
+    .audio-section{text-align:center;margin-top:1.5rem;padding:1.2rem 1rem;background:#FAF5EC;border:1.5px solid #C4A97A;border-radius:5px}
+    .audio-label{font-size:15px;color:#5C3D1E;margin-bottom:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;display:flex;align-items:center;justify-content:center;gap:.5rem}
+    .audio-hint{font-size:13px;color:#5C3D1E;margin-bottom:.9rem;font-weight:500}
+    .audio-controls{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+    .abtn{background:#5C3D1E;color:#FDFAF5;border:none;padding:.7rem 1.3rem;font-family:inherit;font-size:14.5px;cursor:pointer;border-radius:4px;letter-spacing:.03em;transition:background .2s;display:inline-flex;align-items:center;gap:.35rem;font-weight:700}
+    .abtn:hover{background:#8B6E45}
+    .abtn:active{transform:scale(.97)}
+    .abtn.sec{background:#FDFAF5;color:#5C3D1E;border:1.5px solid #C4A97A}
+    .abtn.sec:hover{background:#EDE8DF}
+    .audio-status{font-size:14px;color:#5C3D1E;margin-top:.9rem;min-height:1.4em;font-weight:700}
+    .audio-status.error{color:#A03030}
+    .audio-status.playing{color:#0F6E56}
+
+    @media(max-width:640px){
+      .bulletin-wrap{grid-template-columns:1fr}
+      .page-left{border-right:none;border-bottom:1.5px solid #C4A97A}
+      .vocab-grid{grid-template-columns:1fr 1fr}
+    }
+    @media print{
+      body{background:white;padding:0}
+      .bulletin-wrap,.memo-wrap{box-shadow:none;border:1px solid #8B7355;max-width:100%}
+      .audio-section{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ BULLETIN ══════════════ -->
+<div class="bulletin-wrap">
+
+  <!-- PAGE LEFT: Order of Worship -->
+  <div class="page page-left">
+    <div class="cross-emblem">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="4" width="6" height="28" fill="#8B7355" rx="1"/>
+        <rect x="6" y="13" width="24" height="6" fill="#8B7355" rx="1"/>
+      </svg>
+    </div>
+    <div class="church-name">First Presbyterian Church of Korea</div>
+    <div class="motto">"You follow me!" — John 21:22</div>
+    <div class="date-line">Lord's Day Worship &nbsp;·&nbsp; June 7, 2026</div>
+    <hr class="divider"/>
+    <div class="order-title">Order of Worship</div>
+
+    <div class="row">
+      <span class="lbl">1. Prelude</span>
+      <span class="rgt">Instrumental</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">2. The Apostles' Creed</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row3">
+      <span class="lbl">3. Hymn 1</span>
+      <span class="ctr">#304</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">4. Ten Commandments</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">5. Representative Prayer</span>
+      <span class="rgt">Mrs. Jeon</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">6. Scripture Reading · Psalm 130</span>
+      <span class="rgt">Pastor</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">7. Pastoral Prayer</span>
+      <span class="rgt">Leader</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">8. Sermon · Psalm 130</span>
+      <span class="rgt">Pastor</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">9. Offering</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row3">
+      <span class="lbl">10. Hymn 2</span>
+      <span class="ctr">#384</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">11. The Lord's Prayer</span>
+      <span class="rgt">Together</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">12. Benediction</span>
+      <span class="rgt">Pastor</span>
+    </div>
+
+  </div>
+
+  <!-- PAGE RIGHT -->
+  <div class="page page-right">
+
+    <!-- Announcements -->
+    <div class="sec-header"><span class="ico">📢</span> Announcements</div>
+    <div class="announce-box">
+
+      <div class="announce-item">
+        <span class="announce-icon">👶</span>
+        <div class="announce-content">
+          <div class="announce-title">Children &amp; Infant Blessing</div>
+          <div class="announce-desc">A special blessing service for children and infants will be held during today's worship. Parents wishing to dedicate their little ones, please come forward after the sermon.</div>
+        </div>
+      </div>
+
+      <div class="announce-item">
+        <span class="announce-icon">🤝</span>
+        <div class="announce-content">
+          <div class="announce-title">Welcome, New Members!</div>
+          <div class="announce-desc">We warmly welcome all visitors and new members joining the FPCK family today. Please introduce yourselves during fellowship — may God's grace be upon you.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sec-header"><span class="ico">💛</span> Offering Account</div>
+    <div class="bank-box">
+      <span class="bank-name">WOORI Bank</span><br/>
+      Account No. &nbsp;474-08-007733<br/>
+      Name: 박윤엽 &nbsp;·&nbsp; YOON YOB PARK
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="memo-label"><span class="ico">✎</span> Notes / Memo</div>
+    <div class="memo-pad"></div>
+
+    <div class="footer-note">May the grace of our Lord Jesus Christ be with you all. ✦ Romans 16:20</div>
+  </div>
+
+</div><!-- /bulletin -->
+
+
+<!-- ══════════════ MEMORIZATION CARD ══════════════ -->
+<div class="memo-wrap">
+  <div class="memo-title"><span class="book-ico">📖</span>Bible Memorization</div>
+  <div class="memo-study-tag">Weekly Bible English Study</div>
+  <div class="memo-this-week">★ This Week's Verse ★</div>
+  <div class="memo-sub">Job 2 : 10</div>
+
+  <div class="verse-korean">
+    이 모든 일에 욥이 입술로 범죄하지 아니하니라
+    <span class="ref">욥기 2:10 (개역개정)</span>
+  </div>
+
+  <!-- Toggle Tabs: NIV / ESV -->
+  <div class="version-tabs">
+    <button class="vtab active" id="tab-niv" onclick="switchVersion('niv')"><span class="icn">📘</span>NIV</button>
+    <button class="vtab" id="tab-esv" onclick="switchVersion('esv')"><span class="icn">📗</span>ESV</button>
+  </div>
+
+  <!-- NIV Panel -->
+  <div class="version-panel active" id="panel-niv">
+
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-ico-circle">📖</div>
+        <div class="section-name">Memory Verse</div>
+      </div>
+      <div class="verse-block-eng">
+        <span class="vnum">10b</span>In all this, Job did not sin in what he said.
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-ico-circle">📚</div>
+        <div class="section-name">Key Words</div>
+      </div>
+      <div class="vocab-grid">
+        <div class="vocab-card">
+          <div class="vocab-word">sin</div>
+          <div class="vocab-pos">verb</div>
+          <div class="vocab-def">죄를 짓다, 범죄하다</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-word">in what he said</div>
+          <div class="vocab-pos">phrase</div>
+          <div class="vocab-def">그가 말한 것에서</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-word">all this</div>
+          <div class="vocab-pos">phrase</div>
+          <div class="vocab-def">이 모든 일</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-ico-circle">🔗</div>
+        <div class="section-name">Phrasal Verbs</div>
+      </div>
+      <div class="phrasal-empty">— to be added —</div>
+    </div>
+
+  </div>
+
+  <!-- ESV Panel -->
+  <div class="version-panel" id="panel-esv">
+
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-ico-circle">📖</div>
+        <div class="section-name">Memory Verse</div>
+      </div>
+      <div class="verse-block-eng">
+        <span class="vnum">10b</span>In all this Job did not sin with his lips.
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-ico-circle">📚</div>
+        <div class="section-name">Key Words</div>
+      </div>
+      <div class="vocab-grid">
+        <div class="vocab-card">
+          <div class="vocab-word">sin</div>
+          <div class="vocab-pos">verb</div>
+          <div class="vocab-def">죄를 짓다, 범죄하다</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-word">lips</div>
+          <div class="vocab-pos">noun</div>
+          <div class="vocab-def">입술</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-word">depart</div>
+          <div class="vocab-pos">verb</div>
+          <div class="vocab-def">떠나다, 멀어지다</div>
+        </div>
+        <div class="vocab-card">
+          <div class="vocab-word">evil</div>
+          <div class="vocab-pos">noun</div>
+          <div class="vocab-def">악, 나쁜 것</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-ico-circle">🔗</div>
+        <div class="section-name">Phrasal Verbs</div>
+      </div>
+      <div class="phrasal-empty">— to be added —</div>
+    </div>
+
+  </div>
+
+  <div class="audio-section">
+    <div class="audio-label"><span>🔊</span> Listen &amp; Memorize <span>🎧</span></div>
+    <div class="audio-hint">Click "Play All" below to hear the verse aloud in English.</div>
+    <div class="audio-controls">
+      <button class="abtn" id="btnPlay" onclick="speakAll()">▶ Play All</button>
+      <button class="abtn" id="btnSlow" onclick="speakSlow()">🐢 Play Slowly</button>
+      <button class="abtn sec" onclick="stopSpeech()">■ Stop</button>
+      <button class="abtn sec" id="repeatBtn" onclick="toggleRepeat()">🔁 Repeat OFF</button>
+    </div>
+    <div class="audio-status" id="audioStatus">🟢 Ready — click ▶ Play All to start</div>
+  </div>
+</div>
+
+<script>
+// ════════════════ ENHANCED AUDIO SYSTEM ════════════════
+const VERSES_NIV = [
+  "Job chapter 2, verse 10, second half.",
+  "In all this, Job did not sin in what he said."
+];
+const VERSES_ESV = [
+  "Job chapter 2, verse 10, second half.",
+  "In all this Job did not sin with his lips."
+];
+
+let currentVersion = 'niv';
+let repeatOn = false;
+let englishVoice = null;
+let voicesReady = false;
+
+const synth = window.speechSynthesis;
+const statusEl = () => document.getElementById('audioStatus');
+
+function loadEnglishVoice() {
+  if (!synth) return;
+  const voices = synth.getVoices();
+  if (voices.length === 0) return;
+  englishVoice =
+    voices.find(v => v.lang === 'en-US' && /Google|Samantha|Microsoft/i.test(v.name)) ||
+    voices.find(v => v.lang === 'en-US') ||
+    voices.find(v => v.lang.startsWith('en')) ||
+    voices[0];
+  voicesReady = true;
+}
+
+if (synth) {
+  loadEnglishVoice();
+  if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = loadEnglishVoice;
+  }
+  setTimeout(loadEnglishVoice, 100);
+  setTimeout(loadEnglishVoice, 500);
+  setTimeout(loadEnglishVoice, 1500);
+}
+
+function setStatus(msg, cls) {
+  const el = statusEl();
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'audio-status' + (cls ? ' ' + cls : '');
+}
+
+function switchVersion(v) {
+  currentVersion = v;
+  document.querySelectorAll('.version-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + v).classList.add('active');
+  document.getElementById('tab-' + v).classList.add('active');
+  stopSpeech();
+  setStatus('🟢 Switched to ' + v.toUpperCase() + ' — click ▶ Play All');
+}
+
+function getVerses() {
+  return currentVersion === 'niv' ? VERSES_NIV : VERSES_ESV;
+}
+
+function speak(texts, rate) {
+  if (!synth) {
+    setStatus('⚠ Your browser does not support speech. Try Chrome or Safari.', 'error');
+    return;
+  }
+  if (!voicesReady) {
+    setStatus('⏳ Loading voices... please wait', '');
+    loadEnglishVoice();
+    setTimeout(() => speak(texts, rate), 250);
+    return;
+  }
+  synth.cancel();
+  let i = 0;
+  function next() {
+    if (i >= texts.length) {
+      if (repeatOn) {
+        i = 0;
+        setStatus('🔁 Repeating...', 'playing');
+        setTimeout(next, 900);
+      } else {
+        setStatus('✅ Finished — click ▶ to play again', '');
+      }
+      return;
+    }
+    const u = new SpeechSynthesisUtterance(texts[i]);
+    u.lang = 'en-US';
+    u.rate = rate;
+    u.pitch = 1;
+    u.volume = 1;
+    if (englishVoice) u.voice = englishVoice;
+    u.onstart = () => {
+      setStatus('▶ Playing ' + currentVersion.toUpperCase() + ' (' + (i + 1) + '/' + texts.length + ')', 'playing');
+    };
+    u.onend = () => { i++; setTimeout(next, 600); };
+    u.onerror = (e) => {
+      setStatus('⚠ Audio error: ' + (e.error || 'unknown') + '. Try again.', 'error');
+    };
+    synth.speak(u);
+  }
+  next();
+}
+
+function speakAll() { speak(getVerses(), 0.95); }
+function speakSlow() { speak(getVerses(), 0.7); }
+function stopSpeech() {
+  if (synth) synth.cancel();
+  setStatus('⏹ Stopped — click ▶ to play again', '');
+}
+function toggleRepeat() {
+  repeatOn = !repeatOn;
+  document.getElementById('repeatBtn').textContent = repeatOn ? '🔁 Repeat ON' : '🔁 Repeat OFF';
+  setStatus(repeatOn ? '🔁 Repeat enabled' : '🔁 Repeat disabled', '');
+}
+
+setInterval(() => {
+  if (synth && synth.speaking && !synth.paused) {
+    synth.pause();
+    synth.resume();
+  }
+}, 10000);
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    if (!synth) {
+      setStatus('⚠ Speech not supported in this browser.', 'error');
+    } else {
+      loadEnglishVoice();
+      setStatus('🟢 Ready — click ▶ Play All to hear the verse');
+    }
+  }, 300);
+});
+</script>
+</body>
+</html>
