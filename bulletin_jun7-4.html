@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FPCK Bulletin · June 7, 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── GLOBAL: Gothic / Sans-Serif, NO Italics, Larger Sizes ── */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-style:normal !important}
+    body{background:#EDE8DF;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:2rem 1rem;color:#2C2416;font-size:16px;line-height:1.6}
+
+    em,i{font-style:normal !important;font-weight:600}
+
+    .bulletin-wrap{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:880px;border:2px solid #8B7355;background:#FDFAF5;box-shadow:0 6px 32px rgba(100,80,50,.18)}
+    .page{padding:2rem 1.7rem}
+    .page-left{border-right:1.5px solid #C4A97A;background:linear-gradient(to bottom,#FDFAF5,#FAF5EC)}
+    .page-right{background:#FDFAF5}
+
+    .cross-emblem{text-align:center;margin-bottom:.6rem}
+    .cross-emblem svg{width:42px;height:42px;opacity:.7}
+    .church-name{font-size:18px;font-weight:800;letter-spacing:.04em;text-align:center;color:#5C3D1E;margin-bottom:.35rem}
+    .motto{font-size:14px;text-align:center;color:#8B6E45;margin-bottom:.5rem;font-weight:600}
+    .date-line{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#5C3D1E;text-align:center;margin-bottom:1rem;font-weight:700}
+    .divider{border:none;border-top:1px solid #C4A97A;margin:.7rem 0}
+    .order-title{font-size:17px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.8rem;letter-spacing:.04em;padding-bottom:.4rem;border-bottom:1.5px solid #C4A97A}
+
+    /* Order of worship rows — bigger and clearer */
+    .row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .lbl{color:#2C2416;font-weight:500;white-space:nowrap;flex:1}
+    .rgt{color:#5C3D1E;font-weight:700;text-align:right;white-space:nowrap}
+
+    .row3{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:.4rem .6rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .row3 .lbl{flex:initial}
+    .row3 .ctr{color:#5C3D1E;font-weight:700;text-align:left}
+    .row3 .rgt{text-align:right}
+    .dots{flex:1;border-bottom:1px dotted #B8A07A;height:.8em}
+
+    /* Right side */
+    .sec-header{font-size:16px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;display:flex;align-items:center;gap:.5rem}
+    .sec-header .ico{font-size:18px}
+    .bank-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.7rem .9rem;margin:.4rem 0;font-size:14px;line-height:1.85;color:#3C2810;border-radius:4px;font-weight:500}
+    .bank-name{font-weight:800;color:#5C3D1E;font-size:15.5px}
+    .sermon-box{font-size:14px;line-height:1.7;color:#3C2810;margin:.3rem 0;min-height:1.5rem}
+
+    /* Announcements — larger, clearer */
+    .announce-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.8rem 1rem;margin:.4rem 0 .7rem;font-size:14px;line-height:1.65;color:#2C2416;border-radius:4px}
+    .announce-item{padding:.5rem 0;border-bottom:1px dotted #C4A97A;display:flex;gap:.6rem;align-items:flex-start}
+    .announce-item:last-child{border-bottom:none}
+    .announce-icon{font-size:18px;flex-shrink:0;margin-top:.1rem}
+    .announce-content{flex:1}
+    .announce-title{font-weight:800;color:#5C3D1E;font-size:15px;margin-bottom:.2rem}
+    .announce-desc{font-size:13.5px;color:#2C2416;line-height:1.6;font-weight:400}
+
+    /* Memo */
+    .memo-label{font-size:15px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+    .memo-pad{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:4px;padding:.7rem .8rem;min-height:7.5rem;background-image:repeating-linear-gradient(to bottom,transparent,transparent 26px,#E8DCC0 26px,#E8DCC0 26.5px);background-position:0 .9rem}
+
+    .footer-note{margin-top:1.2rem;padding-top:.6rem;border-top:1px solid #C4A97A;font-size:12.5px;color:#5C3D1E;text-align:center;font-weight:500}
+    @media(max-width:640px){
+      .bulletin-wrap{grid-template-columns:1fr}
+      .page-left{border-right:none;border-bottom:1.5px solid #C4A97A}
+      .vocab-grid{grid-template-columns:1fr 1fr}
+    }
+    @media print{
+      body{background:white;padding:0}
+      .bulletin-wrap,.memo-wrap{box-shadow:none;border:1px solid #8B7355;max-width:100%}
+      .audio-section{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ BULLETIN ══════════════ -->
+<div class="bulletin-wrap">
+
+  <!-- PAGE LEFT: Order of Worship -->
+  <div class="page page-left">
+    <div class="cross-emblem">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="4" width="6" height="28" fill="#8B7355" rx="1"/>
+        <rect x="6" y="13" width="24" height="6" fill="#8B7355" rx="1"/>
+      </svg>
+    </div>
+    <div class="church-name">First Presbyterian Church of Korea</div>
+    <div class="motto">"You follow me!" — John 21:22</div>
+    <div class="date-line">Lord's Day Worship &nbsp;·&nbsp; June 7, 2026</div>
+    <hr class="divider"/>
+    <div class="order-title">Order of Worship</div>
+
+    <div class="row">
+      <span class="lbl">1. Prelude</span>
+      <span class="rgt">Instrumental</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">2. The Apostles' Creed</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row3">
+      <span class="lbl">3. Hymn 1</span>
+      <span class="ctr">#304</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">4. Ten Commandments</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">5. Representative Prayer</span>
+      <span class="rgt">Mrs. Jeon</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">6. Scripture Reading · Psalm 130</span>
+      <span class="rgt">Pastor</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">7. Pastoral Prayer</span>
+      <span class="rgt">Leader</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">8. Sermon · Psalm 130</span>
+      <span class="rgt">Pastor</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">9. Offering</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row3">
+      <span class="lbl">10. Hymn 2</span>
+      <span class="ctr">#384</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">11. The Lord's Prayer</span>
+      <span class="rgt">Together</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">12. Benediction</span>
+      <span class="rgt">Pastor</span>
+    </div>
+
+  </div>
+
+  <!-- PAGE RIGHT -->
+  <div class="page page-right">
+
+    <!-- Announcements -->
+    <div class="sec-header"><span class="ico">📢</span> Announcements</div>
+    <div class="announce-box">
+
+      <div class="announce-item">
+        <span class="announce-icon">👶</span>
+        <div class="announce-content">
+          <div class="announce-title">Children &amp; Infant Blessing</div>
+          <div class="announce-desc">A special blessing service for children and infants will be held during today's worship. Parents wishing to dedicate their little ones, please come forward after the sermon.</div>
+        </div>
+      </div>
+
+      <div class="announce-item">
+        <span class="announce-icon">🤝</span>
+        <div class="announce-content">
+          <div class="announce-title">Welcome, New Members!</div>
+          <div class="announce-desc">We warmly welcome all visitors and new members joining the FPCK family today. Please introduce yourselves during fellowship — may God's grace be upon you.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sec-header"><span class="ico">💛</span> Offering Account</div>
+    <div class="bank-box">
+      <span class="bank-name">WOORI Bank</span><br/>
+      Account No. &nbsp;474-08-007733<br/>
+      Name: 박윤엽 &nbsp;·&nbsp; YOON YOB PARK
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="memo-label"><span class="ico">✎</span> Notes / Memo</div>
+    <div class="memo-pad"></div>
+
+    <div class="footer-note">May the grace of our Lord Jesus Christ be with you all. ✦ Romans 16:20</div>
+  </div>
+
+</div><!-- /bulletin -->
+
+
+<!-- ══ BIBLE MEMORIZATION CARD (isolated) ══ -->
+<div style="width:100%;max-width:880px;margin-top:1.5rem;">
+  <iframe 
+    src="data:text/html;base64,PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgPG1ldGEgY2hhcnNldD0iVVRGLTgiLz4KICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCIvPgogIDx0aXRsZT5CaWJsZSBNZW1vcml6YXRpb24g4oCUIEpvYiAyOjEwYjwvdGl0bGU+CiAgPGxpbmsgaHJlZj0iaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1QbGF5ZmFpcitEaXNwbGF5Oml0YWwsd2dodEAwLDQwMDswLDYwMDsxLDQwMCZmYW1pbHk9RUIrR2FyYW1vbmQ6aXRhbEAwOzEmZGlzcGxheT1zd2FwIiByZWw9InN0eWxlc2hlZXQiLz4KICA8c3R5bGU+CiAgICAqe2JveC1zaXppbmc6Ym9yZGVyLWJveDttYXJnaW46MDtwYWRkaW5nOjB9CiAgICBib2R5e2JhY2tncm91bmQ6I0VERThERjtkaXNwbGF5OmZsZXg7ZmxleC1kaXJlY3Rpb246Y29sdW1uO2FsaWduLWl0ZW1zOmNlbnRlcjttaW4taGVpZ2h0OjEwMHZoO3BhZGRpbmc6MnJlbSAxcmVtO2ZvbnQtZmFtaWx5OidFQiBHYXJhbW9uZCcsR2VvcmdpYSxzZXJpZjtjb2xvcjojMkMyNDE2fQoKICAgIC5kaXZpZGVye2JvcmRlcjpub25lO2JvcmRlci10b3A6LjVweCBzb2xpZCAjQzRBOTdBO21hcmdpbjouNTVyZW0gMH0KCiAgICAvKiDilZDilZAgTUVNT1JJWkFUSU9OIFdSQVAg4pWQ4pWQICovCiAgICAubWVtby13cmFwe3dpZHRoOjEwMCU7bWF4LXdpZHRoOjgyMHB4O2JhY2tncm91bmQ6I0ZERkFGNTtib3JkZXI6MS41cHggc29saWQgIzhCNzM1NTtib3gtc2hhZG93OjAgNnB4IDMycHggcmdiYSgxMDAsODAsNTAsLjE4KTtwYWRkaW5nOjEuOHJlbSAycmVtfQoKICAgIC8qIOKUgOKUgCDsoJzrqqkg7ZaJICYg7JWE7J207L2YIOKUgOKUgCAqLwogICAgLm1lbW8tdGl0bGUtcm93e2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7anVzdGlmeS1jb250ZW50OmNlbnRlcjtnYXA6LjlyZW07bWFyZ2luLWJvdHRvbTouMnJlbX0KICAgIC5tZW1vLXRpdGxle2ZvbnQtZmFtaWx5OidQbGF5ZmFpciBEaXNwbGF5JyxzZXJpZjtmb250LXNpemU6MThweDtmb250LXdlaWdodDo2MDA7Y29sb3I6IzVDM0QxRX0KCiAgICAvKiDslYTsnbTsvZg6IOyekeqzoCDrj5nqt7jrnoAg67GD7KeAICovCiAgICAudC1pY29ue3dpZHRoOjIwcHg7aGVpZ2h0OjIwcHg7Ym9yZGVyLXJhZGl1czo1MCU7ZGlzcGxheTppbmxpbmUtZmxleDthbGlnbi1pdGVtczpjZW50ZXI7anVzdGlmeS1jb250ZW50OmNlbnRlcjtmbGV4LXNocmluazowfQogICAgLnQtaWNvbi5kb3Zle2JhY2tncm91bmQ6IzdBOUU3RX0gICAvKiDstIjroZ0g4oCUIOyZvOyqvSDruYTrkZjquLAo7ISx66C5KSAqLwogICAgLnQtaWNvbi5zdGFye2JhY2tncm91bmQ6IzhCNkU0NX0gICAvKiDquIjqsIjsg4kg4oCUIOyYpOuluOyqvSDrs4Qo66eQ7JSAKSAqLwogICAgLnQtaWNvbiBzdmd7d2lkdGg6MTBweDtoZWlnaHQ6MTBweDtmaWxsOiNGREZBRjV9CgogICAgLm1lbW8tc3Vie2ZvbnQtc2l6ZToxMXB4O3RleHQtYWxpZ246Y2VudGVyO2NvbG9yOiM4QjZFNDU7bGV0dGVyLXNwYWNpbmc6LjFlbTt0ZXh0LXRyYW5zZm9ybTp1cHBlcmNhc2U7bWFyZ2luLWJvdHRvbToxcmVtfQoKICAgIC8qIOKUgOKUgCDrkZAg67KE7KCEIOuCmOuegO2eiCDilIDilIAgKi8KICAgIC52ZXJzaW9ucy1ncmlke2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyIDFmcjtnYXA6MS40cmVtO21hcmdpbi1ib3R0b206LjhyZW19CgogICAgLyogRVNWIOKAlCDrlKUg64Sk7J2067mEIOqzhOyXtCAqLwogICAgLnZlcnNpb24tbGFiZWwuZXN2e2ZvbnQtZmFtaWx5OidQbGF5ZmFpciBEaXNwbGF5JyxzZXJpZjtmb250LXNpemU6MTIuNXB4O2ZvbnQtd2VpZ2h0OjYwMDsKICAgICAgY29sb3I6IzJENEE2RTttYXJnaW4tYm90dG9tOi40cmVtO3BhZGRpbmctYm90dG9tOi4yNXJlbTsKICAgICAgYm9yZGVyLWJvdHRvbToycHggc29saWQgIzJENEE2RX0KCiAgICAvKiBOSVYg4oCUIOuyhOqxtOuUlCDqs4Tsl7QgKi8KICAgIC52ZXJzaW9uLWxhYmVsLm5pdntmb250LWZhbWlseTonUGxheWZhaXIgRGlzcGxheScsc2VyaWY7Zm9udC1zaXplOjEyLjVweDtmb250LXdlaWdodDo2MDA7CiAgICAgIGNvbG9yOiM3QTJFMkU7bWFyZ2luLWJvdHRvbTouNHJlbTtwYWRkaW5nLWJvdHRvbTouMjVyZW07CiAgICAgIGJvcmRlci1ib3R0b206MnB4IHNvbGlkICM3QTJFMkV9CgogICAgLnZlcnNlLWJsb2Nre21hcmdpbi1ib3R0b206LjRyZW07Zm9udC1zaXplOjExLjVweDtsaW5lLWhlaWdodDoxLjg1O2NvbG9yOiMyQzI0MTZ9CiAgICAudm51bXtmb250LXdlaWdodDo3MDA7Y29sb3I6IzhCNkU0NTttYXJnaW4tcmlnaHQ6LjI1cmVtO2ZvbnQtc2l6ZToxMXB4fQoKICAgIC8qIOKUgOKUgCDslrTtnJgg7Lm065OcIOKUgOKUgCAqLwogICAgLnZvY2FiLXRpdGxle2ZvbnQtZmFtaWx5OidQbGF5ZmFpciBEaXNwbGF5JyxzZXJpZjtmb250LXNpemU6MTNweDtmb250LXdlaWdodDo2MDA7Y29sb3I6IzVDM0QxRTttYXJnaW46MXJlbSAwIC42cmVtO3RleHQtYWxpZ246Y2VudGVyfQogICAgLnZvY2FiLWdyaWR7ZGlzcGxheTpncmlkO2dyaWQtdGVtcGxhdGUtY29sdW1uczpyZXBlYXQoNSwxZnIpO2dhcDouNTVyZW07bWFyZ2luLWJvdHRvbTouOHJlbX0KICAgIC52b2NhYi1jYXJke2JhY2tncm91bmQ6I0ZBRjVFQztib3JkZXI6MXB4IHNvbGlkICNDNEE5N0E7Ym9yZGVyLXJhZGl1czozcHg7cGFkZGluZzouNTVyZW0gLjRyZW07dGV4dC1hbGlnbjpjZW50ZXJ9CiAgICAudm9jYWItd29yZHtmb250LXNpemU6MTJweDtmb250LXdlaWdodDo3MDA7Y29sb3I6IzVDM0QxRTttYXJnaW4tYm90dG9tOi4xNXJlbX0KICAgIC52b2NhYi1wb3N7Zm9udC1zaXplOjkuNXB4O2NvbG9yOiM4QjZFNDU7bWFyZ2luLWJvdHRvbTouMnJlbTtmb250LXN0eWxlOml0YWxpY30KICAgIC52b2NhYi1kZWZ7Zm9udC1zaXplOjEwcHg7Y29sb3I6IzNDMjgxMDtsaW5lLWhlaWdodDoxLjV9CgogICAgLyog4pSA4pSAIOyYpOuUlOyYpCDigJQg7Jqw7JWE7ZWY6rOgIOyekeqyjCDilIDilIAgKi8KICAgIC5hdWRpby1zZWN0aW9ue3RleHQtYWxpZ246Y2VudGVyO21hcmdpbi10b3A6LjVyZW19CiAgICAuYXVkaW8tbGFiZWx7Zm9udC1zaXplOjlweDtjb2xvcjojQjA5ODcwO21hcmdpbi1ib3R0b206LjRyZW07bGV0dGVyLXNwYWNpbmc6LjEyZW07dGV4dC10cmFuc2Zvcm06dXBwZXJjYXNlO2ZvbnQtc3R5bGU6aXRhbGljfQogICAgLmF1ZGlvLWNvbnRyb2xze2Rpc3BsYXk6ZmxleDtnYXA6LjI4cmVtO2p1c3RpZnktY29udGVudDpjZW50ZXI7ZmxleC13cmFwOndyYXA7YWxpZ24taXRlbXM6Y2VudGVyfQogICAgLmFidG57YmFja2dyb3VuZDp0cmFuc3BhcmVudDtjb2xvcjojNUMzRDFFO2JvcmRlcjoxcHggc29saWQgI0M0QTk3QTsKICAgICAgcGFkZGluZzouMThyZW0gLjVyZW07Zm9udC1mYW1pbHk6J0VCIEdhcmFtb25kJyxzZXJpZjtmb250LXNpemU6OS41cHg7CiAgICAgIGN1cnNvcjpwb2ludGVyO2JvcmRlci1yYWRpdXM6MjBweDtsZXR0ZXItc3BhY2luZzouMDRlbTt0cmFuc2l0aW9uOmFsbCAuMnN9CiAgICAuYWJ0bjpob3ZlcntiYWNrZ3JvdW5kOiM1QzNEMUU7Y29sb3I6I0ZERkFGNTtib3JkZXItY29sb3I6IzVDM0QxRX0KICAgIC5hYnRuLnBsYXl7YmFja2dyb3VuZDojNUMzRDFFO2NvbG9yOiNGREZBRjU7Ym9yZGVyLWNvbG9yOiM1QzNEMUV9CiAgICAuYWJ0bi5wbGF5OmhvdmVye2JhY2tncm91bmQ6IzhCNkU0NTtib3JkZXItY29sb3I6IzhCNkU0NX0KICAgIC5hdWRpby1zdGF0dXN7Zm9udC1zaXplOjguNXB4O2NvbG9yOiNCMDk4NzA7Zm9udC1zdHlsZTppdGFsaWM7bWFyZ2luLXRvcDouMjVyZW07bWluLWhlaWdodDouOWVtO2xldHRlci1zcGFjaW5nOi4wNGVtfQoKICAgIEBtZWRpYShtYXgtd2lkdGg6NjQwcHgpewogICAgICAudmVyc2lvbnMtZ3JpZHtncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyfQogICAgICAudm9jYWItZ3JpZHtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KDMsMWZyKX0KICAgIH0KICAgIEBtZWRpYSBwcmludHsKICAgICAgYm9keXtiYWNrZ3JvdW5kOndoaXRlO3BhZGRpbmc6MH0KICAgICAgLm1lbW8td3JhcHtib3gtc2hhZG93Om5vbmU7Ym9yZGVyOi41cHggc29saWQgIzhCNzM1NTttYXgtd2lkdGg6MTAwJX0KICAgIH0KICA8L3N0eWxlPgo8L2hlYWQ+Cjxib2R5PgoKPGRpdiBjbGFzcz0ibWVtby13cmFwIj4KCiAgPCEtLSDsoJzrqqkgKyDslpHsmIYg7JWE7J207L2YIC0tPgogIDxkaXYgY2xhc3M9Im1lbW8tdGl0bGUtcm93Ij4KICAgIDwhLS0g7Jm87Kq9OiDruYTrkZjquLAgKOyEseugucK37Y+J7ZmUKSAtLT4KICAgIDxzcGFuIGNsYXNzPSJ0LWljb24gZG92ZSI+CiAgICAgIDxzdmcgdmlld0JveD0iMCAwIDIwIDIwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgICAgIDxwYXRoIGQ9Ik0xMCAzIEM3IDMgNCA1LjUgNCA4LjUgQzQgMTEgNS41IDEzIDggMTQgTDggMTcgTDEwIDE1IEwxMiAxNyBMMTIgMTQgQzE0LjUgMTMgMTYgMTEgMTYgOC41IEMxNiA1LjUgMTMgMyAxMCAzWiBNOSA5IEExIDEgMCAxIDEgMTEgOSBBMSAxIDAgMSAxIDkgOVoiLz4KICAgICAgPC9zdmc+CiAgICA8L3NwYW4+CgogICAgPGRpdiBjbGFzcz0ibWVtby10aXRsZSI+QmlibGUgTWVtb3JpemF0aW9uPC9kaXY+CgogICAgPCEtLSDsmKTrpbjsqr06IOuzhCAo66eQ7JSA7J2YIOu5mykgLS0+CiAgICA8c3BhbiBjbGFzcz0idC1pY29uIHN0YXIiPgogICAgICA8c3ZnIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICA8cG9seWdvbiBwb2ludHM9IjEwLDIgMTIuNCw3LjUgMTguNSw3LjUgMTMuOCwxMS4zIDE1LjcsMTcgMTAsMTMuNSA0LjMsMTcgNi4yLDExLjMgMS41LDcuNSA3LjYsNy41Ii8+CiAgICAgIDwvc3ZnPgogICAgPC9zcGFuPgogIDwvZGl2PgoKICA8ZGl2IGNsYXNzPSJtZW1vLXN1YiI+Sm9iIDIgOiAxMGI8L2Rpdj4KICA8aHIgY2xhc3M9ImRpdmlkZXIiLz4KCiAgPCEtLSDrkZAg67KE7KCEIOu5hOq1kCAtLT4KICA8ZGl2IGNsYXNzPSJ2ZXJzaW9ucy1ncmlkIj4KCiAgICA8IS0tIOyZvOyqvTogRVNWIOKAlCDrhKTsnbTruYQgLS0+CiAgICA8ZGl2PgogICAgICA8ZGl2IGNsYXNzPSJ2ZXJzaW9uLWxhYmVsIGVzdiI+RVNWPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9InZlcnNlLWJsb2NrIj4KICAgICAgICA8c3BhbiBjbGFzcz0idm51bSI+MTBiPC9zcGFuPkluIGFsbCB0aGlzIEpvYiBkaWQgbm90IHNpbiB3aXRoIGhpcyBsaXBzLgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgoKICAgIDwhLS0g7Jik66W47Kq9OiBOSVYg4oCUIOuyhOqxtOuUlCAtLT4KICAgIDxkaXY+CiAgICAgIDxkaXYgY2xhc3M9InZlcnNpb24tbGFiZWwgbml2Ij5OSVY8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0idmVyc2UtYmxvY2siPgogICAgICAgIDxzcGFuIGNsYXNzPSJ2bnVtIj4xMGI8L3NwYW4+SW4gYWxsIHRoaXMsIEpvYiBkaWQgbm90IHNpbiBpbiB3aGF0IGhlIHNhaWQuCiAgICAgIDwvZGl2PgogICAgPC9kaXY+CgogIDwvZGl2PgoKICA8aHIgY2xhc3M9ImRpdmlkZXIiLz4KCiAgPCEtLSDslrTtnJgg7Lm065OcIC0tPgogIDxkaXYgY2xhc3M9InZvY2FiLXRpdGxlIj5LZXkgVm9jYWJ1bGFyeSDigJQgRVNWIMK3IDUgV29yZHM8L2Rpdj4KICA8ZGl2IGNsYXNzPSJ2b2NhYi1ncmlkIj4KICAgIDxkaXYgY2xhc3M9InZvY2FiLWNhcmQiPgogICAgICA8ZGl2IGNsYXNzPSJ2b2NhYi13b3JkIj5yZWNlaXZlPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9InZvY2FiLXBvcyI+dmVyYjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJ2b2NhYi1kZWYiPnRvIGFjY2VwdCBvciBiZSBnaXZlbiBzb21ldGhpbmc8L2Rpdj4KICAgIDwvZGl2PgogICAgPGRpdiBjbGFzcz0idm9jYWItY2FyZCI+CiAgICAgIDxkaXYgY2xhc3M9InZvY2FiLXdvcmQiPmV2aWw8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0idm9jYWItcG9zIj5ub3VuPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9InZvY2FiLWRlZiI+c3VmZmVyaW5nIG9yIGhhcm0gYWxsb3dlZCBieSBHb2Q8L2Rpdj4KICAgIDwvZGl2PgogICAgPGRpdiBjbGFzcz0idm9jYWItY2FyZCI+CiAgICAgIDxkaXYgY2xhc3M9InZvY2FiLXdvcmQiPnNpbjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJ2b2NhYi1wb3MiPnZlcmI8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0idm9jYWItZGVmIj50byBhY3QgYWdhaW5zdCBHb2QncyB3aWxsPC9kaXY+CiAgICA8L2Rpdj4KICAgIDxkaXYgY2xhc3M9InZvY2FiLWNhcmQiPgogICAgICA8ZGl2IGNsYXNzPSJ2b2NhYi13b3JkIj5saXBzPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9InZvY2FiLXBvcyI+bm91bjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJ2b2NhYi1kZWYiPnRoZSBtb3V0aDsgbWVhbmluZyAiaW4gd2hhdCBoZSBzYWlkIjwvZGl2PgogICAgPC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJ2b2NhYi1jYXJkIj4KICAgICAgPGRpdiBjbGFzcz0idm9jYWItd29yZCI+Zm9vbGlzaDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJ2b2NhYi1wb3MiPmFkai48L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0idm9jYWItZGVmIj5sYWNraW5nIHdpc2RvbSBvciBnb29kIGp1ZGdlbWVudDwvZGl2PgogICAgPC9kaXY+CiAgPC9kaXY+CgogIDxociBjbGFzcz0iZGl2aWRlciIvPgoKICA8IS0tIOyYpOuUlOyYpCDigJQg7J6R6rOgIOuLqOygle2VmOqyjCAtLT4KICA8ZGl2IGNsYXNzPSJhdWRpby1zZWN0aW9uIj4KICAgIDxkaXYgY2xhc3M9ImF1ZGlvLWxhYmVsIj5MaXN0ZW4gJmFtcDsgTWVtb3JpemU8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImF1ZGlvLWNvbnRyb2xzIj4KICAgICAgPGJ1dHRvbiBjbGFzcz0iYWJ0biBwbGF5IiBvbmNsaWNrPSJzcGVha0FsbCgpIj7ilrYgUGxheTwvYnV0dG9uPgogICAgICA8YnV0dG9uIGNsYXNzPSJhYnRuIiBvbmNsaWNrPSJzcGVha1Nsb3coKSI+8J2FmPCdhaXwnYWuIFNsb3c8L2J1dHRvbj4KICAgICAgPGJ1dHRvbiBjbGFzcz0iYWJ0biIgb25jbGljaz0ic3RvcFNwZWVjaCgpIj7il7wgU3RvcDwvYnV0dG9uPgogICAgICA8YnV0dG9uIGNsYXNzPSJhYnRuIiBpZD0icmVwZWF0QnRuIiBvbmNsaWNrPSJ0b2dnbGVSZXBlYXQoKSI+4oa6IFJlcGVhdDwvYnV0dG9uPgogICAgPC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJhdWRpby1zdGF0dXMiIGlkPSJhdWRpb1N0YXR1cyI+UmVhZHk8L2Rpdj4KICA8L2Rpdj4KCjwvZGl2PgoKPHNjcmlwdD4KY29uc3QgVkVSU0VTID0gWwogICJKb2IgY2hhcHRlciAyLCB2ZXJzZSAxMCBiLiBFU1YuIFNoYWxsIHdlIHJlY2VpdmUgZ29vZCBmcm9tIEdvZCwgYW5kIHNoYWxsIHdlIG5vdCByZWNlaXZlIGV2aWw/IEluIGFsbCB0aGlzIEpvYiBkaWQgbm90IHNpbiB3aXRoIGhpcyBsaXBzLiIsCiAgIk5JViB2ZXJzaW9uLiBTaGFsbCB3ZSBhY2NlcHQgZ29vZCBmcm9tIEdvZCwgYW5kIG5vdCB0cm91YmxlPyBJbiBhbGwgdGhpcywgSm9iIGRpZCBub3Qgc2luIGluIHdoYXQgaGUgc2FpZC4iCl07CmNvbnN0IHN5bnRoID0gd2luZG93LnNwZWVjaFN5bnRoZXNpczsKbGV0IHJlcGVhdE9uID0gZmFsc2U7CgpmdW5jdGlvbiB1cGRhdGVTdGF0dXMobXNnKXsgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2F1ZGlvU3RhdHVzJykudGV4dENvbnRlbnQgPSBtc2c7IH0KCmZ1bmN0aW9uIHNwZWFrKHRleHRzLCByYXRlKXsKICBzeW50aC5jYW5jZWwoKTsKICBsZXQgaSA9IDA7CiAgZnVuY3Rpb24gbmV4dCgpewogICAgaWYoaSA+PSB0ZXh0cy5sZW5ndGgpewogICAgICBpZihyZXBlYXRPbil7IGk9MDsgc2V0VGltZW91dChuZXh0LDgwMCk7IH0gZWxzZSB7IHVwZGF0ZVN0YXR1cygnRmluaXNoZWQg4pyTJyk7IH0KICAgICAgcmV0dXJuOwogICAgfQogICAgY29uc3QgdSA9IG5ldyBTcGVlY2hTeW50aGVzaXNVdHRlcmFuY2UodGV4dHNbaV0pOwogICAgdS5sYW5nPSdlbi1VUyc7IHUucmF0ZT1yYXRlOwogICAgdS5vbnN0YXJ0ID0gKCk9PiB1cGRhdGVTdGF0dXMoJ1BsYXlpbmcgJysoaSsxKSsnLycrdGV4dHMubGVuZ3RoKyfigKYnKTsKICAgIHUub25lbmQgPSAoKT0+eyBpKys7IHNldFRpbWVvdXQobmV4dCw2MDApOyB9OwogICAgc3ludGguc3BlYWsodSk7CiAgfQogIG5leHQoKTsKfQoKZnVuY3Rpb24gc3BlYWtBbGwoKXsgc3BlYWsoVkVSU0VTLCAxKTsgfQpmdW5jdGlvbiBzcGVha1Nsb3coKXsgc3BlYWsoVkVSU0VTLCAwLjc1KTsgfQpmdW5jdGlvbiBzdG9wU3BlZWNoKCl7IHN5bnRoLmNhbmNlbCgpOyB1cGRhdGVTdGF0dXMoJ1N0b3BwZWQnKTsgfQpmdW5jdGlvbiB0b2dnbGVSZXBlYXQoKXsKICByZXBlYXRPbiA9ICFyZXBlYXRPbjsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncmVwZWF0QnRuJykudGV4dENvbnRlbnQgPSByZXBlYXRPbiA/ICfwn5SBIE9OJyA6ICfwn5SBIFJlcGVhdCc7Cn0KPC9zY3JpcHQ+CjwvYm9keT4KPC9odG1sPgo="
+    style="width:100%;border:none;min-height:700px;"
+    scrolling="no"
+    id="memoFrame"
+    onload="this.style.height=(this.contentWindow.document.body.scrollHeight+40)+'px'"
+  ></iframe>
+</div>
+
+</body>
+</html>
