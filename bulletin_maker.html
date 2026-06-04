@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FPCK 주보 자동화 생성기</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-style:normal!important}
+
+/* ─── 입력 패널 ─── */
+#editor{background:#f5f0e8;min-height:100vh;padding:2rem 1rem;display:flex;flex-direction:column;align-items:center}
+#editor.hidden{display:none}
+.ed-wrap{width:100%;max-width:860px}
+.ed-title{font-size:22px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.3rem}
+.ed-sub{font-size:13px;color:#8B6E45;text-align:center;margin-bottom:1.5rem}
+.ed-card{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:8px;padding:1.2rem 1.4rem;margin-bottom:1rem}
+.ed-card-title{font-size:13px;font-weight:800;color:#5C3D1E;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #E8D9B8}
+.fg{margin-bottom:.75rem}
+.fg label{display:block;font-size:12px;color:#8B6E45;font-weight:700;margin-bottom:.3rem}
+.fg input,.fg textarea,.fg select{width:100%;font-family:'Noto Sans KR',sans-serif;font-size:13.5px;padding:7px 10px;border:1px solid #D4B896;border-radius:5px;background:#FFF;color:#2C2416}
+.fg textarea{resize:vertical;min-height:70px;line-height:1.6}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.row3g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem}
+.add-row-btn{font-size:12px;padding:4px 12px;border:1px solid #C4A97A;border-radius:20px;background:transparent;color:#5C3D1E;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:600;margin-top:.3rem}
+.add-row-btn:hover{background:#5C3D1E;color:#FFF}
+.dyn-row{display:flex;gap:.5rem;margin-bottom:.5rem;align-items:flex-start}
+.dyn-row input,.dyn-row textarea{flex:1;font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:6px 9px;border:1px solid #D4B896;border-radius:5px;background:#FFF;color:#2C2416}
+.del-btn{background:transparent;border:1px solid #D4B896;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:15px;color:#B08060;flex-shrink:0;margin-top:2px}
+.del-btn:hover{background:#C0392B;color:#FFF;border-color:#C0392B}
+.gen-btn{display:block;width:100%;padding:14px;font-size:16px;font-weight:800;background:#5C3D1E;color:#FDFAF5;border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;letter-spacing:.05em;margin-top:1rem}
+.gen-btn:hover{background:#8B6E45}
+
+/* ─── 주보 출력 ─── */
+#output{display:none;background:#EDE8DF;min-height:100vh;padding:2rem 1rem;flex-direction:column;align-items:center}
+#output.visible{display:flex}
+.back-btn{margin-bottom:1.2rem;padding:8px 22px;font-size:13px;font-weight:700;background:transparent;border:1.5px solid #8B7355;border-radius:20px;cursor:pointer;color:#5C3D1E;font-family:'Noto Sans KR',sans-serif}
+.back-btn:hover{background:#5C3D1E;color:#FFF}
+.print-btn-top{margin-bottom:1.2rem;margin-left:.7rem;padding:8px 22px;font-size:13px;font-weight:700;background:#5C3D1E;border:none;border-radius:20px;cursor:pointer;color:#FFF;font-family:'Noto Sans KR',sans-serif}
+.print-btn-top:hover{background:#8B6E45}
+.btn-row-top{display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
+
+/* ─── 주보 디자인 (원본 그대로) ─── */
+.bulletin-wrap{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:880px;border:2px solid #8B7355;background:#FDFAF5;box-shadow:0 6px 32px rgba(100,80,50,.18)}
+.page{padding:2rem 1.7rem}
+.page-left{border-right:1.5px solid #C4A97A;background:linear-gradient(to bottom,#FDFAF5,#FAF5EC)}
+.page-right{background:#FDFAF5}
+.cross-emblem{text-align:center;margin-bottom:.6rem}
+.cross-emblem svg{width:42px;height:42px;opacity:.7}
+.church-name{font-size:18px;font-weight:800;letter-spacing:.04em;text-align:center;color:#5C3D1E;margin-bottom:.35rem}
+.motto{font-size:14px;text-align:center;color:#8B6E45;margin-bottom:.5rem;font-weight:600}
+.date-line{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#5C3D1E;text-align:center;margin-bottom:1rem;font-weight:700}
+.divider{border:none;border-top:1px solid #C4A97A;margin:.7rem 0}
+.order-title{font-size:17px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.8rem;letter-spacing:.04em;padding-bottom:.4rem;border-bottom:1.5px solid #C4A97A}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+.lbl{color:#2C2416;font-weight:500;white-space:nowrap;flex:1}
+.rgt{color:#5C3D1E;font-weight:700;text-align:right;white-space:nowrap}
+.row3{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:.4rem .6rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+.row3 .lbl{flex:initial}
+.row3 .ctr{color:#5C3D1E;font-weight:700;text-align:left}
+.row3 .rgt{text-align:right}
+.sec-header{font-size:16px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;display:flex;align-items:center;gap:.5rem}
+.sec-header .ico{font-size:18px}
+.bank-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.7rem .9rem;margin:.4rem 0;font-size:14px;line-height:1.85;color:#3C2810;border-radius:4px;font-weight:500}
+.bank-name{font-weight:800;color:#5C3D1E;font-size:15.5px}
+.announce-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.8rem 1rem;margin:.4rem 0 .7rem;font-size:14px;line-height:1.65;color:#2C2416;border-radius:4px}
+.announce-item{padding:.5rem 0;border-bottom:1px dotted #C4A97A;display:flex;gap:.6rem;align-items:flex-start}
+.announce-item:last-child{border-bottom:none}
+.announce-icon{font-size:18px;flex-shrink:0;margin-top:.1rem}
+.announce-content{flex:1}
+.announce-title{font-weight:800;color:#5C3D1E;font-size:15px;margin-bottom:.2rem}
+.announce-desc{font-size:13.5px;color:#2C2416;line-height:1.6;font-weight:400}
+.memo-label{font-size:15px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;display:flex;align-items:center;gap:.5rem}
+.memo-pad{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:4px;padding:.7rem .8rem;min-height:7.5rem;background-image:repeating-linear-gradient(to bottom,transparent,transparent 26px,#E8DCC0 26px,#E8DCC0 26.5px);background-position:0 .9rem}
+.footer-note{margin-top:1.2rem;padding-top:.6rem;border-top:1px solid #C4A97A;font-size:12.5px;color:#5C3D1E;text-align:center;font-weight:500}
+
+/* ─── 암송카드 ─── */
+.memo-wrap{width:100%;max-width:880px;background:#FDFAF5;border:1.5px solid #8B7355;box-shadow:0 6px 32px rgba(100,80,50,.18);padding:2rem 2.4rem;margin-top:1.5rem}
+.memo-title-row{display:flex;align-items:center;justify-content:center;gap:.9rem;margin-bottom:.3rem}
+.memo-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5C3D1E}
+.t-icon{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.t-icon.dove{background:#7A9E7E}
+.t-icon.star{background:#8B6E45}
+.t-icon svg{width:12px;height:12px;fill:#FDFAF5}
+.memo-sub{font-size:13px;text-align:center;color:#8B6E45;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;font-weight:600}
+.versions-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-bottom:.8rem}
+.version-label.esv{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#2D4A6E;margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:2px solid #2D4A6E}
+.version-label.niv{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#7A2E2E;margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:2px solid #7A2E2E}
+.verse-block{margin-bottom:.5rem;font-size:16px;line-height:1.9;color:#2C2416;font-family:'Noto Sans KR',sans-serif;font-weight:500}
+.verse-bold{font-weight:800!important;font-size:17px!important;color:#1a1205!important;background:#FFF8E7;border-left:3.5px solid #8B6E45;padding-left:.6rem;border-radius:2px}
+.vnum{font-weight:700;color:#8B6E45;margin-right:.3rem;font-size:14px}
+.vocab-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#5C3D1E;margin:1.1rem 0 .7rem;text-align:center}
+.vocab-title.niv-title{color:#7A2E2E}
+.vocab-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:.5rem}
+.vocab-card{background:#FAF5EC;border:1px solid #C4A97A;border-radius:6px;padding:.7rem .5rem .55rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.18rem}
+.vocab-card.niv{background:#FDF5F5;border-color:#C4978A}
+.vocab-word{font-size:14px;font-weight:700;color:#5C3D1E}
+.vocab-pos{font-size:11px;color:#8B6E45;font-weight:600}
+.vocab-def{font-size:12px;color:#3C2810;line-height:1.55;flex:1}
+.speak-btn{margin-top:.35rem;background:transparent;border:1px solid #C4A97A;border-radius:20px;padding:.15rem .55rem;font-size:11px;color:#5C3D1E;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:600;transition:all .18s;white-space:nowrap}
+.speak-btn:hover{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+.speak-btn.speaking{background:#7A9E7E;color:#fff;border-color:#7A9E7E}
+.speak-btn.niv-btn{border-color:#C4978A;color:#7A2E2E}
+.speak-btn.niv-btn:hover{background:#7A2E2E;color:#fff;border-color:#7A2E2E}
+.audio-section{text-align:center;margin-top:.7rem}
+.audio-label{font-size:11px;color:#B09870;margin-bottom:.5rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.audio-controls{display:flex;gap:.35rem;justify-content:center;flex-wrap:wrap;align-items:center}
+.abtn{background:transparent;color:#5C3D1E;border:1px solid #C4A97A;padding:.25rem .7rem;font-family:'Noto Sans KR',sans-serif;font-size:12px;cursor:pointer;border-radius:20px;letter-spacing:.04em;transition:all .2s;font-weight:600}
+.abtn:hover{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+.abtn.play{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+.audio-status{font-size:11px;color:#B09870;margin-top:.3rem;min-height:1em;letter-spacing:.04em;font-weight:500}
+.voice-picker{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;padding:.6rem .8rem;background:#FAF5EC;border:1px solid #D8C4A0;border-radius:8px}
+.voice-picker-label{font-size:12.5px;font-weight:700;color:#5C3D1E;font-family:'Noto Sans KR',sans-serif}
+.voice-select{font-family:'Noto Sans KR',sans-serif;font-size:12.5px;color:#3C2810;padding:.3rem .5rem;border:1px solid #C4A97A;border-radius:6px;background:#FFF;cursor:pointer;max-width:260px}
+.voice-test-btn{font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:600;color:#5C3D1E;background:transparent;border:1px solid #C4A97A;border-radius:20px;padding:.3rem .8rem;cursor:pointer;transition:all .18s;white-space:nowrap}
+.voice-test-btn:hover{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+.study-section{margin-top:1.4rem;padding-top:1rem}
+.study-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#5C3D1E;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.6rem;text-align:center}
+.study-icon{font-size:22px;cursor:pointer;transition:all .2s;user-select:none;background:#5C3D1E;color:#FDFAF5;border-radius:50%;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.study-icon:hover{background:#8B6E45;transform:scale(1.1)}
+.study-ref{font-size:13.5px;color:#8B6E45;font-weight:700;letter-spacing:.04em;margin-bottom:.8rem;text-transform:uppercase}
+.study-body{font-size:15.5px;line-height:2.0;color:#2C2416;font-family:'Noto Sans KR',sans-serif;font-weight:400}
+.study-body p{margin-bottom:1.1rem}
+.study-body em{font-style:normal;font-weight:800;color:#5C3D1E}
+
+@media(max-width:640px){
+  .bulletin-wrap{grid-template-columns:1fr}
+  .page-left{border-right:none;border-bottom:1.5px solid #C4A97A}
+  .versions-grid{grid-template-columns:1fr}
+  .vocab-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media print{
+  #editor,#output .btn-row-top{display:none!important}
+  #output{display:flex!important;background:white;padding:0}
+  .bulletin-wrap,.memo-wrap{box-shadow:none;border:1px solid #8B7355;max-width:100%}
+  .bulletin-wrap{page-break-after:always}
+  .audio-section,.voice-picker{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 입력 편집기 ══════════ -->
+<div id="editor">
+<div class="ed-wrap">
+  <div class="ed-title">✦ FPCK 주보 자동 생성기</div>
+  <div class="ed-sub">매주 바뀌는 내용만 입력하고 "주보 완성하기"를 누르세요</div>
+
+  <!-- 기본 정보 -->
+  <div class="ed-card">
+    <div class="ed-card-title">① 기본 정보</div>
+    <div class="row2">
+      <div class="fg"><label>날짜 (영문)</label><input id="i-date-en" value="June 7, 2026"/></div>
+      <div class="fg"><label>날짜 (한글)</label><input id="i-date-ko" value="2026년 6월 7일"/></div>
+    </div>
+    <div class="fg"><label>표어 (Motto)</label><input id="i-motto" value="&quot;You follow me!&quot; — John 21:22"/></div>
+  </div>
+
+  <!-- 예배 순서 -->
+  <div class="ed-card">
+    <div class="ed-card-title">② 예배 순서</div>
+    <div class="row2">
+      <div class="fg"><label>찬송가 1번 번호</label><input id="i-hymn1" value="154"/></div>
+      <div class="fg"><label>찬송가 2번 번호</label><input id="i-hymn2" value="438"/></div>
+    </div>
+    <div class="row2">
+      <div class="fg"><label>대표기도자</label><input id="i-repprayer" value="Mrs. Jeon"/></div>
+      <div class="fg"><label>설교 본문</label><input id="i-scripture" value="Psalm 130"/></div>
+    </div>
+  </div>
+
+  <!-- 공지사항 -->
+  <div class="ed-card">
+    <div class="ed-card-title">③ 공지사항</div>
+    <div id="ann-list">
+      <div class="dyn-row">
+        <div style="flex:1;display:grid;grid-template-columns:2rem 1fr 1fr;gap:.4rem">
+          <input placeholder="🙏" value="👶" style="text-align:center"/>
+          <input placeholder="제목 (영문)" value="Children &amp; Infant Blessing"/>
+          <input placeholder="내용 (영문)" value="A special blessing service for children and infants will be held during today's worship."/>
+        </div>
+        <button class="del-btn" onclick="this.parentElement.remove()">×</button>
+      </div>
+      <div class="dyn-row">
+        <div style="flex:1;display:grid;grid-template-columns:2rem 1fr 1fr;gap:.4rem">
+          <input placeholder="🙏" value="🤝" style="text-align:center"/>
+          <input placeholder="제목 (영문)" value="Welcome, New Members!"/>
+          <input placeholder="내용 (영문)" value="We warmly welcome all visitors and new members joining the FPCK family today."/>
+        </div>
+        <button class="del-btn" onclick="this.parentElement.remove()">×</button>
+      </div>
+    </div>
+    <button class="add-row-btn" onclick="addAnn()">+ 공지 추가</button>
+  </div>
+
+  <!-- 헌금 계좌 -->
+  <div class="ed-card">
+    <div class="ed-card-title">④ 헌금 계좌</div>
+    <div class="row3g">
+      <div class="fg"><label>은행명</label><input id="i-bank" value="WOORI Bank"/></div>
+      <div class="fg"><label>계좌번호</label><input id="i-acct" value="474-08-007733"/></div>
+      <div class="fg"><label>예금주</label><input id="i-acctname" value="박윤엽 · YOON YOB PARK"/></div>
+    </div>
+  </div>
+
+  <!-- 암송 구절 -->
+  <div class="ed-card">
+    <div class="ed-card-title">⑤ 암송 구절</div>
+    <div class="fg"><label>구절 레퍼런스 (예: Ecclesiastes 8 : 11 – 13)</label><input id="i-memref" value="Ecclesiastes 8 : 11 – 13"/></div>
+    <div class="fg"><label>Study 제목</label><input id="i-studyref" value='Ecclesiastes 8:11–13 — "Delayed Judgment &amp; The Fear of God"'/></div>
+    <div class="row2">
+      <div class="fg"><label>ESV — 11절</label><textarea id="i-esv11">Because the sentence against an evil deed is not executed speedily, the heart of the children of man is fully set to do evil.</textarea></div>
+      <div class="fg"><label>NIV — 11절</label><textarea id="i-niv11">When the sentence for a crime is not quickly carried out, people's hearts are filled with schemes to do wrong.</textarea></div>
+    </div>
+    <div class="row2">
+      <div class="fg"><label>ESV — 12절</label><textarea id="i-esv12">Though a sinner does evil a hundred times and prolongs his life, yet I know that it will be well with those who fear God, because they fear before him.</textarea></div>
+      <div class="fg"><label>NIV — 12절</label><textarea id="i-niv12">Although a wicked person who commits a hundred crimes may live a long time, I know that it will go better with those who fear God, who are reverent before him.</textarea></div>
+    </div>
+    <div class="row2">
+      <div class="fg"><label>ESV — 13절</label><textarea id="i-esv13">But it will not be well with the wicked, neither will he prolong his days like a shadow, because he does not fear before God.</textarea></div>
+      <div class="fg"><label>NIV — 13절</label><textarea id="i-niv13">Yet because the wicked do not fear God, it will not go well with them, and their days will not lengthen like a shadow.</textarea></div>
+    </div>
+  </div>
+
+  <!-- 단어 카드 -->
+  <div class="ed-card">
+    <div class="ed-card-title">⑥ 단어 카드 — ESV (5개)</div>
+    <div id="vocab-esv">
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="sentence"/><input value="noun"/><input value="a judgment or punishment for wrongdoing"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="speedily"/><input value="adv."/><input value="quickly; without delay"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="prolong"/><input value="verb"/><input value="to make something last longer"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="fear"/><input value="verb"/><input value="to revere and worship God with awe"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="wicked"/><input value="adj."/><input value="morally evil; refusing to obey God"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+    </div>
+    <button class="add-row-btn" onclick="addVocab('vocab-esv','')">+ 단어 추가</button>
+  </div>
+
+  <div class="ed-card">
+    <div class="ed-card-title">⑦ 단어 카드 — NIV (5개)</div>
+    <div id="vocab-niv">
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="crime"/><input value="noun"/><input value="a sinful act that breaks God's law"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="schemes"/><input value="noun"/><input value="plans or plots to do wrong"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="reverent"/><input value="adj."/><input value="showing deep respect and worship toward God"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="lengthen"/><input value="verb"/><input value="to become longer; to extend one's life"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input value="shadow"/><input value="noun"/><input value="a fleeting image; life that fades away"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+    </div>
+    <button class="add-row-btn" onclick="addVocab('vocab-niv','niv')">+ 단어 추가</button>
+  </div>
+
+  <!-- Bible Study -->
+  <div class="ed-card">
+    <div class="ed-card-title">⑧ Bible Study 내용</div>
+    <div class="fg"><textarea id="i-study" rows="8">Ecclesiastes 8:11 is not an isolated proverb. It stands within a sustained discussion from chapter 8, verses 9 through 17, on the prosperity of the wicked and the providence of God. In particular, verses 11 through 13 must be read together for the meaning to become clear.
+
+Verse 11 explains why evil persists: because punishment is not seen immediately, the human heart grows bold in wrongdoing. And yet, the Preacher affirms that in the end, those who fear God and the wicked will meet entirely different outcomes.
+
+Even when the wicked appear to flourish and live long, the Preacher insists that this is not the whole story. The key theme is delayed judgment. When punishment does not fall at once, people take God's justice lightly and commit evil with greater boldness.
+
+This passage does not mean that evil escapes punishment. It is a warning: when judgment is delayed, people are more likely to grow worse. Therefore, believers must not judge by immediate reward or punishment alone. The lesson is to fear God, to endure with patience, and to trust that his justice will prevail.</textarea></div>
+  </div>
+
+  <button class="gen-btn" onclick="generateBulletin()">✦ 주보 완성하기</button>
+</div>
+</div>
+
+<!-- ══════════ 완성된 주보 출력 ══════════ -->
+<div id="output">
+  <div class="btn-row-top">
+    <button class="back-btn" onclick="goBack()">← 다시 편집</button>
+    <button class="print-btn-top" onclick="window.print()">🖨 인쇄하기</button>
+  </div>
+
+  <!-- 주보 본체 -->
+  <div class="bulletin-wrap" id="bulletin-body">
+    <div class="page page-left">
+      <div class="cross-emblem">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="4" width="6" height="28" fill="#8B7355" rx="1"/>
+          <rect x="6" y="13" width="24" height="6" fill="#8B7355" rx="1"/>
+        </svg>
+      </div>
+      <div class="church-name">First Presbyterian Church of Korea</div>
+      <div class="motto" id="o-motto"></div>
+      <div class="date-line" id="o-dateline"></div>
+      <hr class="divider"/>
+      <div class="order-title">Order of Worship</div>
+      <div class="row"><span class="lbl">1. Prelude</span><span class="rgt">Instrumental</span></div>
+      <div class="row"><span class="lbl">2. The Apostles' Creed</span><span class="rgt">Congregation</span></div>
+      <div class="row3"><span class="lbl">3. Hymn 1</span><span class="ctr" id="o-hymn1">#154</span><span class="rgt">Congregation</span></div>
+      <div class="row"><span class="lbl">4. Ten Commandments</span><span class="rgt">Congregation</span></div>
+      <div class="row"><span class="lbl">5. Representative Prayer</span><span class="rgt" id="o-repprayer">Mrs. Jeon</span></div>
+      <div class="row"><span class="lbl">6. Scripture Reading · <span id="o-scripture-left">Psalm 130</span></span><span class="rgt">Pastor</span></div>
+      <div class="row"><span class="lbl">7. Pastoral Prayer</span><span class="rgt">Leader</span></div>
+      <div class="row"><span class="lbl">8. Sermon · <span id="o-sermon-left">Psalm 130</span></span><span class="rgt">Pastor</span></div>
+      <div class="row"><span class="lbl">9. Offering</span><span class="rgt">Congregation</span></div>
+      <div class="row3"><span class="lbl">10. Hymn 2</span><span class="ctr" id="o-hymn2">#438</span><span class="rgt">Congregation</span></div>
+      <div class="row"><span class="lbl">11. The Lord's Prayer</span><span class="rgt">Together</span></div>
+      <div class="row"><span class="lbl">12. Benediction</span><span class="rgt">Pastor</span></div>
+    </div>
+
+    <div class="page page-right">
+      <div class="sec-header"><span class="ico">📢</span> Announcements</div>
+      <div class="announce-box" id="o-announcements"></div>
+      <div class="sec-header"><span class="ico">💛</span> Offering Account</div>
+      <div class="bank-box">
+        <span class="bank-name" id="o-bank"></span><br/>
+        Account No. &nbsp;<span id="o-acct"></span><br/>
+        Name: <span id="o-acctname"></span>
+      </div>
+      <hr class="divider"/>
+      <div class="memo-label"><span class="ico">✎</span> Notes / Memo</div>
+      <div class="memo-pad"></div>
+      <div class="footer-note">May the grace of our Lord Jesus Christ be with you all. ✦ Romans 16:20</div>
+    </div>
+  </div>
+
+  <!-- 암송 카드 -->
+  <div class="memo-wrap">
+    <div class="memo-title-row">
+      <span class="t-icon dove">
+        <svg viewBox="0 0 20 20"><path d="M10 3 C7 3 4 5.5 4 8.5 C4 11 5.5 13 8 14 L8 17 L10 15 L12 17 L12 14 C14.5 13 16 11 16 8.5 C16 5.5 13 3 10 3Z M9 9 A1 1 0 1 1 11 9 A1 1 0 1 1 9 9Z" fill="#FDFAF5"/></svg>
+      </span>
+      <div class="memo-title">Bible Memorization</div>
+      <span class="t-icon star">
+        <svg viewBox="0 0 20 20"><polygon points="10,2 12.4,7.5 18.5,7.5 13.8,11.3 15.7,17 10,13.5 4.3,17 6.2,11.3 1.5,7.5 7.6,7.5" fill="#FDFAF5"/></svg>
+      </span>
+    </div>
+    <div class="memo-sub" id="o-memref"></div>
+    <hr class="divider"/>
+    <div class="versions-grid">
+      <div>
+        <div class="version-label esv">ESV</div>
+        <div class="verse-block verse-bold" id="o-esv11"></div>
+        <div class="verse-block" id="o-esv12"></div>
+        <div class="verse-block" id="o-esv13"></div>
+      </div>
+      <div>
+        <div class="version-label niv">NIV</div>
+        <div class="verse-block verse-bold" id="o-niv11"></div>
+        <div class="verse-block" id="o-niv12"></div>
+        <div class="verse-block" id="o-niv13"></div>
+      </div>
+    </div>
+    <hr class="divider"/>
+    <div class="vocab-title" id="o-vocab-esv-title">Key Vocabulary — ESV</div>
+    <div class="vocab-grid" id="o-vocab-esv"></div>
+    <hr class="divider"/>
+    <div class="vocab-title niv-title" id="o-vocab-niv-title">Key Vocabulary — NIV</div>
+    <div class="vocab-grid" id="o-vocab-niv"></div>
+    <hr class="divider"/>
+    <div class="audio-section">
+      <div class="audio-label">Listen &amp; Memorize — Full Passage</div>
+      <div class="audio-controls">
+        <button class="abtn play" onclick="speakAll()">▶ Play All</button>
+        <button class="abtn" onclick="speakSlow()">𝅘𝅥𝅮 Slow</button>
+        <button class="abtn" onclick="stopSpeech()">◼ Stop</button>
+        <button class="abtn" id="repeatBtn" onclick="toggleRepeat()">↺ Repeat</button>
+      </div>
+      <div class="audio-status" id="audioStatus">Ready</div>
+    </div>
+    <hr class="divider"/>
+    <div class="study-section">
+      <div class="study-title">
+        <span class="study-icon" id="studyIcon" onclick="speakStudy(this)" title="Click to listen in English">🔊</span>
+        Bible Study
+      </div>
+      <div class="study-ref" id="o-studyref"></div>
+      <div class="voice-picker">
+        <label class="voice-picker-label">🎙 Voice:</label>
+        <select id="voiceSelect" class="voice-select" onchange="onVoiceChange()"></select>
+        <button class="voice-test-btn" onclick="testVoice()">▶ Test</button>
+      </div>
+      <div class="study-body" id="o-studybody"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── 헬퍼 ──
+function v(id){return document.getElementById(id);}
+function val(id){return v(id)?v(id).value.trim():'';}
+
+// ── 동적 행 추가 ──
+function addAnn(){
+  var d=document.createElement('div');d.className='dyn-row';
+  d.innerHTML='<div style="flex:1;display:grid;grid-template-columns:2rem 1fr 1fr;gap:.4rem"><input placeholder="아이콘" style="text-align:center"/><input placeholder="제목"/><input placeholder="내용"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button>';
+  v('ann-list').appendChild(d);
+}
+function addVocab(listId,cls){
+  var d=document.createElement('div');d.className='dyn-row';
+  d.innerHTML='<div style="flex:1;display:grid;grid-template-columns:1fr .6fr 2fr;gap:.4rem"><input placeholder="단어"/><input placeholder="품사"/><input placeholder="뜻"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button>';
+  v(listId).appendChild(d);
+}
+
+// ── 주보 생성 ──
+function generateBulletin(){
+  // 기본
+  v('o-motto').textContent=val('i-motto');
+  v('o-dateline').textContent='Lord\'s Day Worship · '+val('i-date-en');
+  v('o-hymn1').textContent='#'+val('i-hymn1');
+  v('o-hymn2').textContent='#'+val('i-hymn2');
+  v('o-repprayer').textContent=val('i-repprayer');
+  v('o-scripture-left').textContent=val('i-scripture');
+  v('o-sermon-left').textContent=val('i-scripture');
+  // 헌금
+  v('o-bank').textContent=val('i-bank');
+  v('o-acct').textContent=val('i-acct');
+  v('o-acctname').textContent=val('i-acctname');
+  // 공지
+  var annRows=v('ann-list').querySelectorAll('.dyn-row');
+  var annHtml='';
+  annRows.forEach(function(r){
+    var ins=r.querySelectorAll('input');
+    if(ins.length>=3&&(ins[1].value||ins[2].value)){
+      annHtml+='<div class="announce-item"><span class="announce-icon">'+ins[0].value+'</span><div class="announce-content"><div class="announce-title">'+ins[1].value+'</div><div class="announce-desc">'+ins[2].value+'</div></div></div>';
+    }
+  });
+  v('o-announcements').innerHTML=annHtml;
+  // 암송
+  v('o-memref').textContent=val('i-memref');
+  v('o-studyref').textContent=val('i-studyref');
+  ['esv11','esv12','esv13','niv11','niv12','niv13'].forEach(function(k){
+    var el=v('o-'+k);
+    if(el){
+      var num=k.replace(/[a-z]/g,'');
+      el.innerHTML='<span class="vnum">'+num+'</span>'+val('i-'+k);
+    }
+  });
+  // 단어카드 ESV
+  buildVocab('vocab-esv','o-vocab-esv','','o-vocab-esv-title','Key Vocabulary — ESV');
+  buildVocab('vocab-niv','o-vocab-niv','niv','o-vocab-niv-title','Key Vocabulary — NIV');
+  // study
+  var studyText=val('i-study');
+  var studyHtml=studyText.split('\n\n').map(function(p){return p?'<p>'+p.replace(/\n/g,' ')+'</p>':''}).join('');
+  v('o-studybody').innerHTML=studyHtml;
+  // TTS 구절 업데이트
+  updatePairs();
+  // 화면 전환
+  v('editor').classList.add('hidden');
+  v('output').classList.add('visible');
+  window.scrollTo(0,0);
+}
+
+function buildVocab(listId,outId,cls,titleId,titleBase){
+  var rows=v(listId).querySelectorAll('.dyn-row');
+  var html='';
+  var count=0;
+  rows.forEach(function(r){
+    var ins=r.querySelectorAll('input');
+    if(ins.length>=3&&ins[0].value){
+      count++;
+      var btnCls='speak-btn'+(cls?' '+cls+'-btn':'');
+      var cardCls='vocab-card'+(cls?' '+cls:'');
+      html+='<div class="'+cardCls+'"><div class="vocab-word">'+ins[0].value+'</div><div class="vocab-pos">'+ins[1].value+'</div><div class="vocab-def">'+ins[2].value+'</div><button class="'+btnCls+'" onclick="speakWord(\''+ins[0].value.replace(/'/g,"\\'")+'\',' +
+        '\''+ins[2].value.replace(/'/g,"\\'")+'\',this)">🔊 Read</button></div>';
+    }
+  });
+  v(outId).innerHTML=html;
+  if(titleId) v(titleId).textContent=titleBase+' · '+count+' Words';
+}
+
+function goBack(){
+  v('output').classList.remove('visible');
+  v('editor').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+
+// ── TTS ──
+var synth=window.speechSynthesis;
+var repeatOn=false;var currentBtn=null;var selectedVoice=null;var allVoices=[];
+var PAIRS=[];
+
+function updatePairs(){
+  var e11=val('i-esv11'),e12=val('i-esv12'),e13=val('i-esv13');
+  var n11=val('i-niv11'),n12=val('i-niv12'),n13=val('i-niv13');
+  PAIRS=[
+    {label:'E S V.',verse:'Verse 11. '+e11+' Verse 12. '+e12+' Verse 13. '+e13},
+    {label:'N I V.',verse:'Verse 11. '+n11+' Verse 12. '+n12+' Verse 13. '+n13}
+  ];
+}
+updatePairs();
+
+function populateVoices(){
+  allVoices=synth.getVoices().filter(function(v){return v.lang.startsWith('en');});
+  var sel=v('voiceSelect');if(!sel)return;sel.innerHTML='';
+  if(allVoices.length===0){sel.innerHTML='<option>Loading voices…</option>';return;}
+  var maleNames=['male','man','alex','daniel','fred','tom','aaron','arthur','guy','davis','ryan','mark','google uk english male'];
+  function isMale(vo){var n=vo.name.toLowerCase();return maleNames.some(function(m){return n.includes(m);});}
+  allVoices.sort(function(a,b){var am=isMale(a)?0:1,bm=isMale(b)?0:1;if(am!==bm)return am-bm;return a.name.localeCompare(b.name);});
+  allVoices.forEach(function(vo,i){var opt=document.createElement('option');opt.value=i;opt.textContent=(isMale(vo)?'👨 ':'👩 ')+vo.name+' ('+vo.lang+')';sel.appendChild(opt);});
+  var fi=allVoices.findIndex(isMale),di=fi>=0?fi:0;sel.value=di;selectedVoice=allVoices[di];
+}
+function onVoiceChange(){var sel=v('voiceSelect');selectedVoice=allVoices[parseInt(sel.value,10)];}
+function testVoice(){synth.cancel();var u=new SpeechSynthesisUtterance('The fear of the Lord is the beginning of wisdom.');u.lang='en-US';u.rate=0.9;u.pitch=0.9;if(selectedVoice)u.voice=selectedVoice;synth.speak(u);}
+function updateStatus(msg){var el=v('audioStatus');if(el)el.textContent=msg;}
+function getBestMaleVoice(){if(selectedVoice)return selectedVoice;var voices=synth.getVoices();var preferred=['Google UK English Male','Google US English','Microsoft Guy Online (Natural) - English (United States)','Alex','Daniel'];for(var i=0;i<preferred.length;i++){var vv=voices.find(function(v){return v.name===preferred[i];});if(vv)return vv;}return voices.find(function(v){return v.lang.startsWith('en');})||null;}
+function speakWord(word,definition,btn){synth.cancel();if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');}btn.textContent='🔊 …';btn.classList.add('speaking');currentBtn=btn;var u1=new SpeechSynthesisUtterance(word);u1.lang='en-US';u1.rate=0.85;u1.pitch=0.88;var v1=getBestMaleVoice();if(v1)u1.voice=v1;var u2=new SpeechSynthesisUtterance(definition);u2.lang='en-US';u2.rate=0.85;u2.pitch=0.88;if(v1)u2.voice=v1;u1.onend=function(){setTimeout(function(){synth.speak(u2);},700);};u2.onend=function(){btn.textContent='🔊 Read';btn.classList.remove('speaking');currentBtn=null;};synth.speak(u1);}
+function speak(rate){synth.cancel();if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');currentBtn=null;}var i=0;function nextPair(){if(i>=PAIRS.length){if(repeatOn){i=0;setTimeout(nextPair,800);}else{updateStatus('Finished ✓');}return;}var pair=PAIRS[i];updateStatus('▶ '+pair.label);var uL=new SpeechSynthesisUtterance(pair.label);uL.lang='en-US';uL.rate=rate*0.9;uL.pitch=0.88;var mv=getBestMaleVoice();if(mv){uL.voice=mv;}var uV=new SpeechSynthesisUtterance(pair.verse);uV.lang='en-US';uV.rate=rate;uV.pitch=0.88;if(mv){uV.voice=mv;}uL.onend=function(){setTimeout(function(){synth.speak(uV);},900);};uV.onend=function(){i++;setTimeout(nextPair,800);};synth.speak(uL);}nextPair();}
+function speakAll(){speak(1);}function speakSlow(){speak(0.75);}
+function stopSpeech(){synth.cancel();updateStatus('Stopped');if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');currentBtn=null;}}
+function toggleRepeat(){repeatOn=!repeatOn;var btn=v('repeatBtn');if(btn)btn.textContent=repeatOn?'🔁 ON':'↺ Repeat';}
+function speakStudy(iconEl){
+  if(iconEl.dataset.playing==='1'){synth.cancel();iconEl.dataset.playing='0';iconEl.textContent='🔊';iconEl.style.background='#5C3D1E';return;}
+  var studyEl=v('o-studybody');
+  var text=studyEl?studyEl.innerText:'';
+  synth.cancel();if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');currentBtn=null;}
+  var u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=0.84;u.pitch=0.85;u.volume=1;
+  function applyAndSpeak(){var voice=getBestMaleVoice();if(voice)u.voice=voice;iconEl.dataset.playing='1';iconEl.textContent='⏹';iconEl.style.background='#7A9E7E';u.onend=function(){iconEl.dataset.playing='0';iconEl.textContent='🔊';iconEl.style.background='#5C3D1E';};synth.speak(u);}
+  if(synth.getVoices().length>0){applyAndSpeak();}else{synth.onvoiceschanged=function(){synth.onvoiceschanged=null;applyAndSpeak();};}
+}
+populateVoices();
+if(synth.onvoiceschanged!==undefined){synth.onvoiceschanged=populateVoices;}
+</script>
+</body>
+</html>
