@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FPCK Bulletin · June 7, 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── GLOBAL: Gothic / Sans-Serif, NO Italics, Larger Sizes ── */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-style:normal !important}
+    body{background:#EDE8DF;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:2rem 1rem;color:#2C2416;font-size:16px;line-height:1.6}
+
+    em,i{font-style:normal !important;font-weight:600}
+
+    .bulletin-wrap{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:880px;border:2px solid #8B7355;background:#FDFAF5;box-shadow:0 6px 32px rgba(100,80,50,.18)}
+    .page{padding:2rem 1.7rem}
+    .page-left{border-right:1.5px solid #C4A97A;background:linear-gradient(to bottom,#FDFAF5,#FAF5EC)}
+    .page-right{background:#FDFAF5}
+
+    .cross-emblem{text-align:center;margin-bottom:.6rem}
+    .cross-emblem svg{width:42px;height:42px;opacity:.7}
+    .church-name{font-size:18px;font-weight:800;letter-spacing:.04em;text-align:center;color:#5C3D1E;margin-bottom:.35rem}
+    .motto{font-size:14px;text-align:center;color:#8B6E45;margin-bottom:.5rem;font-weight:600}
+    .date-line{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#5C3D1E;text-align:center;margin-bottom:1rem;font-weight:700}
+    .divider{border:none;border-top:1px solid #C4A97A;margin:.7rem 0}
+    .order-title{font-size:17px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.8rem;letter-spacing:.04em;padding-bottom:.4rem;border-bottom:1.5px solid #C4A97A}
+
+    /* Order of worship rows — bigger and clearer */
+    .row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .lbl{color:#2C2416;font-weight:500;white-space:nowrap;flex:1}
+    .rgt{color:#5C3D1E;font-weight:700;text-align:right;white-space:nowrap}
+
+    .row3{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:.4rem .6rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .row3 .lbl{flex:initial}
+    .row3 .ctr{color:#5C3D1E;font-weight:700;text-align:left}
+    .row3 .rgt{text-align:right}
+    .dots{flex:1;border-bottom:1px dotted #B8A07A;height:.8em}
+
+    /* Right side */
+    .sec-header{font-size:16px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;display:flex;align-items:center;gap:.5rem}
+    .sec-header .ico{font-size:18px}
+    .bank-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.7rem .9rem;margin:.4rem 0;font-size:14px;line-height:1.85;color:#3C2810;border-radius:4px;font-weight:500}
+    .bank-name{font-weight:800;color:#5C3D1E;font-size:15.5px}
+    .sermon-box{font-size:14px;line-height:1.7;color:#3C2810;margin:.3rem 0;min-height:1.5rem}
+
+    /* Announcements — larger, clearer */
+    .announce-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.8rem 1rem;margin:.4rem 0 .7rem;font-size:14px;line-height:1.65;color:#2C2416;border-radius:4px}
+    .announce-item{padding:.5rem 0;border-bottom:1px dotted #C4A97A;display:flex;gap:.6rem;align-items:flex-start}
+    .announce-item:last-child{border-bottom:none}
+    .announce-icon{font-size:18px;flex-shrink:0;margin-top:.1rem}
+    .announce-content{flex:1}
+    .announce-title{font-weight:800;color:#5C3D1E;font-size:15px;margin-bottom:.2rem}
+    .announce-desc{font-size:13.5px;color:#2C2416;line-height:1.6;font-weight:400}
+
+    /* Memo */
+    .memo-label{font-size:15px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+    .memo-pad{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:4px;padding:.7rem .8rem;min-height:7.5rem;background-image:repeating-linear-gradient(to bottom,transparent,transparent 26px,#E8DCC0 26px,#E8DCC0 26.5px);background-position:0 .9rem}
+
+    .footer-note{margin-top:1.2rem;padding-top:.6rem;border-top:1px solid #C4A97A;font-size:12.5px;color:#5C3D1E;text-align:center;font-weight:500}
+    @media(max-width:640px){
+      .bulletin-wrap{grid-template-columns:1fr}
+      .page-left{border-right:none;border-bottom:1.5px solid #C4A97A}
+      .vocab-grid{grid-template-columns:1fr 1fr}
+    }
+    @media print{
+      body{background:white;padding:0;font-size:13px}
+      .bulletin-wrap,.memo-wrap{box-shadow:none;border:1px solid #8B7355;max-width:100%}
+      .audio-section{display:none}
+      /* 주보(1페이지) + 암송카드(2페이지) */
+      .bulletin-wrap{page-break-after:always}
+      iframe{min-height:auto !important;height:auto !important}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ BULLETIN ══════════════ -->
+<div class="bulletin-wrap">
+
+  <!-- PAGE LEFT: Order of Worship -->
+  <div class="page page-left">
+    <div class="cross-emblem">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="4" width="6" height="28" fill="#8B7355" rx="1"/>
+        <rect x="6" y="13" width="24" height="6" fill="#8B7355" rx="1"/>
+      </svg>
+    </div>
+    <div class="church-name">First Presbyterian Church of Korea</div>
+    <div class="motto">"You follow me!" — John 21:22</div>
+    <div class="date-line">Lord's Day Worship &nbsp;·&nbsp; June 7, 2026</div>
+    <hr class="divider"/>
+    <div class="order-title">Order of Worship</div>
+
+    <div class="row">
+      <span class="lbl">1. Prelude</span>
+      <span class="rgt">Instrumental</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">2. The Apostles' Creed</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row3">
+      <span class="lbl">3. Hymn 1</span>
+      <span class="ctr">#154</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">4. Ten Commandments</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">5. Representative Prayer</span>
+      <span class="rgt">Mrs. Jeon</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">6. Scripture Reading · Psalm 130</span>
+      <span class="rgt">Pastor</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">7. Pastoral Prayer</span>
+      <span class="rgt">Leader</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">8. Sermon · Psalm 130</span>
+      <span class="rgt">Pastor</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">9. Offering</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row3">
+      <span class="lbl">10. Hymn 2</span>
+      <span class="ctr">#438</span>
+      <span class="rgt">Congregation</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">11. The Lord's Prayer</span>
+      <span class="rgt">Together</span>
+    </div>
+
+    <div class="row">
+      <span class="lbl">12. Benediction</span>
+      <span class="rgt">Pastor</span>
+    </div>
+
+  </div>
+
+  <!-- PAGE RIGHT -->
+  <div class="page page-right">
+
+    <!-- Announcements -->
+    <div class="sec-header"><span class="ico">📢</span> Announcements</div>
+    <div class="announce-box">
+
+      <div class="announce-item">
+        <span class="announce-icon">👶</span>
+        <div class="announce-content">
+          <div class="announce-title">Children &amp; Infant Blessing</div>
+          <div class="announce-desc">A special blessing service for children and infants will be held during today's worship. Parents wishing to dedicate their little ones, please come forward after the sermon.</div>
+        </div>
+      </div>
+
+      <div class="announce-item">
+        <span class="announce-icon">🤝</span>
+        <div class="announce-content">
+          <div class="announce-title">Welcome, New Members!</div>
+          <div class="announce-desc">We warmly welcome all visitors and new members joining the FPCK family today. Please introduce yourselves during fellowship — may God's grace be upon you.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sec-header"><span class="ico">💛</span> Offering Account</div>
+    <div class="bank-box">
+      <span class="bank-name">WOORI Bank</span><br/>
+      Account No. &nbsp;474-08-007733<br/>
+      Name: 박윤엽 &nbsp;·&nbsp; YOON YOB PARK
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="memo-label"><span class="ico">✎</span> Notes / Memo</div>
+    <div class="memo-pad"></div>
+
+    <div class="footer-note">May the grace of our Lord Jesus Christ be with you all. ✦ Romans 16:20</div>
+  </div>
+
+</div><!-- /bulletin -->
+
+
+<!-- ══ BIBLE MEMORIZATION CARD (isolated) ══ -->
+<div style="width:100%;max-width:880px;margin-top:1.5rem;">
+  <style>
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#EDE8DF;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:2rem 1rem;font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-style:normal;color:#2C2416}
+
+    .divider{border:none;border-top:.5px solid #C4A97A;margin:.7rem 0}
+
+    .memo-wrap{width:100%;max-width:920px;background:#FDFAF5;border:1.5px solid #8B7355;box-shadow:0 6px 32px rgba(100,80,50,.18);padding:2rem 2.4rem}
+
+    .memo-title-row{display:flex;align-items:center;justify-content:center;gap:.9rem;margin-bottom:.3rem}
+    .memo-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5C3D1E}
+
+    .t-icon{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+    .t-icon.dove{background:#7A9E7E}
+    .t-icon.star{background:#8B6E45}
+    .t-icon svg{width:12px;height:12px;fill:#FDFAF5}
+
+    .memo-sub{font-size:13px;text-align:center;color:#8B6E45;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;font-weight:600}
+
+    .versions-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-bottom:.8rem}
+
+    .version-label.esv{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;
+      color:#2D4A6E;margin-bottom:.5rem;padding-bottom:.3rem;
+      border-bottom:2px solid #2D4A6E}
+    .version-label.niv{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;
+      color:#7A2E2E;margin-bottom:.5rem;padding-bottom:.3rem;
+      border-bottom:2px solid #7A2E2E}
+
+    .verse-block{margin-bottom:.5rem;font-size:16px;line-height:1.9;color:#2C2416;font-family:'Noto Sans KR',sans-serif;font-weight:500}
+    .verse-bold{font-weight:800 !important;font-size:17px !important;color:#1a1205 !important;background:#FFF8E7;border-left:3.5px solid #8B6E45;padding-left:.6rem;border-radius:2px}
+    .vnum{font-weight:700;color:#8B6E45;margin-right:.3rem;font-size:14px}
+
+    /* ── Vocab ── */
+    .vocab-section-wrap{margin-bottom:.5rem}
+    .vocab-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#5C3D1E;margin:1.1rem 0 .7rem;text-align:center}
+    .vocab-title.niv-title{color:#7A2E2E}
+
+    .vocab-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:.5rem}
+
+    /* 카드: 세로 flex, 아래에 🔊 버튼 고정 */
+    .vocab-card{background:#FAF5EC;border:1px solid #C4A97A;border-radius:6px;
+      padding:.7rem .5rem .55rem;text-align:center;
+      display:flex;flex-direction:column;align-items:center;gap:.18rem}
+    .vocab-card.niv{background:#FDF5F5;border-color:#C4978A}
+
+    .vocab-word{font-size:14px;font-weight:700;color:#5C3D1E}
+    .vocab-pos{font-size:11px;color:#8B6E45;font-weight:600}
+    .vocab-def{font-size:12px;color:#3C2810;line-height:1.55;flex:1}
+
+    /* 🔊 speak 버튼 — 각 카드 하단 */
+    .speak-btn{
+      margin-top:.35rem;
+      background:transparent;
+      border:1px solid #C4A97A;
+      border-radius:20px;
+      padding:.15rem .55rem;
+      font-size:11px;
+      color:#5C3D1E;
+      cursor:pointer;
+      font-family:'Noto Sans KR',sans-serif;
+      font-weight:600;
+      letter-spacing:.03em;
+      transition:all .18s;
+      white-space:nowrap;
+    }
+    .speak-btn:hover{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+    .speak-btn.speaking{background:#7A9E7E;color:#fff;border-color:#7A9E7E}
+    .speak-btn.niv-btn{border-color:#C4978A;color:#7A2E2E}
+    .speak-btn.niv-btn:hover{background:#7A2E2E;color:#fff;border-color:#7A2E2E}
+    .speak-btn.niv-btn.speaking{background:#7A9E7E;color:#fff;border-color:#7A9E7E}
+
+    /* 전체 읽기 오디오 섹션 */
+    .audio-section{text-align:center;margin-top:.7rem}
+    .audio-label{font-size:11px;color:#B09870;margin-bottom:.5rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+    .audio-controls{display:flex;gap:.35rem;justify-content:center;flex-wrap:wrap;align-items:center}
+    .abtn{background:transparent;color:#5C3D1E;border:1px solid #C4A97A;
+      padding:.25rem .7rem;font-family:'Noto Sans KR',sans-serif;font-size:12px;
+      cursor:pointer;border-radius:20px;letter-spacing:.04em;transition:all .2s;font-weight:600}
+    .abtn:hover{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+    .abtn.play{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+    .abtn.play:hover{background:#8B6E45;border-color:#8B6E45}
+    .audio-status{font-size:11px;color:#B09870;margin-top:.3rem;min-height:1em;letter-spacing:.04em;font-weight:500}
+
+
+
+
+
+    /* ── Study Section ── */
+    .study-section{margin-top:1.4rem;padding-top:1rem}
+    .study-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#5C3D1E;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.6rem;text-align:center}
+    .study-icon{font-size:22px;cursor:pointer;transition:all .2s;user-select:none;background:#5C3D1E;color:#FDFAF5;border-radius:50%;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+    .study-icon:hover{background:#8B6E45;transform:scale(1.1)}
+    .study-ref{font-size:13.5px;color:#8B6E45;font-weight:700;letter-spacing:.04em;margin-bottom:.8rem;text-transform:uppercase}
+    .study-body{font-size:17px;line-height:2.0;color:#1a1205;font-family:'Noto Sans KR',sans-serif;font-weight:500}
+    .study-body p{margin-bottom:1.1rem}
+    .study-body em{font-style:normal;font-weight:800;color:#5C3D1E}
+
+    /* ── 4 Study Link Icons ── */
+    .study-icons-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.7rem 0 .9rem}
+    .slink{display:flex;align-items:center;justify-content:space-between;gap:.4rem;padding:.45rem .65rem;border-radius:7px;cursor:pointer;text-decoration:none;transition:all .22s;color:#2C2416;position:relative;overflow:hidden}
+    .slink-explain{background:#E8DEC8;border:1.5px solid #8B7355}
+    .slink-discuss{background:#D8DFE8;border:1.5px solid #7A94B0}
+    .slink:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.15)}
+    .slink-inner{display:flex;flex-direction:column;gap:.15rem}
+    .slink-emoji{font-size:13px;line-height:1}
+    .slink-label{font-size:11px;font-weight:800;color:#2C2416;letter-spacing:.02em;font-family:'Noto Sans KR',sans-serif}
+    .slink-sub{font-size:9px;color:#5C3D1E;font-weight:600;font-family:'Noto Sans KR',sans-serif;letter-spacing:.01em}
+    .slink-arrow{font-size:13px;color:#8B7355;flex-shrink:0;transition:transform .2s}
+    .slink:hover .slink-arrow{transform:translateX(2px)}
+
+    /* Centered ref banner — bigger */
+    .study-ref-banner{text-align:center;margin:.2rem 0 .9rem;padding:.75rem 1rem;background:#F5EDD8;border-top:1.5px solid #8B7355;border-bottom:1.5px solid #8B7355}
+    .study-ref-text{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#2C2416;letter-spacing:.06em;text-transform:uppercase}
+    .study-ref-sub{font-size:13.5px;color:#3C2810;font-weight:700;letter-spacing:.03em;margin-top:.3rem;font-family:'Noto Sans KR',sans-serif}
+
+    /* Speak row at bottom */
+    .study-speak-row{display:flex;align-items:center;gap:.7rem;margin-top:1.2rem;padding-top:.9rem;border-top:1px dashed #C4A97A}
+    .study-speak-label{font-size:12.5px;color:#8B6E45;font-weight:600;font-family:'Noto Sans KR',sans-serif;letter-spacing:.03em}
+
+    /* ── Modal ── */
+    .modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,.55);z-index:9000;display:none;align-items:center;justify-content:center;padding:1.2rem}
+    .modal-overlay.open{display:flex}
+    .modal-box{background:#FDFAF5;border:2px solid #8B7355;border-radius:12px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;padding:1.8rem 1.8rem 1.4rem;box-shadow:0 12px 48px rgba(44,36,22,.3);position:relative}
+    .modal-close{position:absolute;top:.9rem;right:1rem;font-size:22px;cursor:pointer;color:#8B6E45;background:none;border:none;line-height:1;font-weight:700}
+    .modal-close:hover{color:#5C3D1E}
+    .modal-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#5C3D1E;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+    .modal-sub{font-size:12.5px;color:#8B6E45;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
+    .modal-body{font-size:14.5px;line-height:1.85;color:#2C2416;font-family:'Noto Sans KR',sans-serif}
+    .modal-body p{margin-bottom:.9rem}
+    .modal-body strong{color:#5C3D1E;font-weight:800}
+    .modal-body ol,.modal-body ul{padding-left:1.4rem;margin-bottom:.9rem}
+    .modal-body li{margin-bottom:.55rem}
+    .modal-share-link{display:block;margin-top:1rem;padding:.7rem 1rem;background:#5C3D1E;color:#FDFAF5;border-radius:8px;text-align:center;font-weight:700;font-size:13.5px;text-decoration:none;letter-spacing:.04em;font-family:'Noto Sans KR',sans-serif;transition:background .2s}
+    .modal-share-link:hover{background:#8B6E45}
+    .modal-textarea{width:100%;min-height:90px;border:1.5px solid #C4A97A;border-radius:7px;padding:.65rem .8rem;font-family:'Noto Sans KR',sans-serif;font-size:13.5px;color:#2C2416;background:#FAF5EC;resize:vertical;margin-top:.6rem}
+    .modal-btn{margin-top:.55rem;padding:.5rem 1.1rem;background:#5C3D1E;color:#FDFAF5;border:none;border-radius:20px;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:background .2s}
+    .modal-btn:hover{background:#8B6E45}
+    .modal-note{font-size:12px;color:#8B6E45;margin-top:.6rem;font-style:italic}
+    @media(max-width:640px){
+      .versions-grid{grid-template-columns:1fr}
+      .vocab-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media print{
+      body{background:white;padding:0}
+      .memo-wrap{box-shadow:none;border:.5px solid #000;max-width:100%}
+      .speak-btn,.audio-section,.study-speak-row,.slink{display:none}
+      .study-ref-banner{background:#E0E0E0;border-top:1.5px solid #000;border-bottom:1.5px solid #000}
+      .study-ref-text{color:#000}
+      .study-ref-sub{color:#222}
+      .study-body{color:#000;font-weight:500}
+      .study-body em{color:#000}
+      .study-title{color:#000}
+    }
+  
+</style>
+<div class="memo-outer-wrap">
+<div class="memo-wrap">
+
+  <div class="memo-title-row">
+    <span class="t-icon dove">
+      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 3 C7 3 4 5.5 4 8.5 C4 11 5.5 13 8 14 L8 17 L10 15 L12 17 L12 14 C14.5 13 16 11 16 8.5 C16 5.5 13 3 10 3Z M9 9 A1 1 0 1 1 11 9 A1 1 0 1 1 9 9Z"/>
+      </svg>
+    </span>
+    <div class="memo-title">Bible Memorization</div>
+    <span class="t-icon star">
+      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="10,2 12.4,7.5 18.5,7.5 13.8,11.3 15.7,17 10,13.5 4.3,17 6.2,11.3 1.5,7.5 7.6,7.5"/>
+      </svg>
+    </span>
+  </div>
+
+  <div class="memo-sub">Ecclesiastes 8 : 11 – 13</div>
+  <hr class="divider"/>
+
+  <div class="versions-grid">
+    <div>
+      <div class="version-label esv">ESV</div>
+      <div class="verse-block verse-bold"><span class="vnum">11</span>Because the sentence against an evil deed is not executed speedily, the heart of the children of man is fully set to do evil.</div>
+      <div class="verse-block"><span class="vnum">12</span>Though a sinner does evil a hundred times and prolongs his life, yet I know that it will be well with those who fear God, because they fear before him.</div>
+      <div class="verse-block"><span class="vnum">13</span>But it will not be well with the wicked, neither will he prolong his days like a shadow, because he does not fear before God.</div>
+    </div>
+    <div>
+      <div class="version-label niv">NIV</div>
+      <div class="verse-block verse-bold"><span class="vnum">11</span>When the sentence for a crime is not quickly carried out, people's hearts are filled with schemes to do wrong.</div>
+      <div class="verse-block"><span class="vnum">12</span>Although a wicked person who commits a hundred crimes may live a long time, I know that it will go better with those who fear God, who are reverent before him.</div>
+      <div class="verse-block"><span class="vnum">13</span>Yet because the wicked do not fear God, it will not go well with them, and their days will not lengthen like a shadow.</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- Key Vocabulary — ESV -->
+  <div class="vocab-section-wrap">
+    <div class="vocab-title">Key Vocabulary — ESV · 5 Words</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-card">
+        <div class="vocab-word">sentence</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">a judgment or punishment for wrongdoing</div>
+        <button class="speak-btn" onclick="speakWord('sentence', 'a judgment or punishment for wrongdoing', this)">🔊 Read</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">speedily</div>
+        <div class="vocab-pos">adv.</div>
+        <div class="vocab-def">quickly; without delay</div>
+        <button class="speak-btn" onclick="speakWord('speedily', 'quickly, without delay', this)">🔊 Read</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">prolong</div>
+        <div class="vocab-pos">verb</div>
+        <div class="vocab-def">to make something last longer</div>
+        <button class="speak-btn" onclick="speakWord('prolong', 'to make something last longer', this)">🔊 Read</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">fear</div>
+        <div class="vocab-pos">verb</div>
+        <div class="vocab-def">to revere and worship God with awe</div>
+        <button class="speak-btn" onclick="speakWord('fear', 'to revere and worship God with awe', this)">🔊 Read</button>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-word">wicked</div>
+        <div class="vocab-pos">adj.</div>
+        <div class="vocab-def">morally evil; refusing to obey God</div>
+        <button class="speak-btn" onclick="speakWord('wicked', 'morally evil, refusing to obey God', this)">🔊 Read</button>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- Key Vocabulary — NIV -->
+  <div class="vocab-section-wrap">
+    <div class="vocab-title niv-title">Key Vocabulary — NIV · 5 Words</div>
+    <div class="vocab-grid">
+
+      <div class="vocab-card niv">
+        <div class="vocab-word">crime</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">a sinful act that breaks God's law</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('crime', 'a sinful act that breaks God\'s law', this)">🔊 Read</button>
+      </div>
+
+      <div class="vocab-card niv">
+        <div class="vocab-word">schemes</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">plans or plots to do wrong</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('schemes', 'plans or plots to do wrong', this)">🔊 Read</button>
+      </div>
+
+      <div class="vocab-card niv">
+        <div class="vocab-word">reverent</div>
+        <div class="vocab-pos">adj.</div>
+        <div class="vocab-def">showing deep respect and worship toward God</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('reverent', 'showing deep respect and worship toward God', this)">🔊 Read</button>
+      </div>
+
+      <div class="vocab-card niv">
+        <div class="vocab-word">lengthen</div>
+        <div class="vocab-pos">verb</div>
+        <div class="vocab-def">to become longer; to extend one's life</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('lengthen', 'to become longer, to extend one\'s life', this)">🔊 Read</button>
+      </div>
+
+      <div class="vocab-card niv">
+        <div class="vocab-word">shadow</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">a fleeting image; life that fades away</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('shadow', 'a fleeting image, life that fades away', this)">🔊 Read</button>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- 전체 읽기 -->
+  <div class="audio-section">
+    <div class="audio-label">Listen &amp; Memorize — Full Passage</div>
+    <div class="audio-controls">
+      <button class="abtn play" onclick="speakAll()">▶ Play All</button>
+      <button class="abtn" onclick="speakSlow()">𝅘𝅥𝅮 Slow</button>
+      <button class="abtn" onclick="stopSpeech()">◼ Stop</button>
+      <button class="abtn" id="repeatBtn" onclick="toggleRepeat()">↺ Repeat</button>
+    </div>
+    <div class="audio-status" id="audioStatus">Ready</div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- 성경공부 섹션 -->
+  <div class="study-section">
+
+    <!-- Title -->
+    <div class="study-title">Bible Study</div>
+
+    <!-- Centered reference banner -->
+    <div class="study-ref-banner">
+      <div class="study-ref-text">Ecclesiastes 8:11–13</div>
+      <div class="study-ref-sub">"Delayed Judgment &amp; The Fear of God"</div>
+    </div>
+
+    <!-- ── 2 Study Icons ── -->
+    <div class="study-icons-row">
+      <div class="slink slink-explain" onclick="openModal('explain')">
+        <div class="slink-inner">
+          <span class="slink-emoji">📖</span>
+          <span class="slink-label">말씀 해설</span>
+          <span class="slink-sub">Exposition &amp; Commentary</span>
+        </div>
+        <span class="slink-arrow">→</span>
+      </div>
+      <div class="slink slink-discuss" onclick="openModal('discuss')">
+        <div class="slink-inner">
+          <span class="slink-emoji">🙏</span>
+          <span class="slink-label">암송과 기도</span>
+          <span class="slink-sub">Memorization &amp; Prayer</span>
+        </div>
+        <span class="slink-arrow">→</span>
+      </div>
+    </div>
+
+    <!-- ── Modals ── -->
+    <!-- 말씀 해설 Modal -->
+    <div class="modal-overlay" id="modal-explain">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('explain')">✕</button>
+        <div class="modal-title">📖 말씀 해설</div>
+        <div class="modal-sub">Exposition · Ecclesiastes 8:11–13</div>
+        <div class="modal-body">
+          <p><strong>전도서 8:11–13의 구조적 맥락</strong><br/>
+          이 세 구절은 8장 9–17절의 더 큰 단락 안에 위치합니다. 전도자는 악인의 번영과 하나님의 섭리라는 긴장 속에서 글을 씁니다.</p>
+          <p><strong>핵심 주제: 지연된 심판 (Delayed Judgment)</strong><br/>
+          11절은 악이 지속되는 이유를 설명합니다 — 심판이 즉각 보이지 않기 때문에, 인간의 마음은 더욱 담대하게 악을 행하게 됩니다.</p>
+          <p><strong>12–13절: 두 결말</strong><br/>
+          악인이 백 번 악을 행하고도 오래 살 수 있지만, 전도자는 하나님을 경외하는 자에게는 복이 있고, 경외하지 않는 자에게는 결국 복이 없다고 단언합니다.</p>
+          <p><strong>신학적 함의</strong><br/>
+          이 본문은 즉각적인 보상/처벌로 하나님을 판단하지 말라는 경고입니다. 하나님의 정의는 반드시 이루어지며, 믿음은 그 완성을 인내로 기다리는 것입니다.</p>
+        </div>
+        <a class="modal-share-link" href="mailto:?subject=말씀 해설 — 전도서 8:11-13&body=이번 주 성경공부 해설을 공유합니다.%0A%0A전도서 8장 11-13절 — 지연된 심판과 하나님 경외%0A%0A자세한 내용은 주보를 참고해 주세요." target="_blank">✉️ 이메일로 해설 나누기</a>
+      </div>
+    </div>
+
+    <!-- 암송과 기도 Modal -->
+    <div class="modal-overlay" id="modal-discuss">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('discuss')">✕</button>
+        <div class="modal-title">🙏 암송과 기도</div>
+        <div class="modal-sub">Memorization &amp; Prayer · Ecclesiastes 8:11–13</div>
+        <div class="modal-body">
+          <p><strong>이번 주 암송 구절 (ESV)</strong><br/>
+          <em>"Because the sentence against an evil deed is not executed speedily, the heart of the children of man is fully set to do evil."</em><br/>
+          — Ecclesiastes 8:11</p>
+          <p><strong>암송 도움말</strong></p>
+          <ul>
+            <li>먼저 구절 전체를 3번 소리 내어 읽어 보세요.</li>
+            <li>핵심 단어만 남기고 나머지를 가리며 반복해 보세요.</li>
+            <li>잠들기 전 한 번, 아침에 일어나 한 번 암송해 보세요.</li>
+          </ul>
+          <p><strong>이번 주 기도 제목</strong></p>
+          <ul>
+            <li>악이 번성해 보여도 하나님의 공의를 신뢰하는 믿음을 주옵소서.</li>
+            <li>심판이 지연될 때에도 하나님을 경외하며 흔들리지 않게 하옵소서.</li>
+            <li>이 말씀을 암송하며 마음에 새기는 학생 한 명 한 명을 축복하여 주옵소서.</li>
+          </ul>
+          <p><strong>나의 기도를 적어 두세요:</strong></p>
+          <textarea class="modal-textarea" placeholder="오늘 드리고 싶은 기도를 여기에 적어보세요…" id="discuss-note"></textarea>
+          <button class="modal-btn" onclick="copyNote('discuss-note')">📋 복사하기</button>
+          <p class="modal-note">복사 후 카카오톡이나 이메일로 나눠 주세요.</p>
+        </div>
+        <a class="modal-share-link" href="mailto:?subject=암송과 기도 — 전도서 8:11-13&body=이번 주 암송 구절과 기도 제목을 나눕니다.%0A%0A암송: Ecclesiastes 8:11 — Because the sentence against an evil deed is not executed speedily, the heart of the children of man is fully set to do evil.%0A%0A기도: 하나님의 공의를 신뢰하고 경외하는 삶을 살게 하옵소서." target="_blank">✉️ 암송·기도 이메일로 나누기</a>
+      </div>
+    </div>
+
+    <div class="study-body" id="studyBody"><p>Ecclesiastes 8:11 is not an isolated proverb. It stands within a sustained discussion from chapter 8, verses 9 through 17, on the prosperity of the wicked and the providence of God. In particular, verses 11 through 13 must be read together for the meaning to become clear.</p><p>
+      Verse 11 explains why evil persists: because punishment is not seen immediately, the human heart grows bold in wrongdoing. And yet, the Preacher affirms that in the end, those who fear God and the wicked will meet entirely different outcomes.</p><p>
+      Even when the wicked appear to flourish and live long, the Preacher insists that this is not the whole story. The key theme is <em>delayed judgment</em>. When punishment does not fall at once, people take God's justice lightly and commit evil with greater boldness — that is the Preacher's observation.<br/><br/>
+      This passage does not mean that evil escapes punishment. It is a warning: <em>when judgment is delayed, people are more likely to grow worse.</em> Therefore, believers must not judge by immediate reward or punishment alone. The lesson is to fear God, to endure with patience, and to trust that his justice will prevail.</p>
+    </div>
+
+    <!-- 🔊 Speaker icon moved to bottom of study body -->
+    <div class="study-speak-row">
+      <span class="study-icon" id="studyIcon" onclick="speakStudy(this)" title="Click to listen in English">🔊</span>
+      <span class="study-speak-label">본문 해설 듣기 (English)</span>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+<script>
+
+const synth = window.speechSynthesis;
+let repeatOn = false;
+let currentBtn = null;
+
+/* ── 여성 영어 목소리 자동 선택 ── */
+function getBestFemaleVoice(){
+  const voices = synth.getVoices();
+  const preferred = [
+    'Google UK English Female',
+    'Microsoft Aria Online (Natural) - English (United States)',
+    'Microsoft Jenny Online (Natural) - English (United States)',
+    'Microsoft Sonia Online (Natural) - English (United Kingdom)',
+    'Microsoft Zira - English (United States)',
+    'Samantha',
+    'Karen',
+    'Moira',
+    'Tessa',
+    'Victoria',
+  ];
+  for(const name of preferred){
+    const v = voices.find(v => v.name === name);
+    if(v) return v;
+  }
+  const femaleFallback = voices.find(v =>
+    v.lang.startsWith('en') && v.name.toLowerCase().includes('female')
+  );
+  if(femaleFallback) return femaleFallback;
+  const femaleNames = ['samantha','karen','moira','tessa','victoria','aria','jenny','sonia','zira','susan','alice'];
+  const byName = voices.find(v => femaleNames.some(n => v.name.toLowerCase().includes(n)));
+  if(byName) return byName;
+  return voices.find(v => v.lang.startsWith('en')) || null;
+}
+
+function updateStatus(msg){ document.getElementById('audioStatus').textContent = msg; }
+
+
+/* ── 개별 단어 카드 읽기: 단어 → 700ms → 해설 ── */
+function speakWord(word, definition, btn){
+  synth.cancel();
+  if(currentBtn){ currentBtn.textContent = '🔊 Read'; currentBtn.classList.remove('speaking'); }
+  btn.textContent = '🔊 …';
+  btn.classList.add('speaking');
+  currentBtn = btn;
+
+  const u1 = new SpeechSynthesisUtterance(word);
+  u1.lang='en-US'; u1.rate=0.85; u1.pitch=1.1;
+  const voice1=getBestFemaleVoice(); if(voice1){u1.voice=voice1;}
+  const u2 = new SpeechSynthesisUtterance(definition);
+  u2.lang='en-US'; u2.rate=0.85; u2.pitch=1.1;
+  const voice2=getBestFemaleVoice(); if(voice2){u2.voice=voice2;}
+
+  u1.onend = () => setTimeout(() => synth.speak(u2), 700);
+  u2.onend = () => {
+    btn.textContent = '🔊 Read';
+    btn.classList.remove('speaking');
+    currentBtn = null;
+  };
+  synth.speak(u1);
+}
+
+/* ── 암송구절 전체 읽기: 버전명 → 900ms → 구절 → 800ms → 다음 ── */
+const PAIRS = [
+  { label: 'E S V.',
+    verse: 'Verse 11. Because the sentence against an evil deed is not executed speedily, the heart of the children of man is fully set to do evil. ' +
+           'Verse 12. Though a sinner does evil a hundred times and prolongs his life, yet I know that it will be well with those who fear God, because they fear before him. ' +
+           'Verse 13. But it will not be well with the wicked, neither will he prolong his days like a shadow, because he does not fear before God.' },
+  { label: 'N I V.',
+    verse: "Verse 11. When the sentence for a crime is not quickly carried out, people's hearts are filled with schemes to do wrong. " +
+           'Verse 12. Although a wicked person who commits a hundred crimes may live a long time, I know that it will go better with those who fear God, who are reverent before him. ' +
+           'Verse 13. Yet because the wicked do not fear God, it will not go well with them, and their days will not lengthen like a shadow.' }
+];
+
+function speak(rate){
+  synth.cancel();
+  if(currentBtn){ currentBtn.textContent = '🔊 Read'; currentBtn.classList.remove('speaking'); currentBtn = null; }
+  let i = 0;
+  function nextPair(){
+    if(i >= PAIRS.length){
+      if(repeatOn){ i = 0; setTimeout(nextPair, 800); }
+      else { updateStatus('Finished ✓'); }
+      return;
+    }
+    const { label, verse } = PAIRS[i];
+    updateStatus('▶ ' + label);
+    const uL = new SpeechSynthesisUtterance(label);
+    uL.lang='en-US'; uL.rate=rate*0.9; uL.pitch=1.1;
+    const fv=getBestFemaleVoice(); if(fv){uL.voice=fv;}
+    const uV = new SpeechSynthesisUtterance(verse);
+    uV.lang='en-US'; uV.rate=rate; uV.pitch=1.1;
+    if(fv){uV.voice=fv;}
+    uL.onend = () => setTimeout(() => synth.speak(uV), 900);
+    uV.onend = () => { i++; setTimeout(nextPair, 800); };
+    synth.speak(uL);
+  }
+  nextPair();
+}
+
+function speakAll()  { speak(1);    }
+function speakSlow() { speak(0.75); }
+function stopSpeech(){
+  synth.cancel();
+  updateStatus('Stopped');
+  if(currentBtn){ currentBtn.textContent = '🔊 Read'; currentBtn.classList.remove('speaking'); currentBtn = null; }
+}
+function toggleRepeat(){
+  repeatOn = !repeatOn;
+  document.getElementById('repeatBtn').textContent = repeatOn ? '🔁 ON' : '↺ Repeat';
+}
+
+/* ── 본문 해설 듣기 ── */
+function speakStudy(iconEl){
+  // 재생 중이면 멈추기
+  if(iconEl.dataset.playing === '1'){
+    synth.cancel();
+    iconEl.dataset.playing = '0';
+    iconEl.textContent = '🔊';
+    iconEl.title = 'Click to listen in English';
+    iconEl.style.background = '#5C3D1E';
+    return;
+  }
+
+  const text =
+    "Ecclesiastes chapter 8, verses 11 to 13. " +
+    "Delayed Judgment ... and The Fear of God. " +
+    "Ecclesiastes 8 verse 11 is not an isolated proverb. " +
+    "It stands within a sustained discussion from chapter 8, verses 9 through 17, " +
+    "on the prosperity of the wicked ... and the providence of God. " +
+    "In particular, verses 11 through 13 must be read together ... for the meaning to become clear. " +
+    "Verse 11 explains why evil persists. " +
+    "Because punishment is not seen immediately, " +
+    "the human heart grows bold in wrongdoing. " +
+    "And yet ... the Preacher affirms that in the end, " +
+    "those who fear God ... and the wicked ... will meet entirely different outcomes. " +
+    "Even when the wicked appear to flourish and live long, " +
+    "the Preacher insists that this is not the whole story. " +
+    "The key theme is ... delayed judgment. " +
+    "When punishment does not fall at once, people take God's justice lightly, " +
+    "and commit evil with greater boldness. " +
+    "This passage does not mean that evil escapes punishment. " +
+    "It is a warning. When judgment is delayed ... people are more likely to grow worse. " +
+    "Therefore, believers must not judge by immediate reward or punishment alone. " +
+    "The lesson is ... to fear God, to endure with patience, " +
+    "and to trust ... that his justice will prevail.";
+
+  synth.cancel();
+  if(currentBtn){ currentBtn.textContent = '🔊 Read'; currentBtn.classList.remove('speaking'); currentBtn = null; }
+
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang  = 'en-US';
+  u.rate  = 0.88;
+  u.pitch = 1.1;
+  u.volume = 1;
+
+  // 목소리가 로드됐을 때 적용
+  function applyAndSpeak(){
+    const voice = getBestFemaleVoice();
+    if(voice) u.voice = voice;
+    iconEl.dataset.playing = '1';
+    iconEl.textContent = '⏹';
+    iconEl.title = 'Click to stop';
+    iconEl.style.background = '#7A9E7E';
+    u.onend = () => {
+      iconEl.dataset.playing = '0';
+      iconEl.textContent = '🔊';
+      iconEl.title = 'Click to listen in English';
+      iconEl.style.background = '#5C3D1E';
+    };
+    synth.speak(u);
+  }
+
+  // 목소리 목록이 아직 안 로드된 경우 대비
+  if(synth.getVoices().length > 0){
+    applyAndSpeak();
+  } else {
+    synth.onvoiceschanged = () => { synth.onvoiceschanged = null; applyAndSpeak(); };
+  }
+}
+
+/* ── Modal Open / Close ── */
+function openModal(id){
+  const el = document.getElementById('modal-' + id);
+  if(el){ el.classList.add('open'); document.body.style.overflow='hidden'; }
+}
+function closeModal(id){
+  const el = document.getElementById('modal-' + id);
+  if(el){ el.classList.remove('open'); document.body.style.overflow=''; }
+}
+// 오버레이 클릭 시 닫기
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.modal-overlay').forEach(function(overlay){
+    overlay.addEventListener('click', function(e){
+      if(e.target === overlay){ overlay.classList.remove('open'); document.body.style.overflow=''; }
+    });
+  });
+});
+
+/* ── 메모 복사 ── */
+function copyNote(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const text = el.value.trim();
+  if(!text){ alert('먼저 내용을 입력해 주세요 😊'); return; }
+  navigator.clipboard.writeText(text).then(function(){
+    alert('복사되었습니다! 카카오톡이나 이메일에 붙여넣기 하세요 ✅');
+  }).catch(function(){
+    el.select();
+    document.execCommand('copy');
+    alert('복사되었습니다! ✅');
+  });
+}
+
+</script>
+</div>
+
+</body>
+</html>
