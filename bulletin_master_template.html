@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FPCK Bulletin Master Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:#EDE8DF;font-style:normal!important}
+
+/* ─── EDITOR ─── */
+#editor{min-height:100vh;padding:2rem 1rem;display:flex;flex-direction:column;align-items:center}
+#editor.hidden{display:none}
+.ed-wrap{width:100%;max-width:860px}
+.ed-title{font-size:22px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.2rem}
+.ed-sub{font-size:13px;color:#8B6E45;text-align:center;margin-bottom:1.5rem}
+.ed-card{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:8px;padding:1.2rem 1.4rem;margin-bottom:1rem}
+.ed-card-title{font-size:12px;font-weight:800;color:#5C3D1E;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #E8D9B8;display:flex;align-items:center;gap:.5rem}
+.ed-card-title .num{background:#5C3D1E;color:#FDFAF5;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.fg{margin-bottom:.7rem}
+.fg label{display:block;font-size:11.5px;color:#8B6E45;font-weight:700;margin-bottom:.25rem}
+.fg input,.fg textarea,.fg select{width:100%;font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:7px 10px;border:1px solid #D4B896;border-radius:5px;background:#FFF;color:#2C2416}
+.fg textarea{resize:vertical;min-height:72px;line-height:1.65}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem}
+.dyn-row{display:flex;gap:.5rem;margin-bottom:.5rem;align-items:flex-start}
+.dyn-row .dyn-inner{flex:1;display:grid;gap:.4rem}
+.dyn-row input,.dyn-row textarea{font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:6px 9px;border:1px solid #D4B896;border-radius:5px;background:#FFF;color:#2C2416;width:100%}
+.dyn-row textarea{resize:vertical;min-height:58px;line-height:1.6}
+.del-btn{background:transparent;border:1px solid #D4B896;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:15px;color:#B08060;flex-shrink:0;margin-top:2px;font-family:sans-serif}
+.del-btn:hover{background:#C0392B;color:#FFF;border-color:#C0392B}
+.add-btn{font-size:12px;padding:4px 14px;border:1px solid #C4A97A;border-radius:20px;background:transparent;color:#5C3D1E;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:700;margin-top:.3rem}
+.add-btn:hover{background:#5C3D1E;color:#FFF}
+.verse-row{display:flex;gap:.5rem;margin-bottom:.55rem;align-items:flex-start}
+.verse-row textarea{flex:1;font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:6px 9px;border:1px solid #D4B896;border-radius:5px;background:#FFF;color:#2C2416;resize:vertical;min-height:62px;line-height:1.6}
+.verse-row.main textarea{border-color:#8B6E45;background:#FFFBF0}
+.vlabel{font-size:11px;font-weight:800;color:#8B6E45;margin-bottom:.2rem}
+.vlabel.main{color:#C4870A}
+.note-tip{font-size:11px;color:#B08060;margin-top:.35rem;font-style:italic}
+.gen-btn{display:block;width:100%;padding:14px;font-size:16px;font-weight:800;background:#5C3D1E;color:#FDFAF5;border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;letter-spacing:.05em;margin-top:.5rem}
+.gen-btn:hover{background:#8B6E45}
+
+/* ─── OUTPUT ─── */
+#output{display:none;padding:2rem 1rem;flex-direction:column;align-items:center}
+#output.visible{display:flex}
+.btn-bar{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.2rem}
+.o-btn{padding:9px 22px;font-size:13px;font-weight:700;border-radius:20px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;letter-spacing:.03em;transition:all .2s}
+.o-btn.back{background:transparent;border:1.5px solid #8B7355;color:#5C3D1E}
+.o-btn.back:hover{background:#5C3D1E;color:#FFF}
+.o-btn.print{background:#5C3D1E;border:none;color:#FFF}
+.o-btn.print:hover{background:#8B6E45}
+
+/* ─── BULLETIN LAYOUT ─── */
+.bulletin-wrap{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:880px;border:2px solid #8B7355;background:#FDFAF5;box-shadow:0 6px 32px rgba(100,80,50,.18)}
+.page{padding:1.9rem 1.7rem}
+.page-left{border-right:1.5px solid #C4A97A;background:linear-gradient(to bottom,#FDFAF5,#FAF5EC)}
+.page-right{background:#FDFAF5}
+.cross-emblem{text-align:center;margin-bottom:.55rem}
+.cross-emblem svg{width:40px;height:40px;opacity:.7}
+.church-name{font-size:17px;font-weight:800;letter-spacing:.04em;text-align:center;color:#5C3D1E;margin-bottom:.3rem}
+.motto{font-size:13.5px;text-align:center;color:#8B6E45;margin-bottom:.45rem;font-weight:600}
+.date-line{font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;color:#5C3D1E;text-align:center;margin-bottom:.9rem;font-weight:700}
+.divider{border:none;border-top:1px solid #C4A97A;margin:.65rem 0}
+.order-title{font-size:16px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.75rem;letter-spacing:.04em;padding-bottom:.35rem;border-bottom:1.5px solid #C4A97A}
+.ow-row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.8rem;font-size:14.5px;line-height:1.5}
+.ow-row .lbl{color:#2C2416;font-weight:500;white-space:nowrap;flex:1}
+.ow-row .rgt{color:#5C3D1E;font-weight:700;text-align:right;white-space:nowrap}
+.ow-row3{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:.3rem .5rem;margin-bottom:.8rem;font-size:14.5px}
+.ow-row3 .ctr{color:#5C3D1E;font-weight:700}
+.ow-row3 .rgt3{text-align:right;color:#5C3D1E;font-weight:700}
+.sec-hd{font-size:15px;font-weight:800;color:#5C3D1E;margin:1rem 0 .45rem;display:flex;align-items:center;gap:.45rem}
+.bank-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.65rem .85rem;font-size:13.5px;line-height:1.85;color:#3C2810;border-radius:4px;font-weight:500}
+.bank-name{font-weight:800;color:#5C3D1E;font-size:15px}
+.ann-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.75rem .95rem;font-size:13.5px;color:#2C2416;border-radius:4px}
+.ann-item{padding:.45rem 0;border-bottom:1px dotted #C4A97A;display:flex;gap:.55rem;align-items:flex-start}
+.ann-item:last-child{border-bottom:none}
+.ann-ico{font-size:17px;flex-shrink:0;margin-top:.1rem}
+.ann-ttl{font-weight:800;color:#5C3D1E;font-size:14.5px;margin-bottom:.15rem}
+.ann-desc{font-size:13px;color:#2C2416;line-height:1.6}
+.memo-lbl{font-size:14px;font-weight:800;color:#5C3D1E;margin:1rem 0 .45rem;display:flex;align-items:center;gap:.45rem;text-transform:uppercase}
+.memo-pad{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:4px;padding:.65rem .75rem;min-height:7rem;background-image:repeating-linear-gradient(to bottom,transparent,transparent 26px,#E8DCC0 26px,#E8DCC0 26.5px);background-position:0 .85rem}
+.footer-note{margin-top:1.1rem;padding-top:.55rem;border-top:1px solid #C4A97A;font-size:12px;color:#5C3D1E;text-align:center;font-weight:500}
+
+/* ─── MEMO CARD ─── */
+.memo-wrap{width:100%;max-width:880px;background:#FDFAF5;border:1.5px solid #8B7355;box-shadow:0 6px 32px rgba(100,80,50,.18);padding:1.9rem 2.2rem;margin-top:1.4rem}
+.memo-title-row{display:flex;align-items:center;justify-content:center;gap:.85rem;margin-bottom:.25rem}
+.memo-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:600;color:#5C3D1E}
+.t-icon{width:21px;height:21px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.t-icon.dove{background:#7A9E7E}
+.t-icon.star{background:#8B6E45}
+.t-icon svg{width:11px;height:11px;fill:#FDFAF5}
+.memo-sub{font-size:12.5px;text-align:center;color:#8B6E45;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.9rem;font-weight:600}
+.versions-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:.7rem}
+.ver-lbl{font-family:'Playfair Display',serif;font-size:14.5px;font-weight:600;margin-bottom:.45rem;padding-bottom:.28rem}
+.ver-lbl.esv{color:#2D4A6E;border-bottom:2px solid #2D4A6E}
+.ver-lbl.niv{color:#7A2E2E;border-bottom:2px solid #7A2E2E}
+.vblock{margin-bottom:.45rem;font-size:15.5px;line-height:1.9;color:#2C2416;font-weight:500}
+.vblock.ctx{opacity:.83}
+.vblock.main-v{font-weight:800!important;font-size:16.5px!important;color:#1a1205!important;background:#FFF8E7;border-left:3.5px solid #8B6E45;padding-left:.55rem;border-radius:2px}
+.vnum{font-weight:700;color:#8B6E45;margin-right:.28rem;font-size:13.5px}
+.main-star{font-size:10.5px;color:#C4870A;font-weight:800;margin-left:.25rem;vertical-align:middle}
+.vocab-ttl{font-family:'Playfair Display',serif;font-size:14.5px;font-weight:600;color:#5C3D1E;margin:1rem 0 .6rem;text-align:center}
+.vocab-ttl.niv{color:#7A2E2E}
+.vocab-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.55rem;margin-bottom:.4rem}
+.vocab-card{background:#FAF5EC;border:1px solid #C4A97A;border-radius:6px;padding:.65rem .45rem .5rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.15rem}
+.vocab-card.niv{background:#FDF5F5;border-color:#C4978A}
+.vocab-word{font-size:13.5px;font-weight:700;color:#5C3D1E}
+.vocab-pos{font-size:10.5px;color:#8B6E45;font-weight:600}
+.vocab-def{font-size:11.5px;color:#3C2810;line-height:1.5;flex:1}
+.spk-btn{margin-top:.3rem;background:transparent;border:1px solid #C4A97A;border-radius:20px;padding:.12rem .5rem;font-size:10.5px;color:#5C3D1E;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:600;transition:all .18s;white-space:nowrap}
+.spk-btn:hover{background:#5C3D1E;color:#FDFAF5}
+.spk-btn.speaking{background:#7A9E7E;color:#fff;border-color:#7A9E7E}
+.spk-btn.niv-b{border-color:#C4978A;color:#7A2E2E}
+.spk-btn.niv-b:hover{background:#7A2E2E;color:#fff}
+.audio-section{text-align:center;margin-top:.65rem}
+.audio-lbl{font-size:10.5px;color:#B09870;margin-bottom:.45rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.audio-ctrls{display:flex;gap:.3rem;justify-content:center;flex-wrap:wrap}
+.abtn{background:transparent;color:#5C3D1E;border:1px solid #C4A97A;padding:.22rem .65rem;font-family:'Noto Sans KR',sans-serif;font-size:11.5px;cursor:pointer;border-radius:20px;transition:all .2s;font-weight:600}
+.abtn:hover,.abtn.play{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+.audio-status{font-size:10.5px;color:#B09870;margin-top:.28rem;min-height:1em;font-weight:500}
+
+/* ─── BIBLE STUDY ─── */
+.study-section{margin-top:1.3rem;padding-top:.9rem;border-top:1px solid #C4A97A}
+.study-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:#5C3D1E;margin-bottom:.55rem;display:flex;align-items:center;justify-content:center;gap:.55rem;text-align:center}
+.study-icon{font-size:20px;cursor:pointer;transition:all .2s;user-select:none;background:#5C3D1E;color:#FDFAF5;border-radius:50%;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.study-icon:hover{background:#8B6E45;transform:scale(1.1)}
+.study-ref-banner{text-align:center;margin:.2rem 0 .85rem;padding:.7rem 1rem;background:#F5EDD8;border-top:1.5px solid #8B7355;border-bottom:1.5px solid #8B7355}
+.study-ref-text{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#2C2416;letter-spacing:.06em;text-transform:uppercase}
+.study-ref-sub{font-size:13px;color:#3C2810;font-weight:700;margin-top:.25rem}
+.study-body{font-size:15px;line-height:2.0;color:#1a1205;font-weight:500}
+.study-body p{margin-bottom:1rem}
+.study-body em{font-style:normal;font-weight:800;color:#5C3D1E}
+.study-speak-row{display:flex;align-items:center;gap:.65rem;margin-top:1.1rem;padding-top:.85rem;border-top:1px dashed #C4A97A}
+.study-speak-lbl{font-size:12px;color:#8B6E45;font-weight:600}
+
+/* ─── PASTOR'S RESEARCH NOTE ─── */
+.research-wrap{width:100%;max-width:880px;background:#F8F4EE;border:2px solid #7A6545;box-shadow:0 6px 32px rgba(100,80,50,.15);padding:1.9rem 2.2rem;margin-top:1.4rem}
+.research-header{display:flex;align-items:center;gap:.8rem;margin-bottom:.3rem}
+.research-icon{font-size:26px}
+.research-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#3C2810}
+.research-sub{font-size:12px;color:#8B6E45;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:.9rem}
+.research-ref{display:inline-block;background:#5C3D1E;color:#FDFAF5;font-size:12px;font-weight:800;padding:.2rem .75rem;border-radius:20px;letter-spacing:.06em;margin-bottom:1rem}
+.research-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1rem}
+.r-card{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:8px;padding:1rem 1.1rem}
+.r-card-title{font-size:12px;font-weight:800;color:#5C3D1E;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid #E8D9B8;display:flex;align-items:center;gap:.4rem}
+.r-card-body{font-size:14px;line-height:1.85;color:#2C2416;font-weight:400}
+.r-card-body p{margin-bottom:.6rem}
+.r-full{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:8px;padding:1rem 1.1rem;margin-bottom:1rem}
+.r-full-title{font-size:12px;font-weight:800;color:#5C3D1E;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid #E8D9B8;display:flex;align-items:center;gap:.4rem}
+.r-full-body{font-size:14px;line-height:1.9;color:#2C2416}
+.r-full-body p{margin-bottom:.7rem}
+.r-full-body strong{color:#5C3D1E;font-weight:800}
+.r-xref{background:#FAF5EC;border-left:3px solid #8B6E45;padding:.6rem .85rem;font-size:13.5px;color:#2C2416;line-height:1.8;border-radius:0 4px 4px 0;margin-bottom:.6rem}
+.r-prayer{background:#EDF4EE;border:1.5px solid #7A9E7E;border-radius:8px;padding:.9rem 1.1rem}
+.r-prayer-title{font-size:12px;font-weight:800;color:#3A6B3E;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.55rem;display:flex;align-items:center;gap:.4rem}
+.r-prayer-body{font-size:14px;line-height:1.85;color:#2C2416}
+.r-print-note{font-size:11.5px;color:#8B6E45;text-align:center;margin-top:1rem;font-style:italic;padding-top:.7rem;border-top:1px dashed #C4A97A}
+
+@media(max-width:640px){
+  .bulletin-wrap{grid-template-columns:1fr}
+  .page-left{border-right:none;border-bottom:1.5px solid #C4A97A}
+  .versions-grid,.research-grid{grid-template-columns:1fr}
+  .vocab-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media print{
+  #editor,#output .btn-bar{display:none!important}
+  #output{display:flex!important;background:white;padding:0}
+  .bulletin-wrap,.memo-wrap,.research-wrap{box-shadow:none;border:1px solid #8B7355;max-width:100%}
+  .bulletin-wrap{page-break-after:always}
+  .memo-wrap{page-break-after:always}
+  .audio-section,.study-speak-row,.spk-btn{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ EDITOR ════════════ -->
+<div id="editor">
+<div class="ed-wrap">
+  <div class="ed-title">✦ FPCK Bulletin · Weekly Template</div>
+  <div class="ed-sub">Fill in the fields below, then click "Generate Bulletin"</div>
+
+  <!-- ① Basic Info -->
+  <div class="ed-card">
+    <div class="ed-card-title"><span class="num">1</span> Basic Information</div>
+    <div class="row2">
+      <div class="fg"><label>Date (English)</label><input id="i-date-en" value="June 14, 2026"/></div>
+      <div class="fg"><label>Date (Korean · optional)</label><input id="i-date-ko" value="2026년 6월 14일"/></div>
+    </div>
+    <div class="fg"><label>Weekly Motto</label><input id="i-motto" value="&quot;You follow me!&quot; — John 21:22"/></div>
+  </div>
+
+  <!-- ② Order of Worship -->
+  <div class="ed-card">
+    <div class="ed-card-title"><span class="num">2</span> Order of Worship</div>
+    <div class="row2">
+      <div class="fg"><label>Hymn 1 Number</label><input id="i-hymn1" value="197"/></div>
+      <div class="fg"><label>Hymn 2 Number</label><input id="i-hymn2" value="252"/></div>
+    </div>
+    <div class="row2">
+      <div class="fg"><label>Representative Prayer</label><input id="i-repprayer" value="Mrs. Jeon"/></div>
+      <div class="fg"><label>Scripture Reading (leave blank if none)</label><input id="i-scripture" value=""/></div>
+    </div>
+    <div class="fg"><label>Sermon Text</label><input id="i-sermon" value="Psalm 131"/></div>
+  </div>
+
+  <!-- ③ Announcements -->
+  <div class="ed-card">
+    <div class="ed-card-title"><span class="num">3</span> Announcements</div>
+    <div id="ann-list">
+      <div class="dyn-row">
+        <div class="dyn-inner" style="grid-template-columns:2rem 1fr 2fr">
+          <input value="👶" style="text-align:center"/>
+          <input value="Children &amp; Infant Blessing"/>
+          <input value="A special blessing service for children and infants will be held during today's worship."/>
+        </div>
+        <button class="del-btn" onclick="this.parentElement.remove()">×</button>
+      </div>
+      <div class="dyn-row">
+        <div class="dyn-inner" style="grid-template-columns:2rem 1fr 2fr">
+          <input value="🤝" style="text-align:center"/>
+          <input value="Welcome, New Members!"/>
+          <input value="We warmly welcome all visitors and new members joining the FPCK family today."/>
+        </div>
+        <button class="del-btn" onclick="this.parentElement.remove()">×</button>
+      </div>
+    </div>
+    <button class="add-btn" onclick="addAnn()">+ Add Announcement</button>
+  </div>
+
+  <!-- ④ Offering -->
+  <div class="ed-card">
+    <div class="ed-card-title"><span class="num">4</span> Offering Account</div>
+    <div class="row3">
+      <div class="fg"><label>Bank</label><input id="i-bank" value="WOORI Bank"/></div>
+      <div class="fg"><label>Account No.</label><input id="i-acct" value="474-08-007733"/></div>
+      <div class="fg"><label>Account Holder</label><input id="i-acctname" value="박윤엽 · YOON YOB PARK"/></div>
+    </div>
+  </div>
+
+  <!-- ⑤ Memorization Passage -->
+  <div class="ed-card">
+    <div class="ed-card-title"><span class="num">5</span> Memorization Passage</div>
+    <div class="row2">
+      <div class="fg"><label>Passage Reference</label><input id="i-memref" value="John 10 : 9 – 11"/></div>
+      <div class="fg"><label>Bible Study Title</label><input id="i-studytitle" value="The Good Shepherd &amp; The Abundant Life"/></div>
+    </div>
+    <p class="note-tip" style="margin-bottom:.7rem">★ = Main memorization verse &nbsp;|&nbsp; v1 &amp; v3 = context verses</p>
+
+    <div class="row2" style="margin-bottom:.5rem">
+      <div>
+        <div class="vlabel">ESV — Verse 1 (context)</div>
+        <div class="verse-row"><textarea id="i-esv11">I am the door. If anyone enters by me, he will be saved and will go in and out and find pasture.</textarea><button class="del-btn" onclick="clearV('i-esv11')">×</button></div>
+      </div>
+      <div>
+        <div class="vlabel">NIV — Verse 1 (context)</div>
+        <div class="verse-row"><textarea id="i-niv11">I am the gate; whoever enters through me will be saved. They will come in and go out, and find pasture.</textarea><button class="del-btn" onclick="clearV('i-niv11')">×</button></div>
+      </div>
+    </div>
+    <div class="row2" style="margin-bottom:.5rem">
+      <div>
+        <div class="vlabel main">ESV — Verse 2 ★ MAIN</div>
+        <div class="verse-row main"><textarea id="i-esv12">The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.</textarea><button class="del-btn" onclick="clearV('i-esv12')">×</button></div>
+      </div>
+      <div>
+        <div class="vlabel main">NIV — Verse 2 ★ MAIN</div>
+        <div class="verse-row main"><textarea id="i-niv12">The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full.</textarea><button class="del-btn" onclick="clearV('i-niv12')">×</button></div>
+      </div>
+    </div>
+    <div class="row2">
+      <div>
+        <div class="vlabel">ESV — Verse 3 (context)</div>
+        <div class="verse-row"><textarea id="i-esv13">I am the good shepherd. The good shepherd lays down his life for the sheep.</textarea><button class="del-btn" onclick="clearV('i-esv13')">×</button></div>
+      </div>
+      <div>
+        <div class="vlabel">NIV — Verse 3 (context)</div>
+        <div class="verse-row"><textarea id="i-niv13">I am the good shepherd. The good shepherd lays down his life for the sheep.</textarea><button class="del-btn" onclick="clearV('i-niv13')">×</button></div>
+      </div>
+    </div>
+    <p class="note-tip">* Click × to clear any verse field before entering next week's content.</p>
+  </div>
+
+  <!-- ⑥ Vocabulary ESV -->
+  <div class="ed-card">
+    <div class="ed-card-title"><span class="num">6</span> Vocabulary Cards — ESV (5 words)</div>
+    <div id="vocab-esv">
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="thief"/><input value="noun"/><input value="one who steals; a deceiver who brings harm"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="destroy"/><input value="verb"/><input value="to ruin completely; undo what God has made"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="abundantly"/><input value="adv."/><input value="more than enough; overflowing fullness"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="life"/><input value="noun"/><input value="true spiritual life given by Christ himself"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="came"/><input value="verb"/><input value="entered the world with a definite purpose"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+    </div>
+    <button class="add-btn" onclick="addVocab('vocab-esv')">+ Add Word</button>
+  </div>
+
+  <!-- ⑦ Vocabulary NIV -->
+  <div class="ed-card">
+    <div class="ed-card-title"><span class="num">7</span> Vocabulary Cards — NIV (5 words)</div>
+    <div id="vocab-niv">
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="steal"/><input value="verb"/><input value="to take what belongs to another by force or deceit"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="kill"/><input value="verb"/><input value="to end life; the enemy's destructive intent"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="full"/><input value="adj."/><input value="complete; life lacking nothing, filled to the brim"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="come"/><input value="verb"/><input value="to arrive with intention; Christ's mission to us"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+      <div class="dyn-row"><div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input value="have"/><input value="verb"/><input value="to possess and experience — present, not future life"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button></div>
+    </div>
+    <button class="add-btn" onclick="addVocab('vocab-niv')">+ Add Word</button>
+  </div>
+
+  <!-- ⑧ Bible Study -->
+  <div class="ed-card">
+    <div class="ed-card-title"><span class="num">8</span> Bible Study Content</div>
+    <div class="fg"><textarea id="i-study" rows="9">John 10:9–11 presents Jesus as the only "gate" of salvation and the ultimate "good shepherd" who lays down his life for his sheep.
+
+1. "I am the gate." (v. 9)
+In ancient times, a shepherd would sleep across the entrance of the sheepfold, becoming a literal gate against predators. Jesus claims to be the only way to the Father. Whoever enters through him will be saved. They will come in and go out, and find pasture — a full, unburdened life of freedom.
+
+2. The thief versus the good shepherd (v. 10)
+The thief comes only to steal and kill and destroy. But Jesus says: I have come that they may have life, and have it to the full. He does not merely help us survive — he desires us to flourish.
+
+3. "I am the good shepherd." (v. 11)
+The good shepherd lays down his life for the sheep. Unlike a hired hand who flees at danger, Jesus stayed — and gave his life on the cross, securing ours forever.
+
+Jesus alone is the gate to peace and purpose. Step into the freedom Christ has given you.</textarea></div>
+  </div>
+
+  <!-- ⑨ Pastor's Research Note -->
+  <div class="ed-card">
+    <div class="ed-card-title"><span class="num">9</span> Pastor Park's Personal Bible Research Note</div>
+    <p class="note-tip" style="margin-bottom:.8rem">This section is for private study notes — Hebrew/Greek insights, cross-references, sermon outline, and prayer. Printed separately.</p>
+
+    <div class="row2">
+      <div class="fg"><label>📖 Hebrew / Greek Word Study</label><textarea id="i-r-word" rows="4">ποιμήν (poimēn) = shepherd. Used 18x in NT. Always refers to care, guidance, sacrifice. In LXX, translates רֹעֶה (ro'eh) — God as shepherd in Ps 23, Isa 40:11, Ezek 34.</textarea></div>
+      <div class="fg"><label>🔍 Context &amp; Background</label><textarea id="i-r-context" rows="4">John 10:1-18 is the "Good Shepherd" discourse. Spoken at the Feast of Dedication (Hanukkah, v.22). Audience: Pharisees who had just expelled the blind man (ch.9). Jesus is the true shepherd vs. false leaders (Ezek 34).</textarea></div>
+    </div>
+    <div class="row2">
+      <div class="fg"><label>📚 Cross-References</label><textarea id="i-r-xref" rows="4">Psalm 23 · Isaiah 40:11 · Ezekiel 34:1-16 · Luke 15:3-7 (lost sheep) · Hebrews 13:20 (great shepherd) · 1 Peter 2:25 (shepherd of souls) · Revelation 7:17</textarea></div>
+      <div class="fg"><label>✏️ Sermon Outline</label><textarea id="i-r-outline" rows="4">I. The Gate — the only entry to life (v.9)
+II. The Contrast — thief vs. shepherd (v.10)
+III. The Cost — the shepherd's sacrifice (v.11)
+Conclusion: Abundant life is present tense, not future.</textarea></div>
+    </div>
+    <div class="fg"><label>💡 Personal Insight / Meditation</label><textarea id="i-r-insight" rows="4">The word "abundantly" (περισσόν) means exceeding, beyond measure. Not just survival but overflowing vitality. This is not prosperity theology — it is the fullness of knowing Christ personally. The thief represents all that steals our joy, peace, identity. Christ comes to restore what was taken.</textarea></div>
+    <div class="fg"><label>🙏 Pastoral Prayer Notes</label><textarea id="i-r-prayer" rows="3">Lord, let this congregation walk through the gate of Christ with confidence. Guard them from the thief's lies of scarcity and fear. May they experience Your abundant life this week — not as a doctrine but as a living reality.</textarea></div>
+  </div>
+
+  <button class="gen-btn" onclick="generateBulletin()">✦ Generate Bulletin</button>
+</div>
+</div>
+
+<!-- ════════════ OUTPUT ════════════ -->
+<div id="output">
+  <div class="btn-bar">
+    <button class="o-btn back" onclick="goBack()">← Edit Again</button>
+    <button class="o-btn print" onclick="window.print()">🖨 Print</button>
+  </div>
+
+  <!-- Bulletin Pages -->
+  <div class="bulletin-wrap">
+    <div class="page page-left">
+      <div class="cross-emblem">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="4" width="6" height="28" fill="#8B7355" rx="1"/>
+          <rect x="6" y="13" width="24" height="6" fill="#8B7355" rx="1"/>
+        </svg>
+      </div>
+      <div class="church-name">First Presbyterian Church of Korea</div>
+      <div class="motto" id="o-motto"></div>
+      <div class="date-line" id="o-dateline"></div>
+      <hr class="divider"/>
+      <div class="order-title">Order of Worship</div>
+      <div class="ow-row"><span class="lbl">1. Prelude</span><span class="rgt">Instrumental</span></div>
+      <div class="ow-row"><span class="lbl">2. The Apostles' Creed</span><span class="rgt">Congregation</span></div>
+      <div class="ow-row3"><span class="lbl">3. Hymn</span><span class="ctr" id="o-hymn1">#197</span><span class="rgt3">Congregation</span></div>
+      <div class="ow-row"><span class="lbl">4. Ten Commandments</span><span class="rgt">Congregation</span></div>
+      <div class="ow-row"><span class="lbl">5. Representative Prayer</span><span class="rgt" id="o-repprayer"></span></div>
+      <div class="ow-row" id="o-scripture-row"><span class="lbl">6. Scripture Reading<span id="o-scripture-text"></span></span><span class="rgt">Pastor</span></div>
+      <div class="ow-row"><span class="lbl">7. Sermon · <span id="o-sermon"></span></span><span class="rgt">Pastor</span></div>
+      <div class="ow-row"><span class="lbl">8. Offering</span><span class="rgt">Congregation</span></div>
+      <div class="ow-row3"><span class="lbl">9. Hymn</span><span class="ctr" id="o-hymn2">#252</span><span class="rgt3">Congregation</span></div>
+      <div class="ow-row"><span class="lbl">10. The Lord's Prayer</span><span class="rgt">Together</span></div>
+      <div class="ow-row"><span class="lbl">11. Benediction</span><span class="rgt">Pastor</span></div>
+    </div>
+    <div class="page page-right">
+      <div class="sec-hd"><span>📢</span> Announcements</div>
+      <div class="ann-box" id="o-ann"></div>
+      <div class="sec-hd"><span>💛</span> Offering Account</div>
+      <div class="bank-box"><span class="bank-name" id="o-bank"></span><br/>Account No. &nbsp;<span id="o-acct"></span><br/>Name: <span id="o-acctname"></span></div>
+      <hr class="divider"/>
+      <div class="memo-lbl"><span>✎</span> Notes / Memo</div>
+      <div class="memo-pad"></div>
+      <div class="footer-note">May the grace of our Lord Jesus Christ be with you all. ✦ Romans 16:20</div>
+    </div>
+  </div>
+
+  <!-- Memorization Card -->
+  <div class="memo-wrap">
+    <div class="memo-title-row">
+      <span class="t-icon dove">
+        <svg viewBox="0 0 20 20"><path d="M10 3C7 3 4 5.5 4 8.5c0 2.5 1.5 4.5 4 5.5V17l2-2 2 2v-3c2.5-1 4-3 4-5.5C16 5.5 13 3 10 3zm-1 6a1 1 0 1 1 2 0 1 1 0 0 1-2 0z" fill="#FDFAF5"/></svg>
+      </span>
+      <div class="memo-title">Bible Memorization</div>
+      <span class="t-icon star">
+        <svg viewBox="0 0 20 20"><polygon points="10,2 12.4,7.5 18.5,7.5 13.8,11.3 15.7,17 10,13.5 4.3,17 6.2,11.3 1.5,7.5 7.6,7.5" fill="#FDFAF5"/></svg>
+      </span>
+    </div>
+    <div class="memo-sub" id="o-memref"></div>
+    <hr class="divider"/>
+    <div class="versions-grid">
+      <div>
+        <div class="ver-lbl esv">ESV</div>
+        <div class="vblock ctx" id="o-esv11"></div>
+        <div class="vblock main-v" id="o-esv12"></div>
+        <div class="vblock ctx" id="o-esv13"></div>
+      </div>
+      <div>
+        <div class="ver-lbl niv">NIV</div>
+        <div class="vblock ctx" id="o-niv11"></div>
+        <div class="vblock main-v" id="o-niv12"></div>
+        <div class="vblock ctx" id="o-niv13"></div>
+      </div>
+    </div>
+    <hr class="divider"/>
+    <div class="vocab-ttl" id="o-vocab-esv-title"></div>
+    <div class="vocab-grid" id="o-vocab-esv"></div>
+    <hr class="divider"/>
+    <div class="vocab-ttl niv" id="o-vocab-niv-title"></div>
+    <div class="vocab-grid" id="o-vocab-niv"></div>
+    <hr class="divider"/>
+    <div class="audio-section">
+      <div class="audio-lbl">Listen &amp; Memorize — Full Passage</div>
+      <div class="audio-ctrls">
+        <button class="abtn play" onclick="speakAll()">▶ Play All</button>
+        <button class="abtn" onclick="speakSlow()">𝅘𝅥𝅮 Slow</button>
+        <button class="abtn" onclick="stopSpeech()">◼ Stop</button>
+        <button class="abtn" id="repeatBtn" onclick="toggleRepeat()">↺ Repeat</button>
+      </div>
+      <div class="audio-status" id="audioStatus">Ready</div>
+    </div>
+    <hr class="divider"/>
+    <div class="study-section">
+      <div class="study-title">
+        <span class="study-icon" id="studyIcon" onclick="speakStudy(this)" title="Click to listen">🔊</span>
+        Bible Study
+      </div>
+      <div class="study-ref-banner">
+        <div class="study-ref-text" id="o-study-ref-text"></div>
+        <div class="study-ref-sub" id="o-study-ref-sub"></div>
+      </div>
+      <div class="study-body" id="o-studybody"></div>
+      <div class="study-speak-row">
+        <span class="study-speak-lbl">🔊 Click the icon above to listen in English</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pastor's Research Note -->
+  <div class="research-wrap" id="o-research-wrap">
+    <div class="research-header">
+      <span class="research-icon">📚</span>
+      <div>
+        <div class="research-title">Pastor Park's Personal Bible Research Note</div>
+      </div>
+    </div>
+    <div class="research-sub">Private Study · For Sermon Preparation</div>
+    <span class="research-ref" id="o-research-ref"></span>
+    <div class="research-grid">
+      <div class="r-card">
+        <div class="r-card-title">📖 Hebrew / Greek Word Study</div>
+        <div class="r-card-body" id="o-r-word"></div>
+      </div>
+      <div class="r-card">
+        <div class="r-card-title">🔍 Context &amp; Background</div>
+        <div class="r-card-body" id="o-r-context"></div>
+      </div>
+    </div>
+    <div class="r-full">
+      <div class="r-full-title">📚 Cross-References</div>
+      <div class="r-xref" id="o-r-xref"></div>
+    </div>
+    <div class="r-full">
+      <div class="r-full-title">✏️ Sermon Outline</div>
+      <div class="r-full-body" id="o-r-outline"></div>
+    </div>
+    <div class="r-full">
+      <div class="r-full-title">💡 Personal Insight / Meditation</div>
+      <div class="r-full-body" id="o-r-insight"></div>
+    </div>
+    <div class="r-prayer">
+      <div class="r-prayer-title">🙏 Pastoral Prayer Notes</div>
+      <div class="r-prayer-body" id="o-r-prayer"></div>
+    </div>
+    <div class="r-print-note">✦ This research note is for personal use and sermon preparation only · Pastor Park Yoon-yob</div>
+  </div>
+</div>
+
+<script>
+// ── Helpers ──
+const $ = id => document.getElementById(id);
+const val = id => $(id) ? $(id).value.trim() : '';
+function clearV(id){ if($(id)) $(id).value=''; }
+
+function addAnn(){
+  const d=document.createElement('div'); d.className='dyn-row';
+  d.innerHTML='<div class="dyn-inner" style="grid-template-columns:2rem 1fr 2fr"><input placeholder="Icon" style="text-align:center"/><input placeholder="Title"/><input placeholder="Description"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button>';
+  $('ann-list').appendChild(d);
+}
+function addVocab(listId){
+  const d=document.createElement('div'); d.className='dyn-row';
+  d.innerHTML='<div class="dyn-inner" style="grid-template-columns:1fr .6fr 2.5fr"><input placeholder="Word"/><input placeholder="Part of speech"/><input placeholder="Definition"/></div><button class="del-btn" onclick="this.parentElement.remove()">×</button>';
+  $(listId).appendChild(d);
+}
+
+function getVerseNums(){
+  const ref=val('i-memref');
+  const m=ref.match(/(\d+)\s*[:\s]\s*(\d+)\s*[–\-]\s*(\d+)/);
+  return m ? [m[2],m[3],String(parseInt(m[3])+1)] : ['9','10','11'];
+}
+
+function toParas(text){
+  return text.split(/\n\n+/).map(p=>p.trim()).filter(Boolean)
+    .map(p=>'<p>'+p.replace(/\n/g,' ')+'</p>').join('');
+}
+function toLines(text){
+  return text.split(/\n/).map(l=>l.trim()).filter(Boolean).join('<br/>');
+}
+
+// ── Generate ──
+function generateBulletin(){
+  // Basic
+  $('o-motto').textContent = val('i-motto');
+  $('o-dateline').textContent = 'Lord\'s Day Worship · ' + val('i-date-en');
+  $('o-hymn1').textContent = '#' + val('i-hymn1');
+  $('o-hymn2').textContent = '#' + val('i-hymn2');
+  $('o-repprayer').textContent = val('i-repprayer');
+
+  // Scripture reading — hide row if blank
+  const scr = val('i-scripture');
+  if(scr){ $('o-scripture-text').textContent = ' · ' + scr; $('o-scripture-row').style.display=''; }
+  else { $('o-scripture-text').textContent=''; }
+
+  $('o-sermon').textContent = val('i-sermon');
+  $('o-bank').textContent = val('i-bank');
+  $('o-acct').textContent = val('i-acct');
+  $('o-acctname').textContent = val('i-acctname');
+
+  // Announcements
+  const annRows = $('ann-list').querySelectorAll('.dyn-row');
+  let annHtml = '';
+  annRows.forEach(r=>{
+    const ins=r.querySelectorAll('input');
+    if(ins.length>=3 && (ins[1].value||ins[2].value)){
+      annHtml+=`<div class="ann-item"><span class="ann-ico">${ins[0].value}</span><div><div class="ann-ttl">${ins[1].value}</div><div class="ann-desc">${ins[2].value}</div></div></div>`;
+    }
+  });
+  $('o-ann').innerHTML = annHtml;
+
+  // Memorization
+  const ref = val('i-memref');
+  $('o-memref').textContent = ref;
+  $('o-study-ref-text').textContent = ref;
+  $('o-study-ref-sub').textContent = val('i-studytitle');
+  $('o-research-ref').textContent = ref;
+
+  const vn = getVerseNums();
+  [['esv11',vn[0]],['esv12',vn[1]],['esv13',vn[2]],
+   ['niv11',vn[0]],['niv12',vn[1]],['niv13',vn[2]]].forEach(([key,num])=>{
+    const el=$('o-'+key); if(!el) return;
+    const txt=val('i-'+key);
+    const isMain=key.endsWith('12');
+    el.innerHTML=`<span class="vnum">${num}</span>${txt}`+(isMain?'<span class="main-star">★</span>':'');
+  });
+
+  // Vocab
+  buildVocab('vocab-esv','o-vocab-esv','o-vocab-esv-title','Key Vocabulary — ESV','');
+  buildVocab('vocab-niv','o-vocab-niv','o-vocab-niv-title','Key Vocabulary — NIV','niv');
+
+  // Bible Study
+  $('o-studybody').innerHTML = toParas(val('i-study'));
+
+  // Research Note
+  $('o-r-word').innerHTML = toLines(val('i-r-word'));
+  $('o-r-context').innerHTML = toLines(val('i-r-context'));
+  $('o-r-xref').innerHTML = val('i-r-xref').split('·').map(s=>`<span style="display:inline-block;margin-right:.4rem">· ${s.trim()}</span>`).join('');
+  $('o-r-outline').innerHTML = toLines(val('i-r-outline'));
+  $('o-r-insight').innerHTML = toParas(val('i-r-insight'));
+  $('o-r-prayer').innerHTML = toParas(val('i-r-prayer'));
+
+  // TTS pairs update
+  updateTTSPairs();
+
+  $('editor').classList.add('hidden');
+  $('output').classList.add('visible');
+  window.scrollTo(0,0);
+}
+
+function buildVocab(listId,outId,titleId,titleBase,cls){
+  const rows=$(listId).querySelectorAll('.dyn-row');
+  let html=''; let count=0;
+  rows.forEach(r=>{
+    const ins=r.querySelectorAll('input');
+    if(ins.length>=3 && ins[0].value){
+      count++;
+      const cc='vocab-card'+(cls?' '+cls:'');
+      const bc='spk-btn'+(cls?' '+cls+'-b':'');
+      const word=ins[0].value; const def=ins[2].value;
+      html+=`<div class="${cc}"><div class="vocab-word">${word}</div><div class="vocab-pos">${ins[1].value}</div><div class="vocab-def">${def}</div><button class="${bc}" onclick="speakWord('${word.replace(/'/g,"\\'")}','${def.replace(/'/g,"\\'")}',this)">🔊 Read</button></div>`;
+    }
+  });
+  $(outId).innerHTML=html;
+  $(titleId).textContent=`${titleBase} · ${count} Words`;
+}
+
+function goBack(){
+  $('output').classList.remove('visible');
+  $('editor').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+
+// ── TTS ──
+const synth=window.speechSynthesis;
+let repeatOn=false, currentBtn=null, _voice=null;
+let TTS_PAIRS=[];
+
+function getVoice(){
+  if(_voice) return _voice;
+  const voices=synth.getVoices(); if(!voices.length) return null;
+  const pref=['Google UK English Female','Microsoft Aria Online (Natural) - English (United States)',
+    'Microsoft Jenny Online (Natural) - English (United States)','Samantha','Karen','Moira','Tessa','Victoria'];
+  for(const n of pref){ const v=voices.find(v=>v.name===n); if(v){_voice=v;return v;} }
+  const fn=['samantha','karen','moira','tessa','victoria','aria','jenny','sonia','zira'];
+  const bv=voices.find(v=>v.lang&&v.lang.startsWith('en')&&fn.some(n=>v.name.toLowerCase().includes(n)));
+  if(bv){_voice=bv;return bv;}
+  const any=voices.find(v=>v.lang&&v.lang.startsWith('en'));
+  if(any){_voice=any;return any;}
+  return null;
+}
+function initVoices(){ synth.getVoices(); if(synth.onvoiceschanged!==undefined){synth.onvoiceschanged=()=>{_voice=null;getVoice();};} }
+document.addEventListener('DOMContentLoaded',initVoices);
+
+function safeUtter(text,rate,pitch){
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=rate||0.88; u.pitch=pitch||1.1;
+  const v=getVoice(); if(v)u.voice=v;
+  return u;
+}
+
+function updateStatus(msg){ const el=$('audioStatus'); if(el) el.textContent=msg; }
+
+function updateTTSPairs(){
+  const vn=getVerseNums();
+  const e1=val('i-esv11'),e2=val('i-esv12'),e3=val('i-esv13');
+  const n1=val('i-niv11'),n2=val('i-niv12'),n3=val('i-niv13');
+  TTS_PAIRS=[
+    {label:'E S V.', verse:`Verse ${vn[0]}. ${e1} Verse ${vn[1]}. ${e2} Verse ${vn[2]}. ${e3}`},
+    {label:'N I V.', verse:`Verse ${vn[0]}. ${n1} Verse ${vn[1]}. ${n2} Verse ${vn[2]}. ${n3}`}
+  ];
+}
+updateTTSPairs();
+
+function speakWord(word,def,btn){
+  synth.cancel();
+  if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');}
+  btn.textContent='🔊 …';btn.classList.add('speaking');currentBtn=btn;
+  setTimeout(()=>{
+    const u1=safeUtter(word,0.82,1.1);
+    const u2=safeUtter(def,0.85,1.1);
+    u1.onend=()=>setTimeout(()=>synth.speak(u2),700);
+    u2.onend=()=>{btn.textContent='🔊 Read';btn.classList.remove('speaking');currentBtn=null;};
+    synth.speak(u1);
+  },120);
+}
+
+function speak(rate){
+  synth.cancel();
+  if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');currentBtn=null;}
+  let i=0;
+  function next(){
+    if(i>=TTS_PAIRS.length){if(repeatOn){i=0;setTimeout(next,900);}else{updateStatus('Finished ✓');}return;}
+    const {label,verse}=TTS_PAIRS[i]; updateStatus('▶ '+label);
+    const uL=safeUtter(label,rate*0.9,1.1);
+    const uV=safeUtter(verse,rate,1.1);
+    uL.onend=()=>setTimeout(()=>synth.speak(uV),900);
+    uV.onend=()=>{i++;setTimeout(next,800);};
+    setTimeout(()=>synth.speak(uL),120);
+  }
+  next();
+}
+function speakAll(){speak(1);}
+function speakSlow(){speak(0.75);}
+function stopSpeech(){synth.cancel();updateStatus('Stopped');if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');currentBtn=null;}}
+function toggleRepeat(){repeatOn=!repeatOn;$('repeatBtn').textContent=repeatOn?'🔁 ON':'↺ Repeat';}
+
+function speakStudy(iconEl){
+  if(iconEl.dataset.playing==='1'){synth.cancel();iconEl.dataset.playing='0';iconEl.textContent='🔊';iconEl.style.background='#5C3D1E';return;}
+  const studyEl=$('o-studybody');
+  const text=studyEl?studyEl.innerText:'';
+  synth.cancel();
+  if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');currentBtn=null;}
+  const u=safeUtter(text,0.88,1.1);
+  function go(){
+    iconEl.dataset.playing='1';iconEl.textContent='⏹';iconEl.style.background='#7A9E7E';
+    u.onend=()=>{iconEl.dataset.playing='0';iconEl.textContent='🔊';iconEl.style.background='#5C3D1E';};
+    synth.cancel(); setTimeout(()=>synth.speak(u),120);
+  }
+  if(synth.getVoices().length>0){go();}else{synth.onvoiceschanged=()=>{synth.onvoiceschanged=null;go();};}
+}
+</script>
+</body>
+</html>
