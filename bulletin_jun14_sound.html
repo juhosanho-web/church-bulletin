@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FPCK Bulletin · June 14, 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-style:normal !important}
+    body{background:#EDE8DF;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:2rem 1rem;color:#2C2416;font-size:16px;line-height:1.6}
+    em,i{font-style:normal !important;font-weight:600}
+    .bulletin-wrap{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:880px;border:2px solid #8B7355;background:#FDFAF5;box-shadow:0 6px 32px rgba(100,80,50,.18)}
+    .page{padding:2rem 1.7rem}
+    .page-left{border-right:1.5px solid #C4A97A;background:linear-gradient(to bottom,#FDFAF5,#FAF5EC)}
+    .page-right{background:#FDFAF5}
+    .cross-emblem{text-align:center;margin-bottom:.6rem}
+    .cross-emblem svg{width:42px;height:42px;opacity:.7}
+    .church-name{font-size:18px;font-weight:800;letter-spacing:.04em;text-align:center;color:#5C3D1E;margin-bottom:.35rem}
+    .motto{font-size:14px;text-align:center;color:#8B6E45;margin-bottom:.5rem;font-weight:600}
+    .date-line{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#5C3D1E;text-align:center;margin-bottom:1rem;font-weight:700}
+    .divider{border:none;border-top:1px solid #C4A97A;margin:.7rem 0}
+    .order-title{font-size:17px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.8rem;letter-spacing:.04em;padding-bottom:.4rem;border-bottom:1.5px solid #C4A97A}
+    .row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .lbl{color:#2C2416;font-weight:500;white-space:nowrap;flex:1}
+    .rgt{color:#5C3D1E;font-weight:700;text-align:right;white-space:nowrap}
+    .row3{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:.4rem .6rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .row3 .lbl{flex:initial}
+    .row3 .ctr{color:#5C3D1E;font-weight:700;text-align:left}
+    .row3 .rgt{text-align:right}
+    .sec-header{font-size:16px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;display:flex;align-items:center;gap:.5rem}
+    .sec-header .ico{font-size:18px}
+    .bank-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.7rem .9rem;margin:.4rem 0;font-size:14px;line-height:1.85;color:#3C2810;border-radius:4px;font-weight:500}
+    .bank-name{font-weight:800;color:#5C3D1E;font-size:15.5px}
+    .announce-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.8rem 1rem;margin:.4rem 0 .7rem;font-size:14px;line-height:1.65;color:#2C2416;border-radius:4px}
+    .announce-item{padding:.5rem 0;border-bottom:1px dotted #C4A97A;display:flex;gap:.6rem;align-items:flex-start}
+    .announce-item:last-child{border-bottom:none}
+    .announce-icon{font-size:18px;flex-shrink:0;margin-top:.1rem}
+    .announce-content{flex:1}
+    .announce-title{font-weight:800;color:#5C3D1E;font-size:15px;margin-bottom:.2rem}
+    .announce-desc{font-size:13.5px;color:#2C2416;line-height:1.6;font-weight:400}
+    .memo-label{font-size:15px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+    .memo-pad{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:4px;padding:.7rem .8rem;min-height:7.5rem;background-image:repeating-linear-gradient(to bottom,transparent,transparent 26px,#E8DCC0 26px,#E8DCC0 26.5px);background-position:0 .9rem}
+    .footer-note{margin-top:1.2rem;padding-top:.6rem;border-top:1px solid #C4A97A;font-size:12.5px;color:#5C3D1E;text-align:center;font-weight:500}
+    @media(max-width:640px){
+      .bulletin-wrap{grid-template-columns:1fr}
+      .page-left{border-right:none;border-bottom:1.5px solid #C4A97A}
+    }
+    @media print{
+      body{background:white;padding:0;font-size:13px}
+      .bulletin-wrap,.memo-wrap{box-shadow:none;border:1px solid #8B7355;max-width:100%}
+      .bulletin-wrap{page-break-after:always}
+      .audio-section,.study-speak-row{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ BULLETIN ══════════════ -->
+<div class="bulletin-wrap">
+  <div class="page page-left">
+    <div class="cross-emblem">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="4" width="6" height="28" fill="#8B7355" rx="1"/>
+        <rect x="6" y="13" width="24" height="6" fill="#8B7355" rx="1"/>
+      </svg>
+    </div>
+    <div class="church-name">First Presbyterian Church of Korea</div>
+    <div class="motto">"You follow me!" — John 21:22</div>
+    <div class="date-line">Lord's Day Worship &nbsp;·&nbsp; June 14, 2026</div>
+    <hr class="divider"/>
+    <div class="order-title">Order of Worship</div>
+    <div class="row"><span class="lbl">1. Prelude</span><span class="rgt">Instrumental</span></div>
+    <div class="row"><span class="lbl">2. The Apostles' Creed</span><span class="rgt">Congregation</span></div>
+    <div class="row3"><span class="lbl">3. Hymn</span><span class="ctr">#197</span><span class="rgt">Congregation</span></div>
+    <div class="row"><span class="lbl">4. Ten Commandments</span><span class="rgt">Congregation</span></div>
+    <div class="row"><span class="lbl">5. Representative Prayer</span><span class="rgt">Mrs. Jeon</span></div>
+    <div class="row"><span class="lbl">6. Scripture Reading</span><span class="rgt">Pastor</span></div>
+    <div class="row"><span class="lbl">7. Sermon · Psalm 131</span><span class="rgt">Pastor</span></div>
+    <div class="row"><span class="lbl">8. Offering</span><span class="rgt">Congregation</span></div>
+    <div class="row3"><span class="lbl">9. Hymn</span><span class="ctr">#252</span><span class="rgt">Congregation</span></div>
+    <div class="row"><span class="lbl">10. The Lord's Prayer</span><span class="rgt">Together</span></div>
+    <div class="row"><span class="lbl">11. Benediction</span><span class="rgt">Pastor</span></div>
+  </div>
+
+  <div class="page page-right">
+    <div class="sec-header"><span class="ico">📢</span> Announcements</div>
+    <div class="announce-box">
+      <div class="announce-item">
+        <span class="announce-icon">👶</span>
+        <div class="announce-content">
+          <div class="announce-title">Children &amp; Infant Blessing</div>
+          <div class="announce-desc">A special blessing service for children and infants will be held during today's worship. Parents wishing to dedicate their little ones, please come forward after the sermon.</div>
+        </div>
+      </div>
+      <div class="announce-item">
+        <span class="announce-icon">🤝</span>
+        <div class="announce-content">
+          <div class="announce-title">Welcome, New Members!</div>
+          <div class="announce-desc">We warmly welcome all visitors and new members joining the FPCK family today. Please introduce yourselves during fellowship — may God's grace be upon you.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sec-header"><span class="ico">💛</span> Offering Account</div>
+    <div class="bank-box">
+      <span class="bank-name">WOORI Bank</span><br/>
+      Account No. &nbsp;474-08-007733<br/>
+      Name: 박윤엽 &nbsp;·&nbsp; YOON YOB PARK
+    </div>
+    <hr class="divider"/>
+    <div class="memo-label"><span class="ico">✎</span> Notes / Memo</div>
+    <div class="memo-pad"></div>
+    <div class="footer-note">May the grace of our Lord Jesus Christ be with you all. ✦ Romans 16:20</div>
+  </div>
+</div>
+
+<!-- ══════════════ MEMORIZATION CARD ══════════════ -->
+<div style="width:100%;max-width:880px;margin-top:1.5rem;">
+<style>
+  .divider{border:none;border-top:.5px solid #C4A97A;margin:.7rem 0}
+  .memo-wrap{width:100%;max-width:920px;background:#FDFAF5;border:1.5px solid #8B7355;box-shadow:0 6px 32px rgba(100,80,50,.18);padding:2rem 2.4rem}
+  .memo-title-row{display:flex;align-items:center;justify-content:center;gap:.9rem;margin-bottom:.3rem}
+  .memo-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5C3D1E}
+  .t-icon{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .t-icon.dove{background:#7A9E7E}
+  .t-icon.star{background:#8B6E45}
+  .t-icon svg{width:12px;height:12px;fill:#FDFAF5}
+  .memo-sub{font-size:13px;text-align:center;color:#8B6E45;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;font-weight:600}
+  .versions-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-bottom:.8rem}
+  .version-label.esv{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#2D4A6E;margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:2px solid #2D4A6E}
+  .version-label.niv{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#7A2E2E;margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:2px solid #7A2E2E}
+  .verse-block{margin-bottom:.5rem;font-size:16px;line-height:1.9;color:#2C2416;font-family:'Noto Sans KR',sans-serif;font-weight:500}
+  .verse-bold{font-weight:800 !important;font-size:17px !important;color:#1a1205 !important;background:#FFF8E7;border-left:3.5px solid #8B6E45;padding-left:.6rem;border-radius:2px}
+  .vnum{font-weight:700;color:#8B6E45;margin-right:.3rem;font-size:14px}
+  .vocab-section-wrap{margin-bottom:.5rem}
+  .vocab-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#5C3D1E;margin:1.1rem 0 .7rem;text-align:center}
+  .vocab-title.niv-title{color:#7A2E2E}
+  .vocab-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:.5rem}
+  .vocab-card{background:#FAF5EC;border:1px solid #C4A97A;border-radius:6px;padding:.7rem .5rem .55rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.18rem}
+  .vocab-card.niv{background:#FDF5F5;border-color:#C4978A}
+  .vocab-word{font-size:14px;font-weight:700;color:#5C3D1E}
+  .vocab-pos{font-size:11px;color:#8B6E45;font-weight:600}
+  .vocab-def{font-size:12px;color:#3C2810;line-height:1.55;flex:1}
+  .speak-btn{margin-top:.35rem;background:transparent;border:1px solid #C4A97A;border-radius:20px;padding:.15rem .55rem;font-size:11px;color:#5C3D1E;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:600;letter-spacing:.03em;transition:all .18s;white-space:nowrap}
+  .speak-btn:hover{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+  .speak-btn.speaking{background:#7A9E7E;color:#fff;border-color:#7A9E7E}
+  .speak-btn.niv-btn{border-color:#C4978A;color:#7A2E2E}
+  .speak-btn.niv-btn:hover{background:#7A2E2E;color:#fff;border-color:#7A2E2E}
+  .speak-btn.niv-btn.speaking{background:#7A9E7E;color:#fff;border-color:#7A9E7E}
+  .audio-section{text-align:center;margin-top:.7rem}
+  .audio-label{font-size:11px;color:#B09870;margin-bottom:.5rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  .audio-controls{display:flex;gap:.35rem;justify-content:center;flex-wrap:wrap;align-items:center}
+  .abtn{background:transparent;color:#5C3D1E;border:1px solid #C4A97A;padding:.25rem .7rem;font-family:'Noto Sans KR',sans-serif;font-size:12px;cursor:pointer;border-radius:20px;letter-spacing:.04em;transition:all .2s;font-weight:600}
+  .abtn:hover{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+  .abtn.play{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+  .abtn.play:hover{background:#8B6E45;border-color:#8B6E45}
+  .audio-status{font-size:11px;color:#B09870;margin-top:.3rem;min-height:1em;letter-spacing:.04em;font-weight:500}
+
+  /* ── Study Section ── */
+  .study-section{margin-top:1.4rem;padding-top:1rem}
+  .study-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#5C3D1E;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.6rem;text-align:center}
+  .study-icon{font-size:22px;cursor:pointer;transition:all .2s;user-select:none;background:#5C3D1E;color:#FDFAF5;border-radius:50%;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .study-icon:hover{background:#8B6E45;transform:scale(1.1)}
+  .study-body{font-size:15.5px;line-height:2.0;color:#1a1205;font-family:'Noto Sans KR',sans-serif;font-weight:500}
+  .study-body p{margin-bottom:1.1rem}
+  .study-body em{font-style:normal;font-weight:800;color:#5C3D1E}
+
+  /* ── 2 Study Link Icons ── */
+  .study-icons-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.7rem 0 .9rem}
+  .slink{display:flex;align-items:center;justify-content:space-between;gap:.4rem;padding:.5rem .75rem;border-radius:7px;cursor:pointer;text-decoration:none;transition:all .22s;color:#2C2416;position:relative}
+  .slink-explain{background:#E8DEC8;border:1.5px solid #8B7355}
+  .slink-discuss{background:#D8DFE8;border:1.5px solid #7A94B0}
+  .slink:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.16)}
+  .slink-inner{display:flex;flex-direction:column;gap:.2rem}
+  .slink-emoji{font-size:15px;line-height:1}
+  .slink-label{font-size:12px;font-weight:800;color:#2C2416;letter-spacing:.02em;font-family:'Noto Sans KR',sans-serif}
+  .slink-sub{font-size:10px;color:#5C3D1E;font-weight:600;font-family:'Noto Sans KR',sans-serif;letter-spacing:.01em}
+  .slink-arrow{font-size:14px;color:#8B7355;flex-shrink:0;transition:transform .2s}
+  .slink:hover .slink-arrow{transform:translateX(3px)}
+
+  /* Centered ref banner */
+  .study-ref-banner{text-align:center;margin:.2rem 0 .9rem;padding:.75rem 1rem;background:#F5EDD8;border-top:1.5px solid #8B7355;border-bottom:1.5px solid #8B7355}
+  .study-ref-text{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#2C2416;letter-spacing:.06em;text-transform:uppercase}
+  .study-ref-sub{font-size:13.5px;color:#3C2810;font-weight:700;letter-spacing:.03em;margin-top:.3rem;font-family:'Noto Sans KR',sans-serif}
+
+  /* Speak row */
+  .study-speak-row{display:flex;align-items:center;gap:.7rem;margin-top:1.2rem;padding-top:.9rem;border-top:1px dashed #C4A97A}
+  .study-speak-label{font-size:12.5px;color:#8B6E45;font-weight:600;font-family:'Noto Sans KR',sans-serif;letter-spacing:.03em}
+
+  /* ── Modal ── */
+  .modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,.55);z-index:9000;display:none;align-items:center;justify-content:center;padding:1.2rem}
+  .modal-overlay.open{display:flex}
+  .modal-box{background:#FDFAF5;border:2px solid #8B7355;border-radius:12px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;padding:1.8rem 1.8rem 1.4rem;box-shadow:0 12px 48px rgba(44,36,22,.3);position:relative}
+  .modal-close{position:absolute;top:.9rem;right:1rem;font-size:22px;cursor:pointer;color:#8B6E45;background:none;border:none;line-height:1;font-weight:700}
+  .modal-close:hover{color:#C0392B}
+  .modal-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#5C3D1E;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+  .modal-sub{font-size:12.5px;color:#8B6E45;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.8rem}
+  .modal-body{font-size:14.5px;line-height:1.85;color:#2C2416;font-family:'Noto Sans KR',sans-serif}
+  .modal-body p{margin-bottom:.9rem}
+  .modal-body strong{color:#5C3D1E;font-weight:800}
+  .modal-body ol,.modal-body ul{padding-left:1.4rem;margin-bottom:.9rem}
+  .modal-body li{margin-bottom:.55rem}
+
+  /* Clear-content button inside modal */
+  .modal-clear-btn{display:flex;align-items:center;gap:.4rem;margin-top:1rem;padding:.55rem 1rem;background:transparent;border:1.5px solid #D4B896;border-radius:20px;font-family:'Noto Sans KR',sans-serif;font-size:12.5px;font-weight:700;color:#8B6E45;cursor:pointer;letter-spacing:.03em;transition:all .2s}
+  .modal-clear-btn:hover{background:#C0392B;border-color:#C0392B;color:#FFF}
+  .modal-clear-btn .x-mark{font-size:16px;line-height:1;font-weight:800}
+
+  .modal-share-link{display:block;margin-top:.8rem;padding:.7rem 1rem;background:#5C3D1E;color:#FDFAF5;border-radius:8px;text-align:center;font-weight:700;font-size:13.5px;text-decoration:none;letter-spacing:.04em;font-family:'Noto Sans KR',sans-serif;transition:background .2s}
+  .modal-share-link:hover{background:#8B6E45}
+  .modal-textarea{width:100%;min-height:90px;border:1.5px solid #C4A97A;border-radius:7px;padding:.65rem .8rem;font-family:'Noto Sans KR',sans-serif;font-size:13.5px;color:#2C2416;background:#FAF5EC;resize:vertical;margin-top:.6rem}
+  .modal-btn{margin-top:.55rem;padding:.5rem 1.1rem;background:#5C3D1E;color:#FDFAF5;border:none;border-radius:20px;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:background .2s}
+  .modal-btn:hover{background:#8B6E45}
+  .modal-note{font-size:12px;color:#8B6E45;margin-top:.6rem;font-style:italic}
+
+  /* Pastor's Study icon */
+  .pastor-icon-row{display:flex;justify-content:flex-end;margin-top:.5rem}
+  .pastor-link{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .8rem;border-radius:8px;background:#2C3E50;border:1.5px solid #1a252f;color:#FDFAF5;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .22s;font-family:'Noto Sans KR',sans-serif;letter-spacing:.03em}
+  .pastor-link:hover{background:#3d566e;transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.2)}
+  .pastor-link .pastor-emoji{font-size:15px}
+
+  @media(max-width:640px){
+    .versions-grid{grid-template-columns:1fr}
+    .vocab-grid{grid-template-columns:repeat(3,1fr)}
+    .study-icons-row{grid-template-columns:1fr}
+  }
+  @media print{
+    body{background:white;padding:0}
+    .memo-wrap{box-shadow:none;border:.5px solid #000;max-width:100%}
+    .speak-btn,.audio-section,.study-speak-row,.slink,.pastor-link{display:none}
+    .study-ref-banner{background:#E0E0E0;border-top:1.5px solid #000;border-bottom:1.5px solid #000}
+  }
+</style>
+
+<div class="memo-outer-wrap">
+<div class="memo-wrap">
+
+  <div class="memo-title-row">
+    <span class="t-icon dove">
+      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 3 C7 3 4 5.5 4 8.5 C4 11 5.5 13 8 14 L8 17 L10 15 L12 17 L12 14 C14.5 13 16 11 16 8.5 C16 5.5 13 3 10 3Z M9 9 A1 1 0 1 1 11 9 A1 1 0 1 1 9 9Z"/>
+      </svg>
+    </span>
+    <div class="memo-title">Bible Memorization</div>
+    <span class="t-icon star">
+      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="10,2 12.4,7.5 18.5,7.5 13.8,11.3 15.7,17 10,13.5 4.3,17 6.2,11.3 1.5,7.5 7.6,7.5"/>
+      </svg>
+    </span>
+  </div>
+
+  <div class="memo-sub">John 10 : 9 – 11</div>
+  <hr class="divider"/>
+
+  <div class="versions-grid">
+    <div>
+      <div class="version-label esv">ESV</div>
+      <div class="verse-block"><span class="vnum">9</span>I am the door. If anyone enters by me, he will be saved and will go in and out and find pasture.</div>
+      <div class="verse-block verse-bold"><span class="vnum">10</span>The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly. ★</div>
+      <div class="verse-block"><span class="vnum">11</span>I am the good shepherd. The good shepherd lays down his life for the sheep.</div>
+    </div>
+    <div>
+      <div class="version-label niv">NIV</div>
+      <div class="verse-block"><span class="vnum">9</span>I am the gate; whoever enters through me will be saved. They will come in and go out, and find pasture.</div>
+      <div class="verse-block verse-bold"><span class="vnum">10</span>The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full. ★</div>
+      <div class="verse-block"><span class="vnum">11</span>I am the good shepherd. The good shepherd lays down his life for the sheep.</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- Key Vocabulary — ESV -->
+  <div class="vocab-section-wrap">
+    <div class="vocab-title">Key Vocabulary — ESV · 5 Words</div>
+    <div class="vocab-grid">
+      <div class="vocab-card">
+        <div class="vocab-word">thief</div><div class="vocab-pos">noun</div>
+        <div class="vocab-def">one who steals; a deceiver who brings harm</div>
+        <button class="speak-btn" onclick="speakWord('thief','one who steals, a deceiver who brings harm',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-word">destroy</div><div class="vocab-pos">verb</div>
+        <div class="vocab-def">to ruin completely; undo what God has made</div>
+        <button class="speak-btn" onclick="speakWord('destroy','to ruin completely, undo what God has made',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-word">abundantly</div><div class="vocab-pos">adv.</div>
+        <div class="vocab-def">more than enough; overflowing fullness</div>
+        <button class="speak-btn" onclick="speakWord('abundantly','more than enough, overflowing fullness',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-word">life</div><div class="vocab-pos">noun</div>
+        <div class="vocab-def">true spiritual life given by Christ himself</div>
+        <button class="speak-btn" onclick="speakWord('life','true spiritual life given by Christ himself',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-word">came</div><div class="vocab-pos">verb</div>
+        <div class="vocab-def">entered the world with a definite purpose</div>
+        <button class="speak-btn" onclick="speakWord('came','entered the world with a definite purpose',this)">🔊 Read</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- Key Vocabulary — NIV -->
+  <div class="vocab-section-wrap">
+    <div class="vocab-title niv-title">Key Vocabulary — NIV · 5 Words</div>
+    <div class="vocab-grid">
+      <div class="vocab-card niv">
+        <div class="vocab-word">steal</div><div class="vocab-pos">verb</div>
+        <div class="vocab-def">to take what belongs to another by force or deceit</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('steal','to take what belongs to another by force or deceit',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card niv">
+        <div class="vocab-word">kill</div><div class="vocab-pos">verb</div>
+        <div class="vocab-def">to end life; the enemy's destructive intent</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('kill','to end life, the enemy\'s destructive intent',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card niv">
+        <div class="vocab-word">full</div><div class="vocab-pos">adj.</div>
+        <div class="vocab-def">complete; life lacking nothing, filled to the brim</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('full','complete, life lacking nothing, filled to the brim',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card niv">
+        <div class="vocab-word">come</div><div class="vocab-pos">verb</div>
+        <div class="vocab-def">to arrive with intention; Christ's mission to us</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('come','to arrive with intention, Christ\'s mission to us',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card niv">
+        <div class="vocab-word">have</div><div class="vocab-pos">verb</div>
+        <div class="vocab-def">to possess and experience — present, not future life</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('have','to possess and experience, present not future life',this)">🔊 Read</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- Audio Controls -->
+  <div class="audio-section">
+    <div class="audio-label">Listen &amp; Memorize — Full Passage</div>
+    <div class="audio-controls">
+      <button class="abtn play" onclick="speakAll()">▶ Play All</button>
+      <button class="abtn" onclick="speakSlow()">𝅘𝅥𝅮 Slow</button>
+      <button class="abtn" onclick="stopSpeech()">◼ Stop</button>
+      <button class="abtn" id="repeatBtn" onclick="toggleRepeat()">↺ Repeat</button>
+    </div>
+    <div class="audio-status" id="audioStatus">Ready</div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- ══ BIBLE STUDY SECTION ══ -->
+  <div class="study-section">
+
+    <div class="study-title">Bible Study</div>
+
+    <div class="study-ref-banner">
+      <div class="study-ref-text">John 10 : 9 – 11</div>
+      <div class="study-ref-sub">"The Good Shepherd &amp; The Abundant Life"</div>
+    </div>
+    <!-- Study Body Text -->
+    <div class="study-body" id="studyBody">
+      <p>John 10:9–11 presents Jesus as the only "gate" of salvation and the ultimate "good shepherd" who lays down his life for his sheep. Jesus draws a sharp contrast between the destruction the world brings and the promise of abundant life, establishing himself as the ultimate source of eternal security and spiritual nourishment.</p>
+
+      <p><em>1. "I am the gate." (v. 9)</em><br/>
+      In ancient times, a shepherd would sleep across the entrance of the sheepfold, becoming a literal "gate" against predators. Through this image, Jesus claims to be the only way to the Father.<br/>
+      Salvation: "Whoever enters through me will be saved." There is no other way.<br/>
+      Freedom and provision: "They will come in and go out, and find pasture." This pictures the security of living under Jesus' care — a full, unburdened life of freedom.</p>
+
+      <p><em>2. The thief versus the good shepherd (v. 10)</em><br/>
+      Jesus places two completely opposed spiritual forces in stark contrast.<br/>
+      The thief: "The thief comes only to steal and kill and destroy." This represents everything that draws us away from God's purpose — sin, false teaching, despair. The enemy's goal is to drain and ruin us.<br/>
+      The shepherd: "I have come that they may have life, and have it to the full." Jesus does not merely help us survive — he desires us to flourish in a life overflowing with vitality and grace.</p>
+
+      <p><em>3. "I am the good shepherd." (v. 11)</em><br/>
+      Throughout the Old Testament, the title "shepherd" belongs to God alone (cf. Psalm 23). By applying it to himself, Jesus claims divine authority and care.<br/>
+      The ultimate sacrifice: "The good shepherd lays down his life for the sheep." Unlike a hired hand who flees at the first sign of danger, Jesus stayed — and ultimately gave his life on the cross, securing ours forever.</p>
+
+      <p style="margin-top:1.4rem;padding-top:1rem;border-top:1px dotted #C4A97A;">
+      Jesus alone is the gate to peace and purpose. Do not be deceived by the enemy's whisper that your life must be marked by anxiety, lack, or destruction. Step into the freedom Christ has given you. He gave everything so that you might fully experience his love and provision — not someday, but now.</p>
+    </div>
+
+    <div class="study-speak-row">
+      <span class="study-icon" id="studyIcon" onclick="speakStudy(this)" title="Click to listen in English">🔊</span>
+      <span class="study-speak-label">Listen to Bible Study (English)</span>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+const synth = window.speechSynthesis;
+let repeatOn = false;
+let currentBtn = null;
+let _cachedVoice = null;
+
+function getBestFemaleVoice(){
+  if(_cachedVoice) return _cachedVoice;
+  const voices = synth.getVoices();
+  if(!voices || voices.length === 0) return null;
+  const preferred = [
+    'Google UK English Female',
+    'Microsoft Aria Online (Natural) - English (United States)',
+    'Microsoft Jenny Online (Natural) - English (United States)',
+    'Microsoft Sonia Online (Natural) - English (United Kingdom)',
+    'Microsoft Zira - English (United States)',
+    'Samantha','Karen','Moira','Tessa','Victoria'
+  ];
+  for(const name of preferred){
+    const v = voices.find(v => v.name === name);
+    if(v){ _cachedVoice = v; return v; }
+  }
+  const fn = ['samantha','karen','moira','tessa','victoria','aria','jenny','sonia','zira','susan','alice'];
+  const bn = voices.find(v => v.lang && v.lang.startsWith('en') && fn.some(n => v.name.toLowerCase().includes(n)));
+  if(bn){ _cachedVoice = bn; return bn; }
+  const any = voices.find(v => v.lang && v.lang.startsWith('en'));
+  if(any){ _cachedVoice = any; return any; }
+  return null;
+}
+
+// Pre-load voices as soon as possible
+function initVoices(){
+  synth.getVoices();
+  if(window.speechSynthesis.onvoiceschanged !== undefined){
+    window.speechSynthesis.onvoiceschanged = function(){
+      _cachedVoice = null;
+      getBestFemaleVoice();
+    };
+  }
+}
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initVoices);
+} else {
+  initVoices();
+}
+
+// Universal speak function — works on file://, github.io, anywhere
+function safeSpeak(utterance){
+  // iOS/macOS Safari requires a tiny delay after cancel
+  synth.cancel();
+  setTimeout(function(){
+    const voice = getBestFemaleVoice();
+    if(voice) utterance.voice = voice;
+    utterance.lang = 'en-US';
+    synth.speak(utterance);
+  }, 120);
+}
+
+function updateStatus(msg){ const el=document.getElementById('audioStatus'); if(el) el.textContent=msg; }
+
+function speakWord(word, definition, btn){
+  synth.cancel();
+  if(currentBtn){ currentBtn.textContent='🔊 Read'; currentBtn.classList.remove('speaking'); }
+  btn.textContent='🔊 …'; btn.classList.add('speaking'); currentBtn=btn;
+  setTimeout(function(){
+    const voice = getBestFemaleVoice();
+    const u1=new SpeechSynthesisUtterance(word); u1.lang='en-US'; u1.rate=0.85; u1.pitch=1.1;
+    if(voice) u1.voice=voice;
+    const u2=new SpeechSynthesisUtterance(definition); u2.lang='en-US'; u2.rate=0.85; u2.pitch=1.1;
+    if(voice) u2.voice=voice;
+    u1.onend=()=>setTimeout(()=>synth.speak(u2),700);
+    u2.onend=()=>{ btn.textContent='🔊 Read'; btn.classList.remove('speaking'); currentBtn=null; };
+    synth.speak(u1);
+  }, 120);
+}
+
+const PAIRS=[
+  { label:'E S V.',
+    verse:'Verse 9. I am the door. If anyone enters by me, he will be saved and will go in and out and find pasture. '+
+          'Verse 10. The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly. '+
+          'Verse 11. I am the good shepherd. The good shepherd lays down his life for the sheep.' },
+  { label:'N I V.',
+    verse:'Verse 9. I am the gate; whoever enters through me will be saved. They will come in and go out, and find pasture. '+
+          'Verse 10. The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full. '+
+          'Verse 11. I am the good shepherd. The good shepherd lays down his life for the sheep.' }
+];
+
+function speak(rate){
+  synth.cancel();
+  if(currentBtn){ currentBtn.textContent='🔊 Read'; currentBtn.classList.remove('speaking'); currentBtn=null; }
+  let i=0;
+  function nextPair(){
+    if(i>=PAIRS.length){ if(repeatOn){i=0;setTimeout(nextPair,800);}else{updateStatus('Finished ✓');} return; }
+    const {label,verse}=PAIRS[i]; updateStatus('▶ '+label);
+    const uL=new SpeechSynthesisUtterance(label); uL.lang='en-US'; uL.rate=rate*0.9; uL.pitch=1.1;
+    const fv=getBestFemaleVoice(); if(fv){uL.voice=fv;}
+    const uV=new SpeechSynthesisUtterance(verse); uV.lang='en-US'; uV.rate=rate; uV.pitch=1.1; if(fv){uV.voice=fv;}
+    uL.onend=()=>setTimeout(()=>synth.speak(uV),900);
+    uV.onend=()=>{i++;setTimeout(nextPair,800);}; synth.speak(uL);
+  }
+  nextPair();
+}
+function speakAll(){speak(1);}
+function speakSlow(){speak(0.75);}
+function stopSpeech(){ synth.cancel(); updateStatus('Stopped'); if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');currentBtn=null;} }
+function toggleRepeat(){ repeatOn=!repeatOn; document.getElementById('repeatBtn').textContent=repeatOn?'🔁 ON':'↺ Repeat'; }
+
+function speakStudy(iconEl){
+  if(iconEl.dataset.playing==='1'){ synth.cancel(); iconEl.dataset.playing='0'; iconEl.textContent='🔊'; iconEl.title='Click to listen in English'; iconEl.style.background='#5C3D1E'; return; }
+  const text=
+    "John chapter 10, verses 9 through 11. The Good Shepherd and the Abundant Life. "+
+    "Verse 9. In ancient times, a shepherd would sleep across the entrance of the sheepfold, "+
+    "becoming a literal gate against predators. "+
+    "Jesus claims to be the only way to the Father. "+
+    "Whoever enters through him will be saved. There is no other way. "+
+    "They will come in and go out, and find pasture — "+
+    "a full, unburdened life of freedom under Jesus' care. "+
+    "Verse 10. Jesus places two completely opposed spiritual forces in stark contrast. "+
+    "The thief comes only to steal and kill and destroy. "+
+    "This represents everything that draws us away from God's purpose — sin, false teaching, despair. "+
+    "But Jesus says: I have come that they may have life, and have it to the full. "+
+    "He does not merely help us survive. He desires us to flourish. "+
+    "Verse 11. Throughout the Old Testament, the title shepherd belongs to God alone. "+
+    "By applying it to himself, Jesus claims divine authority and care. "+
+    "The good shepherd lays down his life for the sheep. "+
+    "Unlike a hired hand who flees at danger, Jesus stayed — "+
+    "and gave his life on the cross, securing ours forever. "+
+    "Jesus alone is the gate to peace and purpose. "+
+    "Do not be deceived by the enemy's whisper that your life must be marked by anxiety or destruction. "+
+    "Step into the freedom Christ has given you. "+
+    "He gave everything so that you might fully experience his love and provision — not someday, but now.";
+  synth.cancel();
+  if(currentBtn){currentBtn.textContent='🔊 Read';currentBtn.classList.remove('speaking');currentBtn=null;}
+  const u=new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.88; u.pitch=1.1; u.volume=1;
+  function applyAndSpeak(){
+    const voice=getBestFemaleVoice(); if(voice)u.voice=voice;
+    iconEl.dataset.playing='1'; iconEl.textContent='⏹'; iconEl.title='Click to stop'; iconEl.style.background='#7A9E7E';
+    u.onend=()=>{ iconEl.dataset.playing='0'; iconEl.textContent='🔊'; iconEl.title='Click to listen in English'; iconEl.style.background='#5C3D1E'; };
+    synth.cancel();
+    setTimeout(()=>synth.speak(u), 120);
+  }
+  // Try immediately, retry after voices load
+  applyAndSpeak();
+  if(!getBestFemaleVoice()){
+    window.speechSynthesis.onvoiceschanged=()=>{ window.speechSynthesis.onvoiceschanged=null; applyAndSpeak(); };
+  }
+}
+
+/* ── Modal Open / Close ── */
+function openModal(id){ const el=document.getElementById('modal-'+id); if(el){el.classList.add('open');document.body.style.overflow='hidden';} }
+function closeModal(id){ const el=document.getElementById('modal-'+id); if(el){el.classList.remove('open');document.body.style.overflow='';} }
+
+/* ── Clear modal body content (for next week's editing) ── */
+function clearModalContent(bodyId, modalId){
+  if(!confirm('Clear all content in this section?\n(You can type new content for next week.)')) return;
+  const el=document.getElementById(bodyId);
+  if(el){
+    el.innerHTML='<p style="color:#B08060;font-style:italic;font-size:13.5px;">Content cleared. Edit and update for next week\'s bulletin.</p>';
+  }
+}
+
+/* ── Copy note ── */
+function copyNote(id){
+  const el=document.getElementById(id); if(!el)return;
+  const text=el.value.trim();
+  if(!text){alert('Please write something first.');return;}
+  navigator.clipboard.writeText(text).then(()=>alert('Copied! Paste into KakaoTalk or email. ✅')).catch(()=>{el.select();document.execCommand('copy');alert('Copied! ✅');});
+}
+
+/* Overlay click to close */
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.modal-overlay').forEach(function(overlay){
+    overlay.addEventListener('click',function(e){ if(e.target===overlay){overlay.classList.remove('open');document.body.style.overflow='';} });
+  });
+});
+</script>
+</body>
+</html>
