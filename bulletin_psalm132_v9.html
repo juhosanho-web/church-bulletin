@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FPCK Bulletin · June 21, 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-style:normal !important}
+    body{background:#EDE8DF;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:2rem 1rem;color:#2C2416;font-size:16px;line-height:1.6}
+    em,i{font-style:normal !important;font-weight:600}
+    .bulletin-wrap{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:880px;border:2px solid #8B7355;background:#FDFAF5;box-shadow:0 6px 32px rgba(100,80,50,.18)}
+    .page{padding:2rem 1.7rem}
+    .page-left{border-right:1.5px solid #C4A97A;background:linear-gradient(to bottom,#FDFAF5,#FAF5EC)}
+    .page-right{background:#FDFAF5}
+    .cross-emblem{text-align:center;margin-bottom:.6rem}
+    .cross-emblem svg{width:42px;height:42px;opacity:.7}
+    .church-name{font-size:18px;font-weight:800;letter-spacing:.04em;text-align:center;color:#5C3D1E;margin-bottom:.35rem}
+    .motto{font-size:14px;text-align:center;color:#8B6E45;margin-bottom:.5rem;font-weight:600}
+    .date-line{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#5C3D1E;text-align:center;margin-bottom:1rem;font-weight:700}
+    .divider{border:none;border-top:1px solid #C4A97A;margin:.7rem 0}
+    .order-title{font-size:17px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.8rem;letter-spacing:.04em;padding-bottom:.4rem;border-bottom:1.5px solid #C4A97A}
+    .row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .lbl{color:#2C2416;font-weight:500;white-space:nowrap;flex:1}
+    .rgt{color:#5C3D1E;font-weight:700;text-align:right;white-space:nowrap}
+    .row3{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:.4rem .6rem;margin-bottom:.85rem;font-size:15px;line-height:1.55}
+    .row3 .lbl{flex:initial}
+    .row3 .ctr{color:#5C3D1E;font-weight:700;text-align:left}
+    .row3 .rgt{text-align:right}
+    .sec-header{font-size:16px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;display:flex;align-items:center;gap:.5rem}
+    .sec-header .ico{font-size:18px}
+    .bank-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.7rem .9rem;margin:.4rem 0;font-size:14px;line-height:1.85;color:#3C2810;border-radius:4px;font-weight:500}
+    .bank-name{font-weight:800;color:#5C3D1E;font-size:15.5px}
+    .announce-box{background:#FAF5EC;border:1.5px solid #C4A97A;padding:.8rem 1rem;margin:.4rem 0 .7rem;font-size:14px;line-height:1.65;color:#2C2416;border-radius:4px}
+    .announce-item{padding:.5rem 0;border-bottom:1px dotted #C4A97A;display:flex;gap:.6rem;align-items:flex-start}
+    .announce-item:last-child{border-bottom:none}
+    .announce-icon{font-size:18px;flex-shrink:0;margin-top:.1rem}
+    .announce-content{flex:1}
+    .announce-title{font-weight:800;color:#5C3D1E;font-size:15px;margin-bottom:.2rem}
+    .announce-desc{font-size:13.5px;color:#2C2416;line-height:1.6;font-weight:400}
+    .memo-label{font-size:15px;font-weight:800;color:#5C3D1E;margin:1rem 0 .5rem;letter-spacing:.03em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem}
+    .memo-pad{background:#FDFAF5;border:1.5px solid #C4A97A;border-radius:4px;padding:.7rem .8rem;min-height:7.5rem;background-image:repeating-linear-gradient(to bottom,transparent,transparent 26px,#E8DCC0 26px,#E8DCC0 26.5px);background-position:0 .9rem}
+    .footer-note{margin-top:1.2rem;padding-top:.6rem;border-top:1px solid #C4A97A;font-size:12.5px;color:#5C3D1E;text-align:center;font-weight:500}
+    @media(max-width:640px){
+      .bulletin-wrap{grid-template-columns:1fr}
+      .page-left{border-right:none;border-bottom:1.5px solid #C4A97A}
+    }
+    @media print{
+      body{background:white;padding:0;font-size:13px}
+      .bulletin-wrap,.memo-wrap{box-shadow:none;border:1px solid #8B7355;max-width:100%}
+      .bulletin-wrap{page-break-after:always}
+      .audio-section,.study-speak-row{display:none}
+    }
+  
+    /* ── QR Code ── */
+    .qr-footer{margin-top:1.2rem;padding-top:.9rem;border-top:1px solid #C4A97A;display:flex;flex-direction:column;align-items:center;gap:.4rem}
+    .qr-footer img{width:80px;height:80px;object-fit:contain;border:1.5px solid #C4A97A;border-radius:4px}
+    .qr-footer-label{font-size:10px;color:#8B6E45;font-weight:700;text-align:center;font-family:'Noto Sans KR',sans-serif;letter-spacing:.03em}
+    .qr-footer-sub{font-size:9px;color:#B09870;text-align:center;font-family:'Noto Sans KR',sans-serif}
+
+    /* ── Sermon link & KJV Modal ── */
+    .sermon-link{color:#1a5a8a;font-weight:800;text-decoration:underline;text-decoration-thickness:1.5px;text-decoration-color:#1a5a8a;cursor:pointer;transition:all .2s;padding:0 1px}
+    .sermon-link:hover{color:#0d3a5c;background:#EAF2F8}
+    .sermon-hint{font-size:11px;color:#1a5a8a;font-weight:700;margin-left:.3rem}
+    .sermon-modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,.6);z-index:9999;display:none;align-items:center;justify-content:center;padding:1.2rem}
+    .sermon-modal-overlay.open{display:flex}
+    .sermon-modal-box{background:#FDFAF5;border:2px solid #8B7355;border-radius:12px;width:100%;max-width:600px;max-height:86vh;overflow-y:auto;padding:1.8rem 1.9rem 1.5rem;box-shadow:0 12px 48px rgba(44,36,22,.32);position:relative}
+    .sermon-modal-close{position:absolute;top:.85rem;right:1rem;font-size:22px;cursor:pointer;color:#8B6E45;background:none;border:none;line-height:1;font-weight:700}
+    .sermon-modal-close:hover{color:#C0392B}
+    .sermon-modal-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#5C3D1E;margin-bottom:.15rem}
+    .sermon-modal-sub{font-size:11.5px;color:#8B6E45;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
+    .sermon-kjv-body{font-size:14.5px;line-height:1.95;color:#2C2416;font-family:'Noto Sans KR',sans-serif}
+    .sermon-kjv-body .kv{font-weight:700;color:#8B6E45;margin-right:.3rem;font-size:13px}
+    .sermon-kjv-body .kv-main{background:#FFF8E7;border-left:3px solid #8B6E45;padding:.3rem .55rem;display:block;margin:.3rem 0;font-weight:700;color:#1a1205}
+    .sermon-listen-row{display:flex;align-items:center;gap:.6rem;margin-top:1.1rem;padding-top:.9rem;border-top:1px dashed #C4A97A}
+    .sermon-listen-icon{font-size:19px;cursor:pointer;background:#5C3D1E;color:#FDFAF5;border-radius:50%;width:33px;height:33px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+    .sermon-listen-icon:hover{background:#8B6E45;transform:scale(1.08)}
+    .sermon-listen-label{font-size:12px;color:#8B6E45;font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ BULLETIN ══════════════ -->
+<div class="bulletin-wrap">
+  <div class="page page-left">
+    <div class="cross-emblem">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="4" width="6" height="28" fill="#8B7355" rx="1"/>
+        <rect x="6" y="13" width="24" height="6" fill="#8B7355" rx="1"/>
+      </svg>
+    </div>
+    <div class="church-name">First Presbyterian Church of Korea</div>
+    <div class="motto">"You follow me!" — John 21:22</div>
+    <div class="date-line">Lord's Day Worship &nbsp;·&nbsp; June 21, 2026</div>
+    <hr class="divider"/>
+    <div class="order-title">Order of Worship</div>
+    <div class="row"><span class="lbl">1. Prelude</span><span class="rgt">Instrumental</span></div>
+    <div class="row"><span class="lbl">2. The Apostles' Creed</span><span class="rgt">Congregation</span></div>
+    <div class="row3"><span class="lbl">3. Hymn</span><span class="ctr">#258</span><span class="rgt">Congregation</span></div>
+    <div class="row"><span class="lbl">4. Ten Commandments</span><span class="rgt">Congregation</span></div>
+    <div class="row"><span class="lbl">5. Representative Prayer</span><span class="rgt">Mrs. Jeon</span></div>
+    <div class="row"><span class="lbl">6. Scripture Reading</span><span class="rgt">Pastor</span></div>
+    <div class="row"><span class="lbl">7. Sermon · <span class="sermon-link" onclick="openSermonModal()" title="Click to read &amp; listen — KJV">Psalm 132 🔊</span><span class="sermon-hint">(Click to listen — KJV)</span></span><span class="rgt">Pastor</span></div>
+    <div class="row"><span class="lbl">8. Offering</span><span class="rgt">Congregation</span></div>
+    <div class="row3"><span class="lbl">9. Hymn</span><span class="ctr">#310</span><span class="rgt">Congregation</span></div>
+    <div class="row"><span class="lbl">10. The Lord's Prayer</span><span class="rgt">Together</span></div>
+    <div class="row"><span class="lbl">11. Benediction</span><span class="rgt">Pastor</span></div>
+    <div class="qr-footer">
+      <img src="data:image/jpeg;base64,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" alt="QR Code"/>
+      <div class="qr-footer-label">최신주를 찾으면 됨</div>
+      <div class="qr-footer-sub">Scan to connect</div>
+    </div>
+  </div>
+
+
+  <!-- KJV Sermon Modal -->
+  <div class="sermon-modal-overlay" id="sermonModal">
+    <div class="sermon-modal-box">
+      <button class="sermon-modal-close" onclick="closeSermonModal()">✕</button>
+      <div class="sermon-modal-title">Psalm 132</div>
+      <div class="sermon-modal-sub">King James Version (KJV)</div>
+      <div class="sermon-kjv-body" id="kjvBody">
+        <p><span class="kv">1</span>A Song of degrees. LORD, remember David, and all his afflictions: <span class="kv">2</span>How he sware unto the LORD, and vowed unto the mighty God of Jacob; <span class="kv">3</span>Surely I will not come into the tabernacle of my house, nor go up into my bed; <span class="kv">4</span>I will not give sleep to mine eyes, or slumber to mine eyelids, <span class="kv">5</span>Until I find out a place for the LORD, an habitation for the mighty God of Jacob.</p>
+        <p><span class="kv">6</span>Lo, we heard of it at Ephratah: we found it in the fields of the wood. <span class="kv">7</span>We will go into his tabernacles: we will worship at his footstool. <span class="kv">8</span>Arise, O LORD, into thy rest; thou, and the ark of thy strength. <span class="kv">9</span>Let thy priests be clothed with righteousness; and let thy saints shout for joy.</p>
+        <p><span class="kv">10</span>For thy servant David's sake turn not away the face of thine anointed. <span class="kv">11</span>The LORD hath sworn in truth unto David; he will not turn from it; Of the fruit of thy body will I set upon thy throne. <span class="kv">12</span>If thy children will keep my covenant and my testimony that I shall teach them, their children shall also sit upon thy throne for evermore.</p>
+        <p><span class="kv">13</span>For the LORD hath chosen Zion; he hath desired it for his habitation. <span class="kv">14</span>This is my rest for ever: here will I dwell; for I have desired it. <span class="kv">15</span>I will abundantly bless her provision: I will satisfy her poor with bread. <span class="kv">16</span>I will also clothe her priests with salvation: and her saints shall shout aloud for joy.</p>
+        <p><span class="kv">17</span>There will I make the horn of David to bud: I have ordained a lamp for mine anointed.</p>
+        <p class="kv-main"><span class="kv">18</span>His enemies will I clothe with shame: but upon himself shall his crown flourish. ★</p>
+      </div>
+      <div class="sermon-listen-row">
+        <span class="sermon-listen-icon" id="sermonIcon" onclick="speakSermon(this)" title="Click to listen — KJV">🔊</span>
+        <span class="sermon-listen-label">Listen to Psalm 132 (KJV, English)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page page-right">
+    <div class="sec-header"><span class="ico">📢</span> Announcements</div>
+    <div class="announce-box">
+      <div class="announce-item">
+        <span class="announce-icon">👶</span>
+        <div class="announce-content">
+          <div class="announce-title">Children &amp; Infant Blessing</div>
+          <div class="announce-desc">A special blessing service for children and infants will be held during today's worship. Parents wishing to dedicate their little ones, please come forward after the sermon.</div>
+        </div>
+      </div>
+      <div class="announce-item">
+        <span class="announce-icon">🤝</span>
+        <div class="announce-content">
+          <div class="announce-title">Welcome, New Members!</div>
+          <div class="announce-desc">We warmly welcome all visitors and new members joining the FPCK family today. Please introduce yourselves during fellowship — may God's grace be upon you.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sec-header"><span class="ico">💛</span> Offering Account</div>
+    <div class="bank-box">
+      <span class="bank-name">WOORI Bank</span><br/>
+      Account No. &nbsp;474-08-007733<br/>
+      Name: 박윤엽 &nbsp;·&nbsp; YOON YOB PARK
+    </div>
+    <hr class="divider"/>
+    <div class="memo-label"><span class="ico">✎</span> Notes / Memo</div>
+    <div class="memo-pad"></div>
+    <div class="footer-note">May the grace of our Lord Jesus Christ be with you all. ✦ Romans 16:20</div>
+  </div>
+</div>
+
+<!-- ══════════════ MEMORIZATION CARD ══════════════ -->
+<div style="width:100%;max-width:880px;margin-top:1.5rem;">
+<style>
+  .divider{border:none;border-top:.5px solid #C4A97A;margin:.7rem 0}
+  .memo-wrap{width:100%;max-width:920px;background:#FDFAF5;border:1.5px solid #8B7355;box-shadow:0 6px 32px rgba(100,80,50,.18);padding:2rem 2.4rem}
+  .memo-title-row{display:flex;align-items:center;justify-content:center;gap:.9rem;margin-bottom:.3rem}
+  .memo-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#5C3D1E}
+  .t-icon{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .t-icon.dove{background:#7A9E7E}
+  .t-icon.star{background:#8B6E45}
+  .t-icon svg{width:12px;height:12px;fill:#FDFAF5}
+  .memo-sub{font-size:13px;text-align:center;color:#8B6E45;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;font-weight:600}
+  .versions-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-bottom:.8rem}
+  .version-label.esv{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#2D4A6E;margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:2px solid #2D4A6E}
+  .version-label.niv{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#7A2E2E;margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:2px solid #7A2E2E}
+  .verse-block{margin-bottom:.5rem;font-size:16px;line-height:1.9;color:#2C2416;font-family:'Noto Sans KR',sans-serif;font-weight:500}
+  .verse-bold{font-weight:800 !important;font-size:17px !important;color:#1a1205 !important;background:#FFF8E7;border-left:3.5px solid #8B6E45;padding-left:.6rem;border-radius:2px}
+  .vnum{font-weight:700;color:#8B6E45;margin-right:.3rem;font-size:14px}
+  .vocab-section-wrap{margin-bottom:.5rem}
+  .vocab-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#5C3D1E;margin:1.1rem 0 .7rem;text-align:center}
+  .vocab-title.niv-title{color:#7A2E2E}
+  .vocab-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:.5rem}
+  .vocab-card{background:#FAF5EC;border:1px solid #C4A97A;border-radius:6px;padding:.7rem .5rem .55rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.18rem}
+  .vocab-card.niv{background:#FDF5F5;border-color:#C4978A}
+  .vocab-word{font-size:14px;font-weight:700;color:#5C3D1E}
+  .vocab-pos{font-size:11px;color:#8B6E45;font-weight:600}
+  .vocab-def{font-size:12px;color:#3C2810;line-height:1.55;flex:1}
+  .speak-btn{margin-top:.35rem;background:transparent;border:1px solid #C4A97A;border-radius:20px;padding:.15rem .55rem;font-size:11px;color:#5C3D1E;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:600;letter-spacing:.03em;transition:all .18s;white-space:nowrap}
+  .speak-btn:hover{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+  .speak-btn.speaking{background:#7A9E7E;color:#fff;border-color:#7A9E7E}
+  .speak-btn.niv-btn{border-color:#C4978A;color:#7A2E2E}
+  .speak-btn.niv-btn:hover{background:#7A2E2E;color:#fff;border-color:#7A2E2E}
+  .speak-btn.niv-btn.speaking{background:#7A9E7E;color:#fff;border-color:#7A9E7E}
+  .audio-section{text-align:center;margin-top:.7rem}
+  .audio-label{font-size:11px;color:#B09870;margin-bottom:.5rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  .audio-controls{display:flex;gap:.35rem;justify-content:center;flex-wrap:wrap;align-items:center}
+  .abtn{background:transparent;color:#5C3D1E;border:1px solid #C4A97A;padding:.25rem .7rem;font-family:'Noto Sans KR',sans-serif;font-size:12px;cursor:pointer;border-radius:20px;letter-spacing:.04em;transition:all .2s;font-weight:600}
+  .abtn:hover{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+  .abtn.play{background:#5C3D1E;color:#FDFAF5;border-color:#5C3D1E}
+  .abtn.play:hover{background:#8B6E45;border-color:#8B6E45}
+  .audio-status{font-size:11px;color:#B09870;margin-top:.3rem;min-height:1em;letter-spacing:.04em;font-weight:500}
+
+  /* ── Study Section ── */
+  .study-section{margin-top:1.4rem;padding-top:1rem}
+  .study-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#5C3D1E;margin-bottom:.6rem;display:flex;align-items:center;justify-content:center;gap:.6rem;text-align:center}
+  .study-icon{font-size:22px;cursor:pointer;transition:all .2s;user-select:none;background:#5C3D1E;color:#FDFAF5;border-radius:50%;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .study-icon:hover{background:#8B6E45;transform:scale(1.1)}
+  .study-body{font-size:15.5px;line-height:2.0;color:#1a1205;font-family:'Noto Sans KR',sans-serif;font-weight:500}
+  .study-body p{margin-bottom:1.1rem}
+  .study-body em{font-style:normal;font-weight:800;color:#5C3D1E}
+
+  /* ── 2 Study Link Icons ── */
+  .study-icons-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.7rem 0 .9rem}
+  .slink{display:flex;align-items:center;justify-content:space-between;gap:.4rem;padding:.5rem .75rem;border-radius:7px;cursor:pointer;text-decoration:none;transition:all .22s;color:#2C2416;position:relative}
+  .slink-explain{background:#E8DEC8;border:1.5px solid #8B7355}
+  .slink-discuss{background:#D8DFE8;border:1.5px solid #7A94B0}
+  .slink:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.16)}
+  .slink-inner{display:flex;flex-direction:column;gap:.2rem}
+  .slink-emoji{font-size:15px;line-height:1}
+  .slink-label{font-size:12px;font-weight:800;color:#2C2416;letter-spacing:.02em;font-family:'Noto Sans KR',sans-serif}
+  .slink-sub{font-size:10px;color:#5C3D1E;font-weight:600;font-family:'Noto Sans KR',sans-serif;letter-spacing:.01em}
+  .slink-arrow{font-size:14px;color:#8B7355;flex-shrink:0;transition:transform .2s}
+  .slink:hover .slink-arrow{transform:translateX(3px)}
+
+  /* Centered ref banner */
+  .study-ref-banner{text-align:center;margin:.2rem 0 .9rem;padding:.75rem 1rem;background:#F5EDD8;border-top:1.5px solid #8B7355;border-bottom:1.5px solid #8B7355}
+  .study-ref-text{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#2C2416;letter-spacing:.06em;text-transform:uppercase}
+  .study-ref-sub{font-size:13.5px;color:#3C2810;font-weight:700;letter-spacing:.03em;margin-top:.3rem;font-family:'Noto Sans KR',sans-serif}
+
+  /* Speak row */
+  .study-speak-row{display:flex;align-items:center;gap:.7rem;margin-top:1.2rem;padding-top:.9rem;border-top:1px dashed #C4A97A}
+  .study-speak-label{font-size:12.5px;color:#8B6E45;font-weight:600;font-family:'Noto Sans KR',sans-serif;letter-spacing:.03em}
+
+  /* ── Modal ── */
+  .modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,.55);z-index:9000;display:none;align-items:center;justify-content:center;padding:1.2rem}
+  .modal-overlay.open{display:flex}
+  .modal-box{background:#FDFAF5;border:2px solid #8B7355;border-radius:12px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;padding:1.8rem 1.8rem 1.4rem;box-shadow:0 12px 48px rgba(44,36,22,.3);position:relative}
+  .modal-close{position:absolute;top:.9rem;right:1rem;font-size:22px;cursor:pointer;color:#8B6E45;background:none;border:none;line-height:1;font-weight:700}
+  .modal-close:hover{color:#C0392B}
+  .modal-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#5C3D1E;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+  .modal-sub{font-size:12.5px;color:#8B6E45;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.8rem}
+  .modal-body{font-size:14.5px;line-height:1.85;color:#2C2416;font-family:'Noto Sans KR',sans-serif}
+  .modal-body p{margin-bottom:.9rem}
+  .modal-body strong{color:#5C3D1E;font-weight:800}
+  .modal-body ol,.modal-body ul{padding-left:1.4rem;margin-bottom:.9rem}
+  .modal-body li{margin-bottom:.55rem}
+
+  /* Clear-content button inside modal */
+  .modal-clear-btn{display:flex;align-items:center;gap:.4rem;margin-top:1rem;padding:.55rem 1rem;background:transparent;border:1.5px solid #D4B896;border-radius:20px;font-family:'Noto Sans KR',sans-serif;font-size:12.5px;font-weight:700;color:#8B6E45;cursor:pointer;letter-spacing:.03em;transition:all .2s}
+  .modal-clear-btn:hover{background:#C0392B;border-color:#C0392B;color:#FFF}
+  .modal-clear-btn .x-mark{font-size:16px;line-height:1;font-weight:800}
+
+  .modal-share-link{display:block;margin-top:.8rem;padding:.7rem 1rem;background:#5C3D1E;color:#FDFAF5;border-radius:8px;text-align:center;font-weight:700;font-size:13.5px;text-decoration:none;letter-spacing:.04em;font-family:'Noto Sans KR',sans-serif;transition:background .2s}
+  .modal-share-link:hover{background:#8B6E45}
+  .modal-textarea{width:100%;min-height:90px;border:1.5px solid #C4A97A;border-radius:7px;padding:.65rem .8rem;font-family:'Noto Sans KR',sans-serif;font-size:13.5px;color:#2C2416;background:#FAF5EC;resize:vertical;margin-top:.6rem}
+  .modal-btn{margin-top:.55rem;padding:.5rem 1.1rem;background:#5C3D1E;color:#FDFAF5;border:none;border-radius:20px;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:background .2s}
+  .modal-btn:hover{background:#8B6E45}
+  .modal-note{font-size:12px;color:#8B6E45;margin-top:.6rem;font-style:italic}
+
+  /* Pastor's Study icon */
+  .pastor-icon-row{display:flex;justify-content:flex-end;margin-top:.5rem}
+  .pastor-link{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .8rem;border-radius:8px;background:#2C3E50;border:1.5px solid #1a252f;color:#FDFAF5;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .22s;font-family:'Noto Sans KR',sans-serif;letter-spacing:.03em}
+  .pastor-link:hover{background:#3d566e;transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.2)}
+  .pastor-link .pastor-emoji{font-size:15px}
+
+  @media(max-width:640px){
+    .versions-grid{grid-template-columns:1fr}
+    .vocab-grid{grid-template-columns:repeat(3,1fr)}
+    .study-icons-row{grid-template-columns:1fr}
+  }
+  @media print{
+    body{background:white;padding:0}
+    .memo-wrap{box-shadow:none;border:.5px solid #000;max-width:100%}
+    .speak-btn,.audio-section,.study-speak-row,.slink,.pastor-link{display:none}
+    .study-ref-banner{background:#E0E0E0;border-top:1.5px solid #000;border-bottom:1.5px solid #000}
+  }
+</style>
+
+<div class="memo-outer-wrap">
+<div class="memo-wrap">
+
+  <div class="memo-title-row">
+    <span class="t-icon dove">
+      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 3 C7 3 4 5.5 4 8.5 C4 11 5.5 13 8 14 L8 17 L10 15 L12 17 L12 14 C14.5 13 16 11 16 8.5 C16 5.5 13 3 10 3Z M9 9 A1 1 0 1 1 11 9 A1 1 0 1 1 9 9Z"/>
+      </svg>
+    </span>
+    <div class="memo-title">Bible Memorization</div>
+    <span class="t-icon star">
+      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="10,2 12.4,7.5 18.5,7.5 13.8,11.3 15.7,17 10,13.5 4.3,17 6.2,11.3 1.5,7.5 7.6,7.5"/>
+      </svg>
+    </span>
+  </div>
+
+  <div class="memo-sub">Psalm 132 : 16 – 18</div>
+  <hr class="divider"/>
+
+  <div class="versions-grid">
+    <div>
+      <div class="version-label esv">ESV</div>
+      <div class="verse-block"><span class="vnum">16</span>I will also clothe its priests with salvation, and its saints will shout for joy.</div>
+      <div class="verse-block"><span class="vnum">17</span>There I will make a horn to sprout for David; I have prepared a lamp for my anointed.</div>
+      <div class="verse-block verse-bold"><span class="vnum">18</span>His enemies I will clothe with shame, but on him his crown will shine. ★</div>
+    </div>
+    <div>
+      <div class="version-label niv">NIV</div>
+      <div class="verse-block"><span class="vnum">16</span>I will clothe her priests with salvation, and her faithful people will ever sing for joy.</div>
+      <div class="verse-block"><span class="vnum">17</span>Here I will make a horn grow for David and set up a lamp for my anointed one.</div>
+      <div class="verse-block verse-bold"><span class="vnum">18</span>I will clothe his enemies with shame, but on him his crown will be resplendent. ★</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- Key Vocabulary — ESV -->
+  <div class="vocab-section-wrap">
+    <div class="vocab-title">Key Vocabulary — ESV · 5 Words</div>
+    <div class="vocab-grid">
+      <div class="vocab-card">
+        <div class="vocab-word">clothe</div><div class="vocab-pos">verb</div>
+        <div class="vocab-def">to dress or cover, as with a garment</div>
+        <button class="speak-btn" onclick="speakWord('clothe','to dress or cover, as with a garment',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-word">saints</div><div class="vocab-pos">noun</div>
+        <div class="vocab-def">God's faithful people, set apart for him</div>
+        <button class="speak-btn" onclick="speakWord('saints','God\'s faithful people, set apart for him',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-word">horn</div><div class="vocab-pos">noun</div>
+        <div class="vocab-def">a symbol of strength, power, and kingship</div>
+        <button class="speak-btn" onclick="speakWord('horn','a symbol of strength, power, and kingship',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-word">anointed</div><div class="vocab-pos">adj.</div>
+        <div class="vocab-def">chosen and set apart by God for a sacred purpose</div>
+        <button class="speak-btn" onclick="speakWord('anointed','chosen and set apart by God for a sacred purpose',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card">
+        <div class="vocab-word">shame</div><div class="vocab-pos">noun</div>
+        <div class="vocab-def">disgrace; the opposite of honor and glory</div>
+        <button class="speak-btn" onclick="speakWord('shame','disgrace, the opposite of honor and glory',this)">🔊 Read</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- Key Vocabulary — NIV -->
+  <div class="vocab-section-wrap">
+    <div class="vocab-title niv-title">Key Vocabulary — NIV · 5 Words</div>
+    <div class="vocab-grid">
+      <div class="vocab-card niv">
+        <div class="vocab-word">faithful</div><div class="vocab-pos">adj.</div>
+        <div class="vocab-def">loyal and devoted; trustworthy before God</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('faithful','loyal and devoted, trustworthy before God',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card niv">
+        <div class="vocab-word">grow</div><div class="vocab-pos">verb</div>
+        <div class="vocab-def">to increase in strength; to be raised up by God</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('grow','to increase in strength, to be raised up by God',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card niv">
+        <div class="vocab-word">lamp</div><div class="vocab-pos">noun</div>
+        <div class="vocab-def">a symbol of an unending dynasty and presence</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('lamp','a symbol of an unending dynasty and presence',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card niv">
+        <div class="vocab-word">enemies</div><div class="vocab-pos">noun</div>
+        <div class="vocab-def">those who oppose God's anointed one</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('enemies','those who oppose God\'s anointed one',this)">🔊 Read</button>
+      </div>
+      <div class="vocab-card niv">
+        <div class="vocab-word">resplendent</div><div class="vocab-pos">adj.</div>
+        <div class="vocab-def">shining brilliantly; gloriously bright</div>
+        <button class="speak-btn niv-btn" onclick="speakWord('resplendent','shining brilliantly, gloriously bright',this)">🔊 Read</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- Audio Controls -->
+  <div class="audio-section">
+    <div class="audio-label">Listen &amp; Memorize — Full Passage</div>
+    <div class="audio-controls">
+      <button class="abtn play" onclick="speakAll()">▶ Play All</button>
+      <button class="abtn" onclick="speakSlow()">𝅘𝅥𝅮 Slow</button>
+      <button class="abtn" onclick="stopSpeech()">◼ Stop</button>
+      <button class="abtn" id="repeatBtn" onclick="toggleRepeat()">↺ Repeat</button>
+    </div>
+    <div class="audio-status" id="audioStatus">Ready</div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- ══ BIBLE STUDY SECTION ══ -->
+  <div class="study-section">
+
+    <div class="study-title">Bible Study</div>
+
+    <div class="study-ref-banner">
+      <div class="study-ref-text">Psalm 132 : 16 – 18</div>
+      <div class="study-ref-sub">"The LORD's Covenant with David"</div>
+    </div>
+    <!-- Study Body Text -->
+    <div class="study-body" id="studyBody">
+      <p>Psalm 132 is a Song of Ascents — sung by pilgrims climbing toward Jerusalem to worship. It moves in three simple movements: a costly vow, a covenant promise, and a certain crown.</p>
+
+      <p><em>1. A Costly Vow (vv. 1–10)</em><br/>
+      David swore he would not rest — not sleep, not comfort — until God had a dwelling place among his people. His devotion came before his own ease. The people then worshiped together, carrying that same longing for God's presence into Zion.</p>
+
+      <p><em>2. A Covenant Promise (vv. 11–17)</em><br/>
+      The LORD answers David's sacrifice with his own sworn oath: an everlasting throne, a chosen dwelling in Zion, a horn that will sprout, a lamp that will never go out. What David gave up in comfort, God repaid in covenant — security secured not by human strength, but by God's own promise.</p>
+
+      <p><em>3. A Certain Crown — this week's memorization verse ★ (v. 18)</em><br/>
+      <strong>"His enemies I will clothe with shame, but on him his crown will shine."</strong> The psalm ends with a guarantee: those who oppose God's anointed are covered in disgrace, but the one God has chosen is covered in glory. Shame for the wicked, a shining crown for the faithful — sealed by God's own oath.</p>
+
+      <p style="margin-top:1.4rem;padding-top:1rem;border-top:1px dotted #C4A97A;">
+      What we give up for God's presence is never wasted. What looks like hardship now ends, in God's timing, with shame for evil and a shining crown for those who belong to him.</p>
+    </div>
+
+    <div class="study-speak-row">
+      <span class="study-icon" id="studyIcon" onclick="speakStudy(this)" title="Click to listen in English">🔊</span>
+      <span class="study-speak-label">Listen to Bible Study (English)</span>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+var synth = window.speechSynthesis;
+var repeatOn = false;
+
+// ── 맑은 여성 영어 목소리 선택 ──
+function getVoice(){
+  var voices = synth.getVoices();
+  if(!voices.length) return null;
+  // 1순위: 이름에 Female/여성 포함
+  var preferred = [
+    "Google UK English Female",
+    "Microsoft Aria Online (Natural) - English (United States)",
+    "Microsoft Jenny Online (Natural) - English (United States)",
+    "Microsoft Sonia Online (Natural) - English (United Kingdom)",
+    "Samantha","Karen","Moira","Tessa","Victoria","Zira"
+  ];
+  for(var i=0;i<preferred.length;i++){
+    var found = voices.find(function(v){ return v.name === preferred[i]; });
+    if(found) return found;
+  }
+  // 2순위: 이름에 female/woman 포함
+  var byName = voices.find(function(v){
+    var n = v.name.toLowerCase();
+    return v.lang.startsWith("en") && (
+      n.includes("female") || n.includes("woman") ||
+      n.includes("samantha") || n.includes("karen") ||
+      n.includes("moira") || n.includes("tessa") ||
+      n.includes("aria") || n.includes("jenny") ||
+      n.includes("sonia") || n.includes("zira") ||
+      n.includes("victoria") || n.includes("alice") ||
+      n.includes("susan") || n.includes("kate")
+    );
+  });
+  if(byName) return byName;
+  // 3순위: 영어면 아무거나
+  return voices.find(function(v){ return v.lang && v.lang.startsWith("en"); }) || null;
+}
+
+// 목소리 미리 로드
+synth.getVoices();
+if(synth.onvoiceschanged !== undefined){
+  synth.onvoiceschanged = function(){ synth.getVoices(); };
+}
+
+function speakWord(word, def, btn){
+  synth.cancel();
+  setTimeout(function(){
+    var v = getVoice();
+    var u = new SpeechSynthesisUtterance(word + ". " + def);
+    u.lang="en-US"; u.rate=0.88; u.pitch=1.15; u.volume=1.0;
+    if(v) u.voice=v;
+    synth.speak(u);
+  }, 200);
+}
+
+function stopSpeech(){ synth.cancel(); }
+function toggleRepeat(){
+  repeatOn = !repeatOn;
+  var b = document.getElementById("repeatBtn");
+  if(b) b.textContent = repeatOn ? "🔁 ON" : "↺ Repeat";
+}
+
+var ESV_TEXT = "Verse 16. I will also clothe its priests with salvation, and its saints will shout for joy. " +
+  "Verse 17. There I will make a horn to sprout for David; I have prepared a lamp for my anointed. " +
+  "Verse 18. His enemies I will clothe with shame, but on him his crown will shine.";
+
+var NIV_TEXT = "Verse 16. I will clothe her priests with salvation, and her faithful people will ever sing for joy. " +
+  "Verse 17. Here I will make a horn grow for David and set up a lamp for my anointed one. " +
+  "Verse 18. I will clothe his enemies with shame, but on him his crown will be resplendent.";
+
+function speak(rate){
+  synth.cancel();
+  setTimeout(function(){
+    var v = getVoice();
+    var u1 = new SpeechSynthesisUtterance("E.S.V. " + ESV_TEXT);
+    u1.lang="en-US"; u1.rate=rate; u1.pitch=1.15; u1.volume=1.0;
+    if(v) u1.voice=v;
+    var u2 = new SpeechSynthesisUtterance("N.I.V. " + NIV_TEXT);
+    u2.lang="en-US"; u2.rate=rate; u2.pitch=1.15; u2.volume=1.0;
+    if(v) u2.voice=v;
+    u1.onend = function(){ setTimeout(function(){ synth.speak(u2); }, 400); };
+    if(repeatOn){ u2.onend = function(){ setTimeout(function(){ speak(rate); }, 600); }; }
+    synth.speak(u1);
+  }, 200);
+}
+function speakAll(){ speak(1.0); }
+function speakSlow(){ speak(0.75); }
+
+function speakStudy(iconEl){
+  if(iconEl.dataset.playing === "1"){
+    synth.cancel();
+    iconEl.dataset.playing="0"; iconEl.textContent="🔊"; iconEl.style.background="#5C3D1E";
+    return;
+  }
+  var el = document.getElementById("studyBody");
+  var text = el ? el.innerText : "";
+  synth.cancel();
+  setTimeout(function(){
+    var v = getVoice();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang="en-US"; u.rate=0.88; u.pitch=1.15; u.volume=1.0;
+    if(v) u.voice=v;
+    iconEl.dataset.playing="1"; iconEl.textContent="⏹"; iconEl.style.background="#7A9E7E";
+    u.onend=function(){ iconEl.dataset.playing="0"; iconEl.textContent="🔊"; iconEl.style.background="#5C3D1E"; };
+    synth.speak(u);
+  }, 200);
+}
+
+
+// ── Sermon KJV Modal ──
+function openSermonModal(){
+  var el = document.getElementById("sermonModal");
+  if(el){ el.classList.add("open"); document.body.style.overflow="hidden"; }
+}
+function closeSermonModal(){
+  synth.cancel();
+  var icon = document.getElementById("sermonIcon");
+  if(icon){ icon.dataset.playing="0"; icon.textContent="🔊"; icon.style.background="#5C3D1E"; }
+  var el = document.getElementById("sermonModal");
+  if(el){ el.classList.remove("open"); document.body.style.overflow=""; }
+}
+document.addEventListener("DOMContentLoaded", function(){
+  var ov = document.getElementById("sermonModal");
+  if(ov){
+    ov.addEventListener("click", function(e){
+      if(e.target === ov) closeSermonModal();
+    });
+  }
+});
+
+var KJV_PSALM_132 =
+  "Psalm 132. A Song of degrees. " +
+  "Verse 1. Lord, remember David, and all his afflictions. " +
+  "Verse 2. How he sware unto the Lord, and vowed unto the mighty God of Jacob. " +
+  "Verse 3. Surely I will not come into the tabernacle of my house, nor go up into my bed. " +
+  "Verse 4. I will not give sleep to mine eyes, or slumber to mine eyelids, " +
+  "Verse 5. Until I find out a place for the Lord, an habitation for the mighty God of Jacob. " +
+  "Verse 6. Lo, we heard of it at Ephratah, we found it in the fields of the wood. " +
+  "Verse 7. We will go into his tabernacles, we will worship at his footstool. " +
+  "Verse 8. Arise, O Lord, into thy rest, thou, and the ark of thy strength. " +
+  "Verse 9. Let thy priests be clothed with righteousness, and let thy saints shout for joy. " +
+  "Verse 10. For thy servant David\'s sake, turn not away the face of thine anointed. " +
+  "Verse 11. The Lord hath sworn in truth unto David, he will not turn from it, of the fruit of thy body will I set upon thy throne. " +
+  "Verse 12. If thy children will keep my covenant, and my testimony that I shall teach them, their children shall also sit upon thy throne for evermore. " +
+  "Verse 13. For the Lord hath chosen Zion, he hath desired it for his habitation. " +
+  "Verse 14. This is my rest forever, here will I dwell, for I have desired it. " +
+  "Verse 15. I will abundantly bless her provision, I will satisfy her poor with bread. " +
+  "Verse 16. I will also clothe her priests with salvation, and her saints shall shout aloud for joy. " +
+  "Verse 17. There will I make the horn of David to bud, I have ordained a lamp for mine anointed. " +
+  "Verse 18. His enemies will I clothe with shame, but upon himself shall his crown flourish.";
+
+function speakSermon(iconEl){
+  if(iconEl.dataset.playing === "1"){
+    synth.cancel();
+    iconEl.dataset.playing="0"; iconEl.textContent="🔊"; iconEl.style.background="#5C3D1E";
+    return;
+  }
+  synth.cancel();
+  setTimeout(function(){
+    var v = getVoice();
+    var u = new SpeechSynthesisUtterance(KJV_PSALM_132);
+    u.lang="en-US"; u.rate=0.86; u.pitch=1.15; u.volume=1.0;
+    if(v) u.voice=v;
+    iconEl.dataset.playing="1"; iconEl.textContent="⏹"; iconEl.style.background="#7A9E7E";
+    u.onend=function(){ iconEl.dataset.playing="0"; iconEl.textContent="🔊"; iconEl.style.background="#5C3D1E"; };
+    synth.speak(u);
+  }, 200);
+}
+
+</script>
+</body>
+</html>
