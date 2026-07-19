@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FPCK Bulletin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}
+  body{background:#EDE8DF;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:2rem 1rem;color:#2C2416;font-size:16px;line-height:1.6}
+
+  .bulletin-wrap{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:880px;border:2px solid #8B7355;background:#FDFAF5;box-shadow:0 6px 32px rgba(100,80,50,.18)}
+  .page{padding:1.9rem 1.6rem}
+  .page-left{border-right:1.5px solid #C4A97A;background:linear-gradient(to bottom,#FDFAF5,#FAF5EC)}
+  .page-right{background:#FDFAF5}
+
+  .cross-emblem{text-align:center;margin-bottom:.6rem}
+  .cross-emblem svg{width:38px;height:38px;opacity:.7}
+  .church-name{font-size:17px;font-weight:800;letter-spacing:.03em;text-align:center;color:#5C3D1E;margin-bottom:.3rem}
+  .motto{font-size:13px;text-align:center;color:#8B6E45;margin-bottom:.45rem;font-weight:600}
+  .date-line{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:#5C3D1E;text-align:center;margin-bottom:.9rem;font-weight:700}
+  .divider{border:none;border-top:1px solid #C4A97A;margin:.6rem 0}
+
+  .order-title{font-size:15.5px;font-weight:800;color:#5C3D1E;text-align:center;margin-bottom:.7rem;letter-spacing:.03em;padding-bottom:.35rem;border-bottom:1.5px solid #C4A97A}
+
+  /* order-of-worship line (role/assignment) */
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.55rem;font-size:13.5px;line-height:1.45}
+  .lbl{color:#2C2416;font-weight:600}
+  .rgt{color:#5C3D1E;font-weight:700;text-align:right;white-space:nowrap;margin-left:.5rem}
+
+  /* embedded full text (Creed / Commandments / Lord's Prayer / Benediction) */
+  .text-block{margin:.1rem 0 .8rem;padding:.6rem .75rem;background:#FAF5EC;border:1.5px solid #C4A97A;border-left:4px solid #8B6E45;border-radius:5px}
+  .text-block p{font-size:11.8px;line-height:1.62;color:#2C2416;margin-bottom:.4rem}
+  .text-block p:last-child{margin-bottom:0}
+  .text-block ol{margin:0 0 0 1.1rem;padding:0}
+  .text-block li{font-size:11.8px;line-height:1.55;color:#2C2416;margin-bottom:.28rem}
+  .text-block li:last-child{margin-bottom:0}
+
+  /* hymn lyrics */
+  .hymns-section{margin-top:.6rem}
+  .hymn-title{font-size:12.5px;font-weight:800;color:#5C3D1E;margin-bottom:.25rem;text-align:center;letter-spacing:.02em}
+  .hymn-cols{display:grid;grid-template-columns:1fr 1fr;gap:.3rem .7rem;margin-bottom:.55rem}
+  .hymn-verse{font-size:10.5px;line-height:1.5;color:#2C2416}
+  .hymn-verse .vnum{font-weight:700;color:#8B6E45;margin-right:.15rem}
+  .hymn-verse .refrain{display:block;margin-top:.28rem;font-style:italic;color:#5C3D1E}
+  .hymn-divider{border:none;border-top:1px dashed #C4A97A;margin:.35rem 0}
+
+  @media(max-width:640px){
+    .bulletin-wrap{grid-template-columns:1fr}
+    .page-left{border-right:none;border-bottom:1.5px solid #C4A97A}
+  }
+  @media print{
+    @page{margin:0.4cm}
+    body{background:white;padding:0;font-size:12px;min-height:0}
+    .bulletin-wrap{box-shadow:none;border:1px solid #8B7355;max-width:100%;page-break-after:avoid;break-after:avoid}
+    .page{page-break-inside:avoid;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ Bulletin (A4 duplex print, 2 columns = front / back) ══════════════ -->
+<div class="bulletin-wrap">
+
+  <!-- ── Front page ── -->
+  <div class="page page-left">
+    <div class="cross-emblem">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="4" width="6" height="28" fill="#8B7355" rx="1"/>
+        <rect x="6" y="13" width="24" height="6" fill="#8B7355" rx="1"/>
+      </svg>
+    </div>
+    <div class="church-name">First Presbyterian Church of Korea</div>
+    <div class="motto">"You follow me!" — John 21:22</div>
+    <div class="date-line">Lord's Day Worship &nbsp;·&nbsp; July 26, 2026 (Sunday)</div>
+    <hr class="divider"/>
+
+    <div class="order-title">Order of Worship</div>
+
+    <div class="row"><span class="lbl">1. The Apostles' Creed</span><span class="rgt">Congregation</span></div>
+    <div class="text-block">
+      <p>I believe in God the Father Almighty, Maker of heaven and earth. And in Jesus Christ, His only Son our Lord, who was conceived by the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died, and was buried. He descended into hell. The third day He rose again from the dead. He ascended into heaven, and sitteth at the right hand of God the Father Almighty. From thence He shall come to judge the living and the dead.</p>
+      <p>I believe in the Holy Spirit, the holy universal Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting. Amen.</p>
+    </div>
+
+    <div class="row"><span class="lbl">2. Hymn — Thine Is the Glory</span><span class="rgt">Congregation</span></div>
+
+    <div class="row"><span class="lbl">3. The Ten Commandments</span><span class="rgt">Congregation</span></div>
+    <div class="text-block">
+      <ol>
+        <li>You shall have no other gods before me.</li>
+        <li>You shall not make for yourself an idol in the form of anything. And you shall not bow down to them or worship them.</li>
+        <li>You shall not misuse the name of the Lord your God.</li>
+        <li>Remember the Sabbath day by keeping it holy.</li>
+        <li>Honor your father and your mother.</li>
+        <li>You shall not murder.</li>
+        <li>You shall not commit adultery.</li>
+        <li>You shall not steal.</li>
+        <li>You shall not give false testimony against your neighbor.</li>
+        <li>You shall not covet your neighbor's house.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ── Back page (continued) ── -->
+  <div class="page page-right">
+
+    <div class="row"><span class="lbl">4. Representative Prayer</span><span class="rgt">Mrs. Jeon</span></div>
+    <div class="row"><span class="lbl">5. Scripture Reading &amp; Sermon (Psalm 136)</span><span class="rgt">Pastor</span></div>
+    <div class="row"><span class="lbl">6. Hymn — Take the Name of Jesus with You</span><span class="rgt">Congregation</span></div>
+    <div class="row"><span class="lbl">7. Offering</span><span class="rgt">Congregation</span></div>
+    <div class="row"><span class="lbl">8. Announcements</span><span class="rgt">Congregation</span></div>
+
+    <div class="row"><span class="lbl">9. The Lord's Prayer</span><span class="rgt">Congregation</span></div>
+    <div class="text-block">
+      <p>Our Father in heaven, hallowed be Your name, Your kingdom come, Your will be done on earth, as it is in heaven. Give us today our daily bread. Forgive us our debts, as we also have forgiven our debtors, and lead us not into temptation, but deliver us from the evil one. For Yours is the Kingdom, and the power, and the glory, forever, Amen.</p>
+    </div>
+
+    <div class="row"><span class="lbl">10. Benediction</span><span class="rgt">Pastor</span></div>
+    <div class="text-block">
+      <p>May the grace of the Lord Jesus Christ, and the love of God, and the fellowship of the Holy Spirit be with you all. Amen.</p>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- ── Hymn Lyrics ── -->
+    <div class="hymns-section">
+      <div class="hymn-title">♪ Thine Is the Glory</div>
+      <div class="hymn-cols">
+        <div class="hymn-verse">
+          <span class="vnum">1.</span>Thine be the glory, risen, conqu'ring Son;<br/>
+          Endless is the vict'ry Thou o'er death hast won;<br/>
+          Angels in bright raiment rolled the stone away,<br/>
+          Kept the folded grave clothes where Thy body lay.<br/>
+          <span class="refrain">Thine be the glory, risen, conqu'ring Son,<br/>
+          Endless is the vict'ry Thou o'er death hast won.</span>
+        </div>
+        <div class="hymn-verse">
+          <span class="vnum">2.</span>Lo! Jesus meets us, risen from the tomb;<br/>
+          Lovingly He greets us, scatters fear and gloom;<br/>
+          Let the Church with gladness hymns of triumph sing,<br/>
+          For her Lord now liveth, death hath lost its sting.<br/>
+          <span class="refrain">Thine be the glory, risen, conqu'ring Son,<br/>
+          Endless is the vict'ry Thou o'er death hast won.</span>
+        </div>
+      </div>
+
+      <hr class="hymn-divider"/>
+
+      <div class="hymn-title">♪ Take the Name of Jesus with You</div>
+      <div class="hymn-cols">
+        <div class="hymn-verse">
+          <span class="vnum">1.</span>Take the name of Jesus with you,<br/>
+          Child of sorrow and of woe;<br/>
+          It will joy and comfort give you,<br/>
+          Take it then, where'er you go.<br/>
+          <span class="refrain">Precious name, O how sweet!<br/>
+          Hope of earth and joy of heaven;<br/>
+          Precious name, O how sweet!<br/>
+          Hope of earth and joy of heaven.</span>
+        </div>
+        <div class="hymn-verse">
+          <span class="vnum">2.</span>Take the name of Jesus ever,<br/>
+          As a shield from every snare;<br/>
+          If temptations round you gather,<br/>
+          Breathe that holy name in prayer.<br/>
+          <span class="refrain">Precious name, O how sweet!<br/>
+          Hope of earth and joy of heaven;<br/>
+          Precious name, O how sweet!<br/>
+          Hope of earth and joy of heaven.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
